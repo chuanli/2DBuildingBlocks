@@ -6,10 +6,10 @@
   <ItemDefinitionGroup>
     <PreLinkEvent>
       <Command>%(Command)
-xcopy /D /Y "$(QTDIR64)\bin\QtCore4.dll" $(OutDir) &gt;NUL
-xcopy /D /Y "$(QTDIR64)\bin\QtGui4.dll" $(OutDir) &gt;NUL
-xcopy /D /Y "$(QTDIR64)\bin\QtOpenGL4.dll" $(OutDir) &gt;NUL
-xcopy /D /Y "$(QTDIR64)\bin\QtXml4.dll" $(OutDir) &gt;NUL</Command>
+xcopy /D /Y "$(QTDIR)\bin\QtCore4.dll" $(OutDir) &gt;NUL
+xcopy /D /Y "$(QTDIR)\bin\QtGui4.dll" $(OutDir) &gt;NUL
+xcopy /D /Y "$(QTDIR)\bin\QtOpenGL4.dll" $(OutDir) &gt;NUL
+xcopy /D /Y "$(QTDIR)\bin\QtXml4.dll" $(OutDir) &gt;NUL</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
