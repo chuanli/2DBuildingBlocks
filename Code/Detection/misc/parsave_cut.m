@@ -1,0 +1,31 @@
+function parsave_cut(fname, D_train)
+D_train.hog_dense = [];
+D_train.loc_dense = [];
+D_train.num_patch_dense = [];
+D_train.hog_key = [];
+D_train.loc_key = [];
+D_train.num_patch_key = [];
+D_train.x_range = [];
+D_train.y_range = [];
+D_train.hog_cell_map = [];
+D_train.occ = [];
+D_train.rep_binary = [];
+D_train.rep_site_loc = [];
+D_train.rep_pixel_loc = [];
+D_train.rep_site_num = [];
+D_train.hog_cell_map = [];
+D_train.occ = [];
+D_train.rep_site_loc = 0;
+D_train.rep_pixel_loc = [];
+D_train.rep_site_num = [];
+D_train.hypothesis = [];
+D_train.hypothesis_size = [];
+D_train.hog_cell = [];
+D_train.graphcut_map_size = [];
+D_train.label_first = [];
+D_train.weight_neighbors = [];
+D_train.im_label = [];
+D_train.label_second = [];
+D_train.label_third = [];
+save(fname, 'D_train');
+end
