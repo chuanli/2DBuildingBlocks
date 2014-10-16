@@ -9,7 +9,12 @@
 xcopy /D /Y "$(QTDIR)\bin\QtCore4.dll" $(OutDir) &gt;NUL
 xcopy /D /Y "$(QTDIR)\bin\QtGui4.dll" $(OutDir) &gt;NUL
 xcopy /D /Y "$(QTDIR)\bin\QtOpenGL4.dll" $(OutDir) &gt;NUL
-xcopy /D /Y "$(QTDIR)\bin\QtXml4.dll" $(OutDir) &gt;NUL</Command>
+xcopy /D /Y "$(QTDIR)\bin\QtXml4.dll" $(OutDir) &gt;NUL
+xcopy /D /Y "$(OPENCVDIR)\build\x86\vc10\bin\opencv_core249.dll" $(OutDir) &gt;NUL
+xcopy /D /Y "$(OPENCVDIR)\build\x86\vc10\bin\opencv_highgui249.dll" $(OutDir) &gt;NUL
+xcopy /D /Y "$(OPENCVDIR)\build\x86\vc10\bin\opencv_imgproc249.dll" $(OutDir) &gt;NUL
+
+</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup />

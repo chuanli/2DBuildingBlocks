@@ -6,6 +6,13 @@
 #include <QGraphicsScene>
 #include <QPrinter>
 #include <QString>
+#include "Synthesizer.h"
+#include "Para.h"
+
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv/cv.h>
+using namespace cv;
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -21,16 +28,48 @@ class ImageViewer : public QMainWindow
     Q_OBJECT
 
 public:
-    ImageViewer();
+	ImageViewer();
+	void RepIni();
+	void RepPrep();
 
-//private slots:
- 
+	// rendering
+	void generateColor10();
+	void createActions();
+	void createMenus();
+	void doSynthesis(const int mode);
+
+private slots:
+    void slotOpen();
+	void slotExpandX();
+	void slotShrinkX();
+	void slotExpandY();
+	void slotShrinkY();
+
 private:
- //   QScrollArea *scrollArea;
- //   double scaleFactor;
- //   QGraphicsScene* scene;
-	//QGraphicsView* view;
-	//QGraphicsPixmapItem* imgDisp;
+	// scene
+	QScrollArea *scrollArea;
+	QGraphicsScene* scene;
+	QGraphicsView* view;
+	QGraphicsPixmapItem* imgDisp;
+	double scaleFactor;
+
+	// data
+	Synthesizer* syn;
+
+	// rendering 
+	vector<vector<double>> colorList;
+	QPen pen;
+
+	// actions
+	QAction *openAct;
+	QAction *synExpandXAct;
+	QAction *synShrinkXAct;
+	QAction *synExpandYAct;
+	QAction *synShrinkYAct;
+
+	// manus
+	QMenu *fileMenu;
+	QMenu *editMenu;
 
 protected:
 
