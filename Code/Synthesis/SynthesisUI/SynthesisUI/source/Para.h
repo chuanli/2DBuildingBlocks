@@ -10,6 +10,7 @@
 using namespace std;
 
 extern QString filename_imgInput;
+extern QString filename_offsetStatisticsInput;
 extern QString filename_repInput;
 
 extern double scalerRes; // control the resolution of synthesis, balance the speed and quality
@@ -62,9 +63,15 @@ extern double scalerRes; // control the resolution of synthesis, balance the spe
 //
 //extern bool flag_scribble;
 
-const int SLOTEXPANDX = 0;
-const int SLOTSHRINKX = 1;
-const int SLOTEXPANDY = 2;
-const int SLOTSHRINKY = 3;
+const int SLOTSWITCHMETHOD = 0;
+const int SLOTEXPANDX = 1;
+const int SLOTSHRINKX = 2;
+const int SLOTEXPANDY = 3;
+const int SLOTSHRINKY = 4;
+
+const int MODE_SHIFTMAP = 1;
+const int MODE_OFFSETSTATISTICS = 2;
+const int MODE_BB = 3;
+
 
 #endif

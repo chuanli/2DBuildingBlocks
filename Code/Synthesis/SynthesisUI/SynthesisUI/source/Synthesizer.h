@@ -68,13 +68,27 @@ public:
 	Synthesizer(void);
 	~Synthesizer(void);
 	Mat qimage2mat(const QImage& qimage);
-	void initialization(QString filename_imgInput, QString filename_repInput);
+	void initialization(QString filename_imgInput, QString filename_offsetStatisticsInput);
+
+	// Shift Map
 	void synthesis_ShiftMap();
 	void prepareShifts_ShiftMap();
-	void label2result();
-
 	static int unary_ShiftMap(int p, int l);
 	static int smooth_ShiftMap(int p1, int p2, int l1, int l2);
+
+	// Offset Statistics
+	void synthesis_OffsetStatistics();
+	void prepareShifts_OffsetStatistics();
+	static int unary_OffsetStatistics(int p, int l);
+	static int smooth_OffsetStatistics(int p1, int p2, int l1, int l2);
+
+	// Building Blocks
+	void synthesis_BB();
+	void prepareShifts_BB();
+	static int unary_BB(int p, int l);
+	static int smooth_BB(int p1, int p2, int l1, int l2);
+
+	void label2result();
 	static bool isValid(int x, int y);
 	//-------------------------------------------------------------
 	// variables
@@ -177,17 +191,12 @@ public:
 	vector<int> list_shiftY_fullres;
 	vector<Point2i*> list_shiftXY_fullres;
 
-	//int dist_shiftX_fullres;
-	//vector<int> list_shiftX_fullres;
-	//int num_shiftY;
-	//int dist_shiftY_scaled;
-	//
-	//int dist_shiftY_fullres;
-	//vector<int> list_shiftY_fullres;
-	//int num_shiftXY;
-	//
-	//vector<Point2i> list_shiftXY_fullres;
-
+	//-------------------
+	// generator from offset statistics
+	//-------------------
+	int numGeneratorsOS;
+	vector<Point2i*> generatorsOS_fullres;
+	vector<Point2i*> generatorsOS_scaled;
 
 	// graph cut
 	GCoptimizationGridGraph *gc;

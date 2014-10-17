@@ -27,11 +27,13 @@ static void meshgridTest(const cv::Range &xgv, const cv::Range &ygv, cv::Mat1d &
 
 // member functions
 ImageViewer::ImageViewer(){
+	method_now = 1;
+
 	//-------------------------------------------------------------
 	// initialization
 	//-------------------------------------------------------------
 	syn = new Synthesizer;
-	syn->initialization(filename_imgInput, filename_repInput);
+	syn->initialization(filename_imgInput, filename_offsetStatisticsInput);
 
 	//-------------------------------------------------------------
 	// display input image
@@ -65,7 +67,7 @@ void ImageViewer::generateColor10(){
 
 void ImageViewer::slotOpen(){
 	filename_imgInput = QFileDialog::getOpenFileName(this, tr("Open image"), QDir::currentPath());
-	filename_repInput = QFileDialog::getOpenFileName(this, tr("Open repetition file"), QDir::currentPath());
+	filename_offsetStatisticsInput = QFileDialog::getOpenFileName(this, tr("Open offset statistics file"), QDir::currentPath());
 
 	delete syn;
 
@@ -104,12 +106,14 @@ void ImageViewer::slotShrinkY(){
 	doSynthesis(SLOTSHRINKY);
 }
 
-void ImageViewer::doSynthesis(const int mode){
-	switch (mode){
-	case SLOTEXPANDX: 
+void ImageViewer::doSynthesis(const int act){
+	switch (act){
+	case SLOTSWITCHMETHOD:
+		break;
+	case SLOTEXPANDX:
 		syn->totalGeneratorX_scaled += syn->generatorX_scaled;
 		break;
-	case SLOTSHRINKX: 
+	case SLOTSHRINKX:
 		if (syn->totalGeneratorX_scaled > 1 + syn->generatorX_scaled)
 		{
 			syn->totalGeneratorX_scaled -= syn->generatorX_scaled;
@@ -118,10 +122,10 @@ void ImageViewer::doSynthesis(const int mode){
 			syn->totalGeneratorX_scaled = 1;
 		}
 		break;
-	case SLOTEXPANDY: 
+	case SLOTEXPANDY:
 		syn->totalGeneratorY_scaled += syn->generatorY_scaled;
 		break;
-	case SLOTSHRINKY: 
+	case SLOTSHRINKY:
 		if (syn->totalGeneratorY_scaled > 1 + syn->generatorY_scaled)
 		{
 			syn->totalGeneratorY_scaled -= syn->generatorY_scaled;
@@ -129,7 +133,7 @@ void ImageViewer::doSynthesis(const int mode){
 		else{
 			syn->totalGeneratorY_scaled = 1;
 		}
-			break;
+		break;
 	default:;
 	};
 
@@ -140,7 +144,20 @@ void ImageViewer::doSynthesis(const int mode){
 	if ((syn->totalGeneratorX_scaled > 1) || (syn->totalGeneratorY_scaled > 1)){
 		// synthesis if any of syn->expansion_totalGeneratorX and syn->expansion_totalGeneratorY is larger than one
 		qDebug() << "Do synthesis.";
-		syn->synthesis_ShiftMap();
+
+		switch (method_now){
+		case MODE_SHIFTMAP:
+			syn->synthesis_ShiftMap();
+			break;
+		case MODE_OFFSETSTATISTICS:
+			syn->synthesis_OffsetStatistics();
+			break;
+		case MODE_BB:
+			syn->synthesis_BB();
+			break;
+		default:;
+		};
+
 		imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgSyn_fullres));
 		scene->addItem(imgDisp);
 		scene->setSceneRect(0, 0, syn->qimgSyn_fullres->width(), syn->qimgSyn_fullres->height());
@@ -182,6 +199,17 @@ void ImageViewer::createActions(){
 	synShrinkYAct->setShortcut(tr("Ctrl+Down"));
 	connect(synShrinkYAct, SIGNAL(triggered()), this, SLOT(slotShrinkY()));
 
+	swithMethod1Act = new QAction(tr("&ShiftMap on/off"), this);
+	swithMethod1Act->setShortcut(tr("Ctrl+1"));
+	connect(swithMethod1Act, SIGNAL(triggered()), this, SLOT(swithMethod1()));
+
+	swithMethod2Act = new QAction(tr("&Offset on/off"), this);
+	swithMethod2Act->setShortcut(tr("Ctrl+2"));
+	connect(swithMethod2Act, SIGNAL(triggered()), this, SLOT(swithMethod2()));
+
+	swithMethod3Act = new QAction(tr("&BB on/off"), this);
+	swithMethod3Act->setShortcut(tr("Ctrl+3"));
+	connect(swithMethod3Act, SIGNAL(triggered()), this, SLOT(swithMethod3()));
 }
 
 void ImageViewer::createMenus(){
@@ -192,7 +220,27 @@ void ImageViewer::createMenus(){
 	editMenu->addAction(synShrinkXAct);
 	editMenu->addAction(synExpandYAct);
 	editMenu->addAction(synShrinkYAct);
+	editMenu->addAction(swithMethod1Act);
+	editMenu->addAction(swithMethod2Act);
+	editMenu->addAction(swithMethod3Act);
 	menuBar()->addMenu(fileMenu);
 	menuBar()->addMenu(editMenu);
 }
 
+void ImageViewer::swithMethod1(){
+	method_now = 1;
+	qDebug() << "method_now: " << method_now;
+	doSynthesis(SLOTSWITCHMETHOD);
+}
+
+void ImageViewer::swithMethod2(){
+	method_now = 2;
+	qDebug() << "method_now: " << method_now;
+	doSynthesis(SLOTSWITCHMETHOD);
+}
+
+void ImageViewer::swithMethod3(){
+    method_now = 3;
+	qDebug() << "method_now: " << method_now;
+	doSynthesis(SLOTSWITCHMETHOD);
+}

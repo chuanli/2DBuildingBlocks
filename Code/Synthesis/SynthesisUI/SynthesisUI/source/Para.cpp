@@ -1,7 +1,8 @@
 #include "Para.h"
 
-QString filename_imgInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(7).jpg";
-QString filename_repInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(7)GT.txt";
+QString filename_imgInput = "C:/Chuan/data/2DBuildingBlocks/NonFacade/Syn/Input/NonFacade(0).jpg";
+QString filename_offsetStatisticsInput = "C:/Chuan/data/2DBuildingBlocks/NonFacade/Syn/Input/NonFacade(0)OffsetStatisticsPixel.txt";
+QString filename_repInput = "....";
 
 double scalerRes = 0.25; // control the resolution of synthesis, balance the speed and quality
 

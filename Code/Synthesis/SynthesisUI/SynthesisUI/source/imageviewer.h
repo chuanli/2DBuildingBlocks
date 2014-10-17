@@ -36,7 +36,7 @@ public:
 	void generateColor10();
 	void createActions();
 	void createMenus();
-	void doSynthesis(const int mode);
+	void doSynthesis(const int act);
 
 private slots:
     void slotOpen();
@@ -44,6 +44,9 @@ private slots:
 	void slotShrinkX();
 	void slotExpandY();
 	void slotShrinkY();
+	void swithMethod1();
+	void swithMethod2();
+	void swithMethod3();
 
 private:
 	// scene
@@ -56,6 +59,9 @@ private:
 	// data
 	Synthesizer* syn;
 
+	// method control 
+	int method_now;
+
 	// rendering 
 	vector<vector<double>> colorList;
 	QPen pen;
@@ -66,6 +72,9 @@ private:
 	QAction *synShrinkXAct;
 	QAction *synExpandYAct;
 	QAction *synShrinkYAct;
+	QAction *swithMethod1Act;
+	QAction *swithMethod2Act;
+	QAction *swithMethod3Act;
 
 	// manus
 	QMenu *fileMenu;
