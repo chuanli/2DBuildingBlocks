@@ -527,8 +527,8 @@ void Synthesizer::prepareShifts_ShiftMap(){
 		}
 	}
 
-	qDebug() << "totalShiftsX: " << totalShiftsX_scaled << ", colsSyn_scaled: " << colsSyn_scaled << ", colsPerShiftX : " << colsPerShiftX_scaled;
-	qDebug() << "totalShiftsY: " << totalShiftsY_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", rowsPerShiftY : " << rowsPerShiftY_scaled;
+	qDebug() << "totalShiftsX: " << totalShiftsX_scaled << ", colsSyn_scaled: " << colsSyn_scaled << ", colsPerShiftX_scaled : " << colsPerShiftX_scaled;
+	qDebug() << "totalShiftsY: " << totalShiftsY_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", rowsPerShiftY_scaled : " << rowsPerShiftY_scaled;
 }
 
 int Synthesizer::unary_ShiftMap(int p, int l){
@@ -540,7 +540,7 @@ int Synthesizer::unary_ShiftMap(int p, int l){
 		return 0;
 	}
 	else{
-		return 100;
+		return 1000;
 	}
 }
 
@@ -565,10 +565,10 @@ int Synthesizer::smooth_ShiftMap(int p1, int p2, int l1, int l2){
 			return retMe;
 		}
 		else{
-			return 100;
+			return 1000;
 		}
 	}
-	return 100;
+	return 1000;
 }
 
 // Offset Statistics
@@ -577,6 +577,24 @@ void Synthesizer::synthesis_OffsetStatistics(){
 
 	// Prepare shifts
 	prepareShifts_OffsetStatistics();
+
+	// setup graph cut problem
+	//qDebug() << "colsSyn_scaled: " << colsSyn_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", totalShiftsXY_scaled: " << totalShiftsXY_scaled;
+	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+
+	// set unary cost
+	gc->setDataCost(&unary_OffsetStatistics);
+
+	// set smoothness cost
+	gc->setSmoothCost(&smooth_OffsetStatistics);
+
+	// optimize
+	qDebug() << "Before optimization energy is " << gc->compute_energy();
+	gc->expansion(2);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+	qDebug() << "after expansion energy is " << gc->compute_energy();
+
+	// prepare results
+	label2result();
 }
 
 void Synthesizer::prepareShifts_OffsetStatistics(){
@@ -593,9 +611,106 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
 	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
 
-	// compute candidate shifts using generatorsOS_scaled
+
+	// find the generator zone (the expansion zone spanned by one generator at each corner)
+	std::vector<int> zone_expansion_x;
+	std::vector<int> zone_expansion_y;
+	std::vector<int> zone_generator_x;
+	std::vector<int> zone_generator_y;
+	zone_expansion_x.resize(4);
+	zone_expansion_y.resize(4);
+	zone_expansion_x[0] = 0;
+	zone_expansion_x[1] = colsSyn_scaled - colsInput_scaled;
+	zone_expansion_x[2] = colsSyn_scaled - colsInput_scaled;
+	zone_expansion_x[3] = 0;
+	zone_expansion_y[0] = 0;
+	zone_expansion_y[1] = rowsSyn_scaled - rowsInput_scaled;
+	zone_expansion_y[2] = 0;
+	zone_expansion_y[3] = rowsSyn_scaled - rowsInput_scaled;
+	zone_generator_x.resize(16);
+	zone_generator_y.resize(16);
+	for (int i = 0; i < 4; i++){
+		zone_generator_x[i * 4] = zone_expansion_x[i] - generatorsOS_scaled[0]->x + generatorsOS_scaled[1]->x;
+		zone_generator_x[i * 4 + 1] = zone_expansion_x[i] + generatorsOS_scaled[0]->x + generatorsOS_scaled[1]->x;
+		zone_generator_x[i * 4 + 2] = zone_expansion_x[i] + generatorsOS_scaled[0]->x - generatorsOS_scaled[1]->x;
+		zone_generator_x[i * 4 + 3] = zone_expansion_x[i] - generatorsOS_scaled[0]->x - generatorsOS_scaled[1]->x;
+		zone_generator_y[i * 4] = zone_expansion_y[i] - generatorsOS_scaled[0]->y + generatorsOS_scaled[1]->y;
+		zone_generator_y[i * 4 + 1] = zone_expansion_y[i] + generatorsOS_scaled[0]->y + generatorsOS_scaled[1]->y;
+		zone_generator_y[i * 4 + 2] = zone_expansion_y[i] + generatorsOS_scaled[0]->y - generatorsOS_scaled[1]->y;
+		zone_generator_y[i * 4 + 3] = zone_expansion_y[i] - generatorsOS_scaled[0]->y - generatorsOS_scaled[1]->y;
+	}
+	int min_x = *min_element(zone_generator_x.begin(), zone_generator_x.end());
+	int min_y = *min_element(zone_generator_y.begin(), zone_generator_y.end());
+	int max_x = *max_element(zone_generator_x.begin(), zone_generator_x.end());
+	int max_y = *max_element(zone_generator_y.begin(), zone_generator_y.end());
+
+	// generate enough candidates and keep the ones in the generator zone
+	int num_halfpoolX = 100;
+	int num_halfpoolY = 100;
+	totalShiftsXY_scaled = 0;
+	vector<Point2i*>().swap(list_shiftXY_scaled);
+	for (int i_x = -num_halfpoolX; i_x < num_halfpoolX; i_x++){
+		for (int i_y = -num_halfpoolY; i_y < num_halfpoolY; i_y++){
+			int a_x = generatorsOS_scaled[0]->x * i_x;
+			int a_y = generatorsOS_scaled[0]->y * i_x;
+			int b_x = generatorsOS_scaled[1]->x * i_y;
+			int b_y = generatorsOS_scaled[1]->y * i_y;
+			int x = a_x + b_x;
+			int y = a_y + b_y;
+			if (x >= min_x && y >= min_y && x <= max_x  && y < max_y){
+				list_shiftXY_scaled.push_back(new Point2i(x, y));
+				totalShiftsXY_scaled += 1;
+			}
+		}
+	}
+	vector<Point2i*>().swap(gcoNodes);
+	gcoNodes.resize(numPixelSyn_scaled);
+	for (int y = 0; y < rowsSyn_scaled; y++){
+		for (int x = 0; x < colsSyn_scaled; x++){
+			gcoNodes[y * colsSyn_scaled + x] = new Point2i(x, y);
+		}
+	}
 }
 
+int Synthesizer::unary_OffsetStatistics(int p, int l){
+
+	// compute the unary cost of assigning list_shiftXY_scaled[i_l] to gcoNodes[i_n]
+	int newX = -list_shiftXY_scaled[l]->x + gcoNodes[p]->x;
+	int newY = -list_shiftXY_scaled[l]->y + gcoNodes[p]->y;
+	if (isValid(newX, newY)){
+		return 0;
+	}
+	else{
+		return 1000;
+	}
+}
+
+int Synthesizer::smooth_OffsetStatistics(int p1, int p2, int l1, int l2){
+	int retMe = 0;
+	if (l1 == l2){
+		return 0;
+	}
+	Point2i x1_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p1];
+	Point2i x2_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p2];
+
+	if (isValid(x1_s_a.x, x1_s_a.y) && isValid(x2_s_b.x, x2_s_b.y))
+	{
+		Point2i x1_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p1];
+		Point2i x2_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p2];
+		if (isValid(x1_s_b.x, x1_s_b.y) && isValid(x2_s_a.x, x2_s_a.y)){
+
+			int diff1 = imgInputGray_scaled(x1_s_a.y, x1_s_a.x) - imgInputGray_scaled(x1_s_b.y, x1_s_b.x);
+			int diff2 = imgInputGray_scaled(x2_s_a.y, x2_s_a.x) - imgInputGray_scaled(x2_s_b.y, x2_s_b.x);
+			double energypixel = sqrt(double(diff1*diff1)) + sqrt(double(diff2*diff2));
+			retMe = (int)energypixel;
+			return retMe;
+		}
+		else{
+			return 1000;
+		}
+	}
+	return 1000;
+}
 
 // Building Blocks
 void Synthesizer::synthesis_BB(){

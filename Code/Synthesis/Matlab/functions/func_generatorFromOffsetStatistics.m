@@ -97,7 +97,18 @@ if ~isempty(p_cen)
            v_p = para.defalt_mag * v_p/norm(v_p);
            generators = [generators v_p];
      end
+     
+     % reorder generator if it is necessary
+     if abs(generators(1, 1)) < abs(generators(2, 1))
+         temp = generators(:, 1);
+         generators(:, 1) = generators(:, 2);
+         generators(:, 2) = temp;
+     end
+     
 end 
+
+
+
 
 [X, Y] = meshgrid([1:size(map_pro, 2)] - num_cols, [1:size(map_pro, 1)] - num_rows);
 figure;

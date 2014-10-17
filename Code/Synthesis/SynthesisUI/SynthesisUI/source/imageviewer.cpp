@@ -168,6 +168,7 @@ void ImageViewer::doSynthesis(const int act){
 	else{
 		// otherwise show the input image 
 		qDebug() << "Show input.";
+		qDebug() << "colsSyn_scaled: " << syn->qimgInput_scaled->width() << ", rowsSyn_scaled: " << syn->qimgInput_scaled->height();
 		imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
 		scene->addItem(imgDisp);
 		scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
