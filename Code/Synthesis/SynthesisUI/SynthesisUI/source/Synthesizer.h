@@ -68,7 +68,7 @@ public:
 	Synthesizer(void);
 	~Synthesizer(void);
 	Mat qimage2mat(const QImage& qimage);
-	void initialization(QString filename_imgInput, QString filename_offsetStatisticsInput);
+	void initialization(QString filename_imgInput, QString filename_offsetStatisticsInput, QString filename_repInput);
 
 	// Shift Map
 	void synthesis_ShiftMap();
@@ -110,7 +110,7 @@ public:
 	QImage* qimgInputlabel_fullres; 
 	QImage* qimgInputlabel_scaled;
 	Mat1b imgInputlabel_fullres;
-	Mat1b imgInputlabel_scaled;
+	static Mat1b imgInputlabel_scaled;
 
 	// user guide
 	QImage* qimgUserGuide_fullres;
@@ -131,6 +131,15 @@ public:
 	Mat3b imgSyn_scaled;
 	Mat1b imgSynGray_fullres;
 	Mat1b imgSynGray_scaled;
+
+	QImage* qimgInputlabelinterX_fullres; // input repetition labels
+	QImage* qimgInputlabelinterX_scaled;
+	QImage* qimgInputlabelinterY_fullres; // input repetition labels
+	QImage* qimgInputlabelinterY_scaled;
+	Mat1d imgInputlabelinterX_fullres;
+	static Mat1d imgInputlabelinterX_scaled;
+	Mat1d imgInputlabelinterY_fullres;
+	static Mat1d imgInputlabelinterY_scaled;
 
 	// dimension
 	int rowsInput_fullres;
@@ -157,6 +166,9 @@ public:
 	std::vector<std::vector<int>> repY_scaled; // repetitions Y scaled
 	std::vector<std::vector<int>> repW_scaled; // repetitions W scaled
 	std::vector<std::vector<int>> repH_scaled; // repetitions H scaled
+
+
+
 
 
 	//-------------------
@@ -268,16 +280,7 @@ public:
 	//Mat1b imgInputlabel_scaled;
 
 
-	// data related to internal repetition
-	//QImage* qimgInputlabelinterX_fullres; // input repetition labels
-	//QImage* qimgInputlabelinterX_scaled;
-	//Mat1d imgInputlabelinterX_fullres;
-	//Mat1d imgInputlabelinterX_scaled;
 
-	//QImage* qimgInputlabelinterY_fullres; // input repetition labels
-	//QImage* qimgInputlabelinterY_scaled;
-	//Mat1d imgInputlabelinterY_fullres;
-	//Mat1d imgInputlabelinterY_scaled;
 
 	////data related to guidance map
 	//Mat1b imgGuide_fullres;

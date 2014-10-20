@@ -11,19 +11,7 @@ inline vector<double> makeVector3f(float x, float y, float z) {
 	return v;
 }
 
-static void meshgrid(const cv::Mat &xgv, const cv::Mat &ygv, cv::Mat1d &X, cv::Mat1d &Y)
-{
-	cv::repeat(xgv.reshape(1, 1), ygv.total(), 1, X);
-	cv::repeat(ygv.reshape(1, 1).t(), 1, xgv.total(), Y);
-}
 
-static void meshgridTest(const cv::Range &xgv, const cv::Range &ygv, cv::Mat1d &X, cv::Mat1d &Y)
-{
-	std::vector<double> t_x, t_y;
-	for (int i = xgv.start; i <= xgv.end; i++) t_x.push_back((double)i);
-	for (int i = ygv.start; i <= ygv.end; i++) t_y.push_back((double)i);
-	meshgrid(cv::Mat(t_x), cv::Mat(t_y), X, Y);
-}
 
 // member functions
 ImageViewer::ImageViewer(){
@@ -33,12 +21,13 @@ ImageViewer::ImageViewer(){
 	// initialization
 	//-------------------------------------------------------------
 	syn = new Synthesizer;
-	syn->initialization(filename_imgInput, filename_offsetStatisticsInput);
+	syn->initialization(filename_imgInput, filename_offsetStatisticsInput, filename_repInput);
 
 	//-------------------------------------------------------------
 	// display input image
 	//-------------------------------------------------------------
 	scene = new QGraphicsScene();
+	scene->clear();
 	imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
 	scene->addItem(imgDisp);
 	scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
@@ -75,13 +64,14 @@ void ImageViewer::slotOpen(){
 	// initialization
 	//-------------------------------------------------------------
 	syn = new Synthesizer;
-	syn->initialization(filename_imgInput, filename_repInput);
+	syn->initialization(filename_imgInput, filename_offsetStatisticsInput, filename_repInput);
 
 	//-------------------------------------------------------------
 	// display input image
 	//-------------------------------------------------------------
 	scene = new QGraphicsScene();
 	imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
+	scene->clear();
 	scene->addItem(imgDisp);
 	scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
 	view = new QGraphicsView(scene);
@@ -159,6 +149,7 @@ void ImageViewer::doSynthesis(const int act){
 		};
 
 		imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgSyn_fullres));
+		scene->clear();
 		scene->addItem(imgDisp);
 		scene->setSceneRect(0, 0, syn->qimgSyn_fullres->width(), syn->qimgSyn_fullres->height());
 		view = new QGraphicsView(scene);
@@ -170,6 +161,7 @@ void ImageViewer::doSynthesis(const int act){
 		qDebug() << "Show input.";
 		qDebug() << "colsSyn_scaled: " << syn->qimgInput_scaled->width() << ", rowsSyn_scaled: " << syn->qimgInput_scaled->height();
 		imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
+		scene->clear();
 		scene->addItem(imgDisp);
 		scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
 		view = new QGraphicsView(scene);

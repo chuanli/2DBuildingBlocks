@@ -289,6 +289,23 @@ int Synthesizer::colsInput_scaled;
 vector<Point2i*> Synthesizer::list_shiftXY_scaled;
 vector<Point2i*> Synthesizer::gcoNodes;
 Mat1b Synthesizer::imgInputGray_scaled;
+Mat1b Synthesizer::imgInputlabel_scaled;
+Mat1d Synthesizer::imgInputlabelinterX_scaled;
+Mat1d Synthesizer::imgInputlabelinterY_scaled;
+
+static void meshgrid(const cv::Mat &xgv, const cv::Mat &ygv, cv::Mat1d &X, cv::Mat1d &Y)
+{
+	cv::repeat(xgv.reshape(1, 1), ygv.total(), 1, X);
+	cv::repeat(ygv.reshape(1, 1).t(), 1, xgv.total(), Y);
+}
+
+static void meshgridTest(const cv::Range &xgv, const cv::Range &ygv, cv::Mat1d &X, cv::Mat1d &Y)
+{
+	std::vector<double> t_x, t_y;
+	for (int i = xgv.start; i <= xgv.end; i++) t_x.push_back((double)i);
+	for (int i = ygv.start; i <= ygv.end; i++) t_y.push_back((double)i);
+	meshgrid(cv::Mat(t_x), cv::Mat(t_y), X, Y);
+}
 
 Synthesizer::Synthesizer(void){
 	// input 
@@ -312,9 +329,13 @@ Synthesizer::Synthesizer(void){
 	qlabelSyn_fullres = new QLabel;
 	qlabelSyn_scaled = new QLabel;
 	qlabelSynlabelColor_fullres = new QLabel;
+	qimgInputlabelinterX_fullres = new QImage;
+	qimgInputlabelinterX_scaled = new QImage;
+	qimgInputlabelinterY_fullres = new QImage;
+	qimgInputlabelinterY_scaled = new QImage;
 
-	generatorX_scaled = 0.1; // a regular generator for expansion in X direction, in percentage
-	generatorY_scaled = 0.1; // a regular generator for expansion in Y direction, in percentage
+	generatorX_scaled = 0.2; // a regular generator for expansion in X direction, in percentage
+	generatorY_scaled = 0.2; // a regular generator for expansion in Y direction, in percentage
 	totalGeneratorX_scaled = 1.0; // the total expansion in X direction, in percentage
 	totalGeneratorY_scaled = 1.0; // the total expansion in Y direction, in percentage
 	shiftsPerGenerator_scaled = 2; // a regular generator for expansion, in the resolution of shifts
@@ -348,7 +369,7 @@ QImage Mat2QImage(const cv::Mat3b &src) {
 	return dest;
 }
 
-void Synthesizer::initialization(QString filename_imgInput, QString filename_offsetStatisticsInput){
+void Synthesizer::initialization(QString filename_imgInput, QString filename_offsetStatisticsInput, QString filename_repInput){
 
 	//----------------------------------------------------------------
 	// initialize images
@@ -389,79 +410,114 @@ void Synthesizer::initialization(QString filename_imgInput, QString filename_off
 	}
 
 
-	////----------------------------------------------------------------
-	//// initialize repetitions
-	////----------------------------------------------------------------
-	//QFile fileRep(filename_repInput);
-	//if (fileRep.open(QIODevice::ReadOnly)){
-	//	QTextStream in(&fileRep);
-	//	in >> numRep;
-	//	sizeRep.resize(numRep);
-	//	for (int i_rep = 0; i_rep < numRep; i_rep++){
-	//		in >> sizeRep[i_rep];
-	//	}
+	//----------------------------------------------------------------
+	// initialize repetitions
+	//----------------------------------------------------------------
+	QFile fileRep(filename_repInput);
+	if (fileRep.open(QIODevice::ReadOnly)){
+		QTextStream in(&fileRep);
+		in >> numRep;
+		sizeRep.resize(numRep);
+		for (int i_rep = 0; i_rep < numRep; i_rep++){
+			in >> sizeRep[i_rep];
+		}
 
-	//	repX_fullres.resize(numRep);
-	//	repY_fullres.resize(numRep);
-	//	repW_fullres.resize(numRep);
-	//	repH_fullres.resize(numRep);
-	//	for (int i_rep = 0; i_rep < numRep; i_rep++){
-	//		repX_fullres[i_rep].resize(sizeRep[i_rep]);
-	//		repY_fullres[i_rep].resize(sizeRep[i_rep]);
-	//		repW_fullres[i_rep].resize(sizeRep[i_rep]);
-	//		repH_fullres[i_rep].resize(sizeRep[i_rep]);
-	//		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
-	//			in >> repX_fullres[i_rep][j_rep];
-	//			in >> repY_fullres[i_rep][j_rep];
-	//			in >> repW_fullres[i_rep][j_rep];
-	//			in >> repH_fullres[i_rep][j_rep];
-	//		}
-	//	}
-	//}
+		repX_fullres.resize(numRep);
+		repY_fullres.resize(numRep);
+		repW_fullres.resize(numRep);
+		repH_fullres.resize(numRep);
+		for (int i_rep = 0; i_rep < numRep; i_rep++){
+			repX_fullres[i_rep].resize(sizeRep[i_rep]);
+			repY_fullres[i_rep].resize(sizeRep[i_rep]);
+			repW_fullres[i_rep].resize(sizeRep[i_rep]);
+			repH_fullres[i_rep].resize(sizeRep[i_rep]);
+			for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
+				in >> repX_fullres[i_rep][j_rep];
+				in >> repY_fullres[i_rep][j_rep];
+				in >> repW_fullres[i_rep][j_rep];
+				in >> repH_fullres[i_rep][j_rep];
+			}
+		}
+	}
 
-	//// make sure the labels are inside of the image
-	//for (int i_rep = 0; i_rep < numRep; i_rep++){
-	//	for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
-	//		repX_fullres[i_rep][j_rep] = std::max<int>(0, std::min<int>(repX_fullres[i_rep][j_rep], colsInput_fullres - 1));
-	//		repY_fullres[i_rep][j_rep] = std::max<int>(0, std::min<int>(repY_fullres[i_rep][j_rep], rowsInput_fullres - 1));
-	//		repW_fullres[i_rep][j_rep] = std::max<int>(1, std::min<int>((repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep]) - repX_fullres[i_rep][j_rep], colsInput_fullres - 1 - repX_fullres[i_rep][j_rep]));
-	//		repH_fullres[i_rep][j_rep] = std::max<int>(1, std::min<int>((repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]) - repY_fullres[i_rep][j_rep], rowsInput_fullres - 1 - repY_fullres[i_rep][j_rep]));
-	//	}
-	//}
+	// make sure the labels are inside of the image
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
+			repX_fullres[i_rep][j_rep] = std::max<int>(0, std::min<int>(repX_fullres[i_rep][j_rep], colsInput_fullres - 1));
+			repY_fullres[i_rep][j_rep] = std::max<int>(0, std::min<int>(repY_fullres[i_rep][j_rep], rowsInput_fullres - 1));
+			repW_fullres[i_rep][j_rep] = std::max<int>(1, std::min<int>((repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep]) - repX_fullres[i_rep][j_rep], colsInput_fullres - 1 - repX_fullres[i_rep][j_rep]));
+			repH_fullres[i_rep][j_rep] = std::max<int>(1, std::min<int>((repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]) - repY_fullres[i_rep][j_rep], rowsInput_fullres - 1 - repY_fullres[i_rep][j_rep]));
+		}
+	}
 
-	//// scale the input labels
-	//repX_scaled.resize(numRep);
-	//repY_scaled.resize(numRep);
-	//repW_scaled.resize(numRep);
-	//repH_scaled.resize(numRep);
-	//for (int i_rep = 0; i_rep < numRep; i_rep++){
-	//	repX_scaled[i_rep].resize(sizeRep[i_rep]);
-	//	repY_scaled[i_rep].resize(sizeRep[i_rep]);
-	//	repW_scaled[i_rep].resize(sizeRep[i_rep]);
-	//	repH_scaled[i_rep].resize(sizeRep[i_rep]);
-	//	for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
-	//		// scale and make sure the box does not exceed image boundary
-	//		repX_scaled[i_rep][j_rep] = std::min<int>((int)round(repX_fullres[i_rep][j_rep] * scalerRes), colsInput_scaled - 1);
-	//		repY_scaled[i_rep][j_rep] = std::min<int>((int)round(repY_fullres[i_rep][j_rep] * scalerRes), rowsInput_scaled - 1);
-	//		repW_scaled[i_rep][j_rep] = std::max<int>(1, std::min<int>((int)round((repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep]) * scalerRes) - repX_scaled[i_rep][j_rep], colsInput_scaled - 1 - repX_scaled[i_rep][j_rep]));
-	//		repH_scaled[i_rep][j_rep] = std::max<int>(1, std::min<int>((int)round((repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]) * scalerRes) - repY_scaled[i_rep][j_rep], rowsInput_scaled - 1 - repY_scaled[i_rep][j_rep]));
-	//	}
-	//}
+	// scale the input labels
+	repX_scaled.resize(numRep);
+	repY_scaled.resize(numRep);
+	repW_scaled.resize(numRep);
+	repH_scaled.resize(numRep);
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		repX_scaled[i_rep].resize(sizeRep[i_rep]);
+		repY_scaled[i_rep].resize(sizeRep[i_rep]);
+		repW_scaled[i_rep].resize(sizeRep[i_rep]);
+		repH_scaled[i_rep].resize(sizeRep[i_rep]);
+		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
+			// scale and make sure the box does not exceed image boundary
+			repX_scaled[i_rep][j_rep] = std::min<int>((int)round(repX_fullres[i_rep][j_rep] * scalerRes), colsInput_scaled - 1);
+			repY_scaled[i_rep][j_rep] = std::min<int>((int)round(repY_fullres[i_rep][j_rep] * scalerRes), rowsInput_scaled - 1);
+			repW_scaled[i_rep][j_rep] = std::max<int>(1, std::min<int>((int)round((repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep]) * scalerRes) - repX_scaled[i_rep][j_rep], colsInput_scaled - 1 - repX_scaled[i_rep][j_rep]));
+			repH_scaled[i_rep][j_rep] = std::max<int>(1, std::min<int>((int)round((repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]) * scalerRes) - repY_scaled[i_rep][j_rep], rowsInput_scaled - 1 - repY_scaled[i_rep][j_rep]));
+		}
+	}
 
-	//// make fullres & scaled maps for input labels
-	//imgInputlabel_fullres = Mat1b::zeros(rowsInput_fullres, colsInput_fullres); //or, rep->imgSynGray_scaled.create(rows, cols);
-	//for (int i_rep = 0; i_rep < numRep; i_rep++){
-	//	for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
-	//		imgInputlabel_fullres(Range(repY_fullres[i_rep][j_rep], repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]), Range(repX_fullres[i_rep][j_rep], repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep])) = (i_rep + 1);
-	//	}
-	//}
+	// make fullres & scaled maps for input labels
+	imgInputlabel_fullres = Mat1b::zeros(rowsInput_fullres, colsInput_fullres); //or, rep->imgSynGray_scaled.create(rows, cols);
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
+			imgInputlabel_fullres(Range(repY_fullres[i_rep][j_rep], repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]), Range(repX_fullres[i_rep][j_rep], repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep])) = (i_rep + 1);
+		}
+	}
 
-	//imgInputlabel_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled);
-	//for (int i_rep = 0; i_rep < numRep; i_rep++){
-	//	for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
-	//		imgInputlabel_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])) = (i_rep + 1);
-	//	}
-	//}
+	imgInputlabel_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled);
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
+			imgInputlabel_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])) = (i_rep + 1);
+		}
+	}
+
+	//----------------------------------------------------------------
+	// initialize internal label
+	//----------------------------------------------------------------
+	imgInputlabelinterX_scaled = Mat1d::zeros(rowsInput_scaled, colsInput_scaled);
+	imgInputlabelinterY_scaled = Mat1d::zeros(rowsInput_scaled, colsInput_scaled);
+	for (int i_rep = 0; i_rep < numRep; i_rep++)
+	{
+		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++)
+		{
+			cv::Mat1d X, Y;
+			meshgridTest(cv::Range(0, repW_scaled[i_rep][j_rep] - 1), cv::Range(0, repH_scaled[i_rep][j_rep] - 1), X, Y);
+			X = X * ((double)1 / (double)max(1, repW_scaled[i_rep][j_rep]));
+			Y = Y * ((double)1 / (double)max(1, repH_scaled[i_rep][j_rep]));
+			X.copyTo(imgInputlabelinterX_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])));
+			Y.copyTo(imgInputlabelinterY_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])));
+		}
+	}
+
+	// make maps for rep internal labels
+	imgInputlabelinterX_fullres = Mat1d::zeros(rowsInput_fullres, colsInput_fullres);
+	imgInputlabelinterY_fullres = Mat1d::zeros(rowsInput_fullres, colsInput_fullres);
+	for (int i_rep = 0; i_rep < numRep; i_rep++)
+	{
+		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++)
+		{
+			cv::Mat1d X, Y;
+			meshgridTest(cv::Range(0, repW_fullres[i_rep][j_rep] - 1), cv::Range(0, repH_fullres[i_rep][j_rep] - 1), X, Y);
+			X = X * ((double)1 / (double)max(1, repW_fullres[i_rep][j_rep]));
+			Y = Y * ((double)1 / (double)max(1, repH_fullres[i_rep][j_rep]));
+			X.copyTo(imgInputlabelinterX_fullres(Range(repY_fullres[i_rep][j_rep], repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]), Range(repX_fullres[i_rep][j_rep], repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep])));
+			Y.copyTo(imgInputlabelinterY_fullres(Range(repY_fullres[i_rep][j_rep], repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]), Range(repX_fullres[i_rep][j_rep], repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep])));
+		}
+	}
+
 
 }
 
@@ -483,8 +539,12 @@ void Synthesizer::synthesis_ShiftMap(){
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gc->compute_energy();
-	gc->expansion(2);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-	qDebug() << "after expansion energy is " << gc->compute_energy();
+	for (int i = 0; i < 2; i++){
+		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gc->compute_energy();
+		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gc->compute_energy();
+	}
 
 	// prepare results
 	label2result();
@@ -590,8 +650,12 @@ void Synthesizer::synthesis_OffsetStatistics(){
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gc->compute_energy();
-	gc->expansion(2);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-	qDebug() << "after expansion energy is " << gc->compute_energy();
+	for (int i = 0; i < 2; i++){
+		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gc->compute_energy();
+		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gc->compute_energy();
+	}
 
 	// prepare results
 	label2result();
@@ -657,7 +721,7 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 			int b_y = generatorsOS_scaled[1]->y * i_y;
 			int x = a_x + b_x;
 			int y = a_y + b_y;
-			if (x >= min_x && y >= min_y && x <= max_x  && y < max_y){
+			if (x > min_x && y > min_y && x < max_x  && y < max_y){
 				list_shiftXY_scaled.push_back(new Point2i(x, y));
 				totalShiftsXY_scaled += 1;
 			}
@@ -670,6 +734,12 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 			gcoNodes[y * colsSyn_scaled + x] = new Point2i(x, y);
 		}
 	}
+
+
+	for (int i_s = 0; i_s < totalShiftsXY_scaled; i_s++){
+		qDebug() << list_shiftXY_scaled[i_s]->x << ", " << list_shiftXY_scaled[i_s]->y;
+	}
+
 }
 
 int Synthesizer::unary_OffsetStatistics(int p, int l){
@@ -714,9 +784,90 @@ int Synthesizer::smooth_OffsetStatistics(int p1, int p2, int l1, int l2){
 
 // Building Blocks
 void Synthesizer::synthesis_BB(){
-	qDebug() << "not implemented ... ";
+	qDebug() << "Synthesis starts (Building blocks) ... ";
+
+	// Prepare shifts
+	prepareShifts_BB();
+
+	// setup graph cut problem
+	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+
+	// set unary cost
+	gc->setDataCost(&unary_BB);
+
+	// set smoothness cost
+	gc->setSmoothCost(&smooth_BB);
+
+	// optimize
+	qDebug() << "Before optimization energy is " << gc->compute_energy();
+	for (int i = 0; i < 2; i++){
+		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gc->compute_energy();
+		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gc->compute_energy();
+	}
+
+	// prepare results
+	label2result();
 }
 
+void Synthesizer::prepareShifts_BB(){
+
+	prepareShifts_OffsetStatistics();
+}
+
+int Synthesizer::unary_BB(int p, int l){
+
+	int newX = -list_shiftXY_scaled[l]->x + gcoNodes[p]->x;
+	int newY = -list_shiftXY_scaled[l]->y + gcoNodes[p]->y;
+	if (isValid(newX, newY)){
+		return 0;
+	}
+	else{
+		return 1000;
+	}
+
+}
+
+int Synthesizer::smooth_BB(int p1, int p2, int l1, int l2){
+	int retMe = 0;
+	if (l1 == l2){
+		return 0;
+	}
+	Point2i x1_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p1];
+	Point2i x2_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p2];
+
+	if (isValid(x1_s_a.x, x1_s_a.y) && isValid(x2_s_b.x, x2_s_b.y)){
+		Point2i x1_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p1];
+		Point2i x2_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p2];
+		if (isValid(x1_s_b.x, x1_s_b.y) && isValid(x2_s_a.x, x2_s_a.y)){
+
+			int diff1 = imgInputGray_scaled(x1_s_a.y, x1_s_a.x) - imgInputGray_scaled(x1_s_b.y, x1_s_b.x);
+			int diff2 = imgInputGray_scaled(x2_s_a.y, x2_s_a.x) - imgInputGray_scaled(x2_s_b.y, x2_s_b.x);
+
+			double diffRep1 = 50 * (imgInputlabel_scaled(x1_s_a.y, x1_s_a.x) != imgInputlabel_scaled(x1_s_b.y, x1_s_b.x));
+			double diffRep2 = 50 * (imgInputlabel_scaled(x2_s_a.y, x2_s_a.x) != imgInputlabel_scaled(x2_s_b.y, x2_s_b.x));
+
+			bool indicator1 = imgInputlabel_scaled(x1_s_a.y, x1_s_a.x) == imgInputlabel_scaled(x1_s_b.y, x1_s_b.x);
+			bool indicator2 = imgInputlabel_scaled(x2_s_a.y, x2_s_a.x) == imgInputlabel_scaled(x2_s_b.y, x2_s_b.x);
+			double diffRepinter1X = 8 * (imgInputlabelinterX_scaled(x1_s_a.y, x1_s_a.x) - imgInputlabelinterX_scaled(x1_s_b.y, x1_s_b.x));
+			double diffRepinter1Y = 8 * (imgInputlabelinterY_scaled(x1_s_a.y, x1_s_a.x) - imgInputlabelinterY_scaled(x1_s_b.y, x1_s_b.x));
+			double diffRepinter2X = 8 * (imgInputlabelinterX_scaled(x2_s_a.y, x2_s_a.x) - imgInputlabelinterX_scaled(x2_s_b.y, x2_s_b.x));
+			double diffRepinter2Y = 8 * (imgInputlabelinterY_scaled(x2_s_a.y, x2_s_a.x) - imgInputlabelinterY_scaled(x2_s_b.y, x2_s_b.x));
+
+			double energypixel = sqrt(double(diff1*diff1)) + sqrt(double(diff2*diff2));
+			double energylabel = sqrt(double(diffRep1*diffRep1)) + sqrt(double(diffRep2*diffRep2));
+			double energyinterlabel = indicator1 * (sqrt(double(diffRepinter1X*diffRepinter1X)) + sqrt(double(diffRepinter1Y*diffRepinter1Y))) + indicator2 * (sqrt(double(diffRepinter2X * diffRepinter2X)) + sqrt(double(diffRepinter2Y * diffRepinter2Y)));
+
+			retMe = ceil(energypixel + energylabel + energyinterlabel);
+			return retMe;
+		}
+		else{
+			return 1000;
+		}
+	}
+	return 1000;
+}
 
 
 void Synthesizer::label2result(){

@@ -6,6 +6,7 @@ generators_pro = [];
 w = para.w;
 h = para.h;
 thresh_nn = para.thresh_nn;
+thresh_nn_far = para.thresh_nn_far;
 thresh_peak_pro = para.thresh_peak_pro;
 thresh_peak_max_num = para.thresh_peak_max_num;
 gs_sigma = para.gs_sigma;
@@ -33,7 +34,9 @@ toc
 % detect statistics peaks
 % first, preclude pairs that are too close (32 pixel as suggested in the paper)
 mask_nn = M_loc <= thresh_nn;
+mask_nn_far = M_loc >= thresh_nn_far;
 M_pixel(mask_nn) = inf;
+M_pixel(mask_nn_far) = inf;
 [minc, match] = min(M_pixel,  [], 2);
 % format match to offset
 match_offset = zeros(2, size(match, 1));
@@ -52,7 +55,8 @@ end
 % gaussian smooth as suggested
 ker = fspecial('gaussian', gs_w, gs_sigma);
 map_pro = imfilter(map_pro, ker, 'circular', 'same');
-map_pro = map_pro/max(max(map_pro));
+
+map_pro = map_pro/(max(max(map_pro)) + 0.001);
 
 % run peak detection
 p_cen = FastPeakFindPadding_CLOrder(map_pro, [h, w]); % acturally it is 2*(3 - 1) + 1 for checking local peaks
@@ -69,6 +73,8 @@ p_pro = map_pro(p_idx(mask));
 if isempty(p_cen)
     % set a regular sampler
     generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
+    generators_pro = [0.5, 0.5];
+    return;
 end
 
 
@@ -96,6 +102,7 @@ if ~isempty(p_cen)
            v_p = [0, -1; 1, 0] * generators;
            v_p = para.defalt_mag * v_p/norm(v_p);
            generators = [generators v_p];
+           generators_pro = [generators_pro 0.5];
      end
      
      % reorder generator if it is necessary
@@ -107,15 +114,13 @@ if ~isempty(p_cen)
      
 end 
 
-
-
-
 [X, Y] = meshgrid([1:size(map_pro, 2)] - num_cols, [1:size(map_pro, 1)] - num_rows);
+
 figure;
 hold on;
 surf(X, Y, map_pro);
 plot3(generators(1, :), generators(2, :), generators_pro(1, :), 'o');
-colormap('hsv');
+colormap (hsv);
 view(3);
 
 
