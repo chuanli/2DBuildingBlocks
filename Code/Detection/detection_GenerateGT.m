@@ -2,9 +2,9 @@
 close all; clear all; clc; cwd = pwd; addpath(genpath(cwd));
 
 % Set default parameters
-Script_COOC_DefaultParams;
+define_COOC_DefaultParams;
 
-P.name_path = [cwd(1, 1:3) 'Chuan\TOG\Data\'];
+P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
 P.name_dataset = 'Facade';
 P.name_data_input = 'Ori';
 P.name_gt_input = 'Ori_GT';

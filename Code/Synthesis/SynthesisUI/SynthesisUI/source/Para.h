@@ -10,6 +10,8 @@
 using namespace std;
 
 extern QString filename_imgInput;
+extern QString filename_offsetStatisticsPixelInput;
+extern QString filename_offsetStatisticsBBInput;
 extern QString filename_offsetStatisticsInput;
 extern QString filename_repInput;
 

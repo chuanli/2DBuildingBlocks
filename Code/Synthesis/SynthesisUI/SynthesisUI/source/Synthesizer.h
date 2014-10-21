@@ -68,7 +68,7 @@ public:
 	Synthesizer(void);
 	~Synthesizer(void);
 	Mat qimage2mat(const QImage& qimage);
-	void initialization(QString filename_imgInput, QString filename_offsetStatisticsInput, QString filename_repInput);
+	void initialization();
 
 	// Shift Map
 	void synthesis_ShiftMap();

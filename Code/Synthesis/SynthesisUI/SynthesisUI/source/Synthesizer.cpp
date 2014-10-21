@@ -369,7 +369,7 @@ QImage Mat2QImage(const cv::Mat3b &src) {
 	return dest;
 }
 
-void Synthesizer::initialization(QString filename_imgInput, QString filename_offsetStatisticsInput, QString filename_repInput){
+void Synthesizer::initialization(){
 
 	//----------------------------------------------------------------
 	// initialize images
@@ -409,10 +409,14 @@ void Synthesizer::initialization(QString filename_imgInput, QString filename_off
 		}
 	}
 
+	for (int i_g = 0; i_g < numGeneratorsOS; i_g++){
+		qDebug() << generatorsOS_scaled[i_g]->x << ", " << generatorsOS_scaled[i_g]->y;
+	}
 
 	//----------------------------------------------------------------
 	// initialize repetitions
 	//----------------------------------------------------------------
+	numRep = 0;
 	QFile fileRep(filename_repInput);
 	if (fileRep.open(QIODevice::ReadOnly)){
 		QTextStream in(&fileRep);

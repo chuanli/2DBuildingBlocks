@@ -15,7 +15,7 @@ P.name_syn_input = 'Input';
 
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 8:8
+for i_img = 0:599
     nameGT = [P.name_path  P.name_dataset  '\' P.name_data '_GT\' P.name_prefix  '(' num2str(i_img) ')_GT.mat'];
     nameGTOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')GT.txt'];
     Detection = [];

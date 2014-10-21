@@ -21,7 +21,21 @@ ImageViewer::ImageViewer(){
 	// initialization
 	//-------------------------------------------------------------
 	syn = new Synthesizer;
-	syn->initialization(filename_imgInput, filename_offsetStatisticsInput, filename_repInput);
+
+	switch (method_now){
+	case MODE_SHIFTMAP:
+		filename_offsetStatisticsInput = "";
+		break;
+	case MODE_OFFSETSTATISTICS:
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		break;
+	case MODE_BB:
+		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
+		break;
+	default:;
+	};
+
+	syn->initialization();
 
 	//-------------------------------------------------------------
 	// display input image
@@ -55,8 +69,25 @@ void ImageViewer::generateColor10(){
 }
 
 void ImageViewer::slotOpen(){
+	method_now = 1;
+
 	filename_imgInput = QFileDialog::getOpenFileName(this, tr("Open image"), QDir::currentPath());
-	filename_offsetStatisticsInput = QFileDialog::getOpenFileName(this, tr("Open offset statistics file"), QDir::currentPath());
+	filename_offsetStatisticsPixelInput = filename_imgInput;
+	filename_offsetStatisticsPixelInput.resize(filename_imgInput.size() - 4);
+	filename_offsetStatisticsPixelInput += "OffsetStatisticsPixel.txt";
+	filename_offsetStatisticsBBInput = filename_imgInput;
+	filename_offsetStatisticsBBInput.resize(filename_imgInput.size() - 4);
+	filename_offsetStatisticsBBInput += "OffsetStatisticsGT.txt";
+	filename_offsetStatisticsInput = "";
+	filename_repInput = filename_imgInput;
+	filename_repInput.resize(filename_imgInput.size() - 4);
+	filename_repInput += "GT.txt";
+	
+
+	qDebug() << filename_imgInput;
+	qDebug() << filename_offsetStatisticsPixelInput;
+	qDebug() << filename_offsetStatisticsBBInput;
+	qDebug() << filename_repInput;
 
 	delete syn;
 
@@ -64,7 +95,7 @@ void ImageViewer::slotOpen(){
 	// initialization
 	//-------------------------------------------------------------
 	syn = new Synthesizer;
-	syn->initialization(filename_imgInput, filename_offsetStatisticsInput, filename_repInput);
+	syn->initialization();
 
 	//-------------------------------------------------------------
 	// display input image
@@ -222,18 +253,60 @@ void ImageViewer::createMenus(){
 
 void ImageViewer::swithMethod1(){
 	method_now = 1;
+	switch (method_now){
+	case MODE_SHIFTMAP:
+		filename_offsetStatisticsInput = "";
+		break;
+	case MODE_OFFSETSTATISTICS:
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		break;
+	case MODE_BB:
+		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
+		break;
+	default:;
+	};
+
+	syn->initialization();
 	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
 void ImageViewer::swithMethod2(){
 	method_now = 2;
+	switch (method_now){
+	case MODE_SHIFTMAP:
+		filename_offsetStatisticsInput = "";
+		break;
+	case MODE_OFFSETSTATISTICS:
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		break;
+	case MODE_BB:
+		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
+		break;
+	default:;
+	};
+
+	syn->initialization();
 	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
 void ImageViewer::swithMethod3(){
     method_now = 3;
+	switch (method_now){
+	case MODE_SHIFTMAP:
+		filename_offsetStatisticsInput = "";
+		break;
+	case MODE_OFFSETSTATISTICS:
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		break;
+	case MODE_BB:
+		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
+		break;
+	default:;
+	};
+
+	syn->initialization();
 	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
 }

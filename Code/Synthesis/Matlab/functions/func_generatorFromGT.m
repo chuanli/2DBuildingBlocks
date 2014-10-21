@@ -6,6 +6,7 @@ generators_pro = [];
 w = para.w;
 h = para.h;
 thresh_nn = para.thresh_nn;
+thresh_nn_far = para.thresh_nn_far;
 thresh_peak_pro = para.thresh_peak_pro;
 thresh_peak_max_num = para.thresh_peak_max_num;
 gs_sigma = para.gs_sigma;
@@ -21,19 +22,23 @@ for i_rep = 1:size(Rep.rep, 2)
       for j_rep = 1:size(Rep.rep{1, i_rep}, 2)
           for jj_rep = 1:size(Rep.rep{1, i_rep}, 2)
               if j_rep ~= jj_rep
-                  list_shift = [list_shift  [Rep.rep{1, i_rep}(1:2, jj_rep) - Rep.rep{1, i_rep}(1:2, j_rep)], - [Rep.rep{1, i_rep}(1:2, jj_rep) - Rep.rep{1, i_rep}(1:2, j_rep)]];
+                  dist_j2jj = norm([Rep.rep{1, i_rep}(1:2, jj_rep) - Rep.rep{1, i_rep}(1:2, j_rep)]);
+                  if dist_j2jj  < thresh_nn_far & dist_j2jj > thresh_nn
+                      list_shift = [list_shift  [Rep.rep{1, i_rep}(1:2, jj_rep) - Rep.rep{1, i_rep}(1:2, j_rep)], - [Rep.rep{1, i_rep}(1:2, jj_rep) - Rep.rep{1, i_rep}(1:2, j_rep)]];
+                  end
               end
           end
       end
         
-      match_offset_central = list_shift + repmat([num_cols; num_rows], 1, size(list_shift, 2));
-      mask = match_offset_central(2, :) > 0 & match_offset_central(2, :) < size(map_pro, 1) & match_offset_central(1, :) > 0 & match_offset_central(1, :) < size(map_pro, 2);
-      match_offset_central = match_offset_central(:, mask);
-      match_central = sub2ind(size(map_pro), match_offset_central(2, :), match_offset_central(1, :));
-      for i = 1:size(match_central, 2)
-           map_pro(match_central(i)) = map_pro(match_central(i)) + 1;
+      if ~isempty(list_shift)
+          match_offset_central = list_shift + repmat([num_cols; num_rows], 1, size(list_shift, 2));
+          mask = match_offset_central(2, :) > 0 & match_offset_central(2, :) < size(map_pro, 1) & match_offset_central(1, :) > 0 & match_offset_central(1, :) < size(map_pro, 2);
+          match_offset_central = match_offset_central(:, mask);
+          match_central = sub2ind(size(map_pro), match_offset_central(2, :), match_offset_central(1, :));
+          for i = 1:size(match_central, 2)
+              map_pro(match_central(i)) = map_pro(match_central(i)) + 1;
+          end
       end
-
 end
 
 
@@ -43,6 +48,14 @@ map_pro = map_pro/max(max(map_pro));
 
 % run peak detection
 p_cen = FastPeakFindPadding_CLOrder(map_pro, [h, w]); % acturally it is 2*(3 - 1) + 1 for checking local peaks
+
+if isempty(p_cen)
+    % set a regular sampler
+    generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
+    generators_pro = [0.5, 0.5];
+    return;
+end
+
 p_idx = sub2ind(size(map_pro), p_cen(2, :), p_cen(1, :));
 mask = map_pro(p_idx) >= thresh_peak_pro;
 p_cen = p_cen(:, mask);
@@ -56,7 +69,8 @@ p_pro = map_pro(p_idx(mask));
 if isempty(p_cen)
     % set a regular sampler
     generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
-    generators = [0.5, 0.5];
+    generators_pro = [0.5, 0.5];
+    return;
 end
 
 if ~isempty(p_cen)
@@ -95,13 +109,13 @@ if ~isempty(p_cen)
      
 end 
 
-[X, Y] = meshgrid([1:size(map_pro, 2)] - num_cols, [1:size(map_pro, 1)] - num_rows);
-figure;
-hold on;
-surf(X, Y, map_pro);
-plot3(generators(1, :), generators(2, :), generators_pro(1, :), 'o');
-colormap('hsv');
-view(3);
+% [X, Y] = meshgrid([1:size(map_pro, 2)] - num_cols, [1:size(map_pro, 1)] - num_rows);
+% figure;
+% hold on;
+% surf(X, Y, map_pro);
+% plot3(generators(1, :), generators(2, :), generators_pro(1, :), 'o');
+% colormap('hsv');
+% view(3);
 
 return;
 

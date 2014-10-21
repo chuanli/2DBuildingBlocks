@@ -20,14 +20,24 @@ P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
 
+P.matlabpool_flag = 1;
+P.num_Cores = 4;
+if  matlabpool('size') == 0 & P.matlabpool_flag ==1
+    matlabpool('open', P.num_Cores);
+else if matlabpool('size') > 0 & P.matlabpool_flag ==0
+        matlabpool close;
+    end
+end
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DO NOT CHANGE AFTER THIS LINE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 8:8
+parfor i_img = 357:599
     
     % parameters for statistics analysis
+    para = [];
     para.res_scale = 0.25;  % this is for effeciency reason
     para.w = 8; % this is incharge of different things w.r.t thresh_nn
     para.h = 8;
@@ -63,10 +73,10 @@ for i_img = 8:8
     end
     fclose(fileID);
     
-    figure;
-    imshow(im_ori);
-    hold on;
-    p_cen = round([size(im_ori, 2)/2, size(im_ori, 1)/2]);     
-    plot([p_cen(1) p_cen(1) + generators(1, 1)], [p_cen(2) p_cen(2) + generators(2, 1)], 'r', 'LineWidth', 3);
-    plot([p_cen(1) p_cen(1) + generators(1, 2)], [p_cen(2) p_cen(2) + generators(2, 2)], 'b', 'LineWidth', 3);
+%     figure;
+%     imshow(im_ori);
+%     hold on;
+%     p_cen = round([size(im_ori, 2)/2, size(im_ori, 1)/2]);     
+%     plot([p_cen(1) p_cen(1) + generators(1, 1)], [p_cen(2) p_cen(2) + generators(2, 1)], 'r', 'LineWidth', 3);
+%     plot([p_cen(1) p_cen(1) + generators(1, 2)], [p_cen(2) p_cen(2) + generators(2, 2)], 'b', 'LineWidth', 3);
 end

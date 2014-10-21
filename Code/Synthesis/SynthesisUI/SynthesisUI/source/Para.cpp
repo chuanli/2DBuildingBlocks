@@ -4,10 +4,11 @@
 //QString filename_offsetStatisticsInput = "C:/Chuan/data/2DBuildingBlocks/NonFacade/Syn/Input/NonFacade(0)OffsetStatisticsPixel.txt";
 //QString filename_repInput = "....";
 
-QString filename_imgInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(8).jpg";
-QString filename_offsetStatisticsInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(8)OffsetStatisticsPixel.txt";
-QString filename_repInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(8)GT.txt";
-
+QString filename_imgInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(0).jpg";
+QString filename_offsetStatisticsPixelInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(0)OffsetStatisticsPixel.txt";
+QString filename_offsetStatisticsBBInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(0)OffsetStatisticsGT.txt";
+QString filename_offsetStatisticsInput = "";
+QString filename_repInput = "C:/Chuan/data/2DBuildingBlocks/Facade/Syn/Input/Facade(0)GT.txt";
 
 //QString filename_imgInput = "C:/Chuan/data/2DBuildingBlocks/ShiftMap/Syn/Input/ShiftMap(9).jpg";
 //QString filename_offsetStatisticsInput = "C:/Chuan/data/2DBuildingBlocks/ShiftMap/Syn/Input/ShiftMap(9)OffsetStatisticsPixel.txt";

@@ -16,7 +16,7 @@ P.name_syn_input = 'Input';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 8:8
+for i_img = 7:599
        
     % parameters for statistics analysis
     para.res_scale = 0.25;  % this is for effeciency reason
@@ -25,7 +25,8 @@ for i_img = 8:8
     para.gs_sigma = sqrt(3);
     para.gs_w = round(para.gs_sigma * 3) * 2 + 1;
     para.thresh_nn = 8; % preclude pairs that are too close, at the low resolution 
-    
+    para.thresh_nn_far = 24; % preclude pairs that are too far , at the low resolution 
+
     para.thresh_peak_pro = 0.1; % minimum probability for a positive peak
     para.thresh_peak_max_num = 60;
     para.thresh_correlation = 0.5;
@@ -56,6 +57,7 @@ for i_img = 8:8
         Rep.rep{1, i_rep} = round(Rep.rep{1, i_rep} * para.res_scale);
     end
     
+%     func_generatorFromGT;
     generators = func_generatorFromGT(im, Rep, para);
     generators = round(generators/ para.res_scale);
     
@@ -67,10 +69,10 @@ for i_img = 8:8
     end
     fclose(fileID);
     
-    figure;
-    imshow(im_ori);
-    hold on;
-    p_cen = round([size(im_ori, 2)/2, size(im_ori, 1)/2]);     
-    plot([p_cen(1) p_cen(1) + generators(1, 1)], [p_cen(2) p_cen(2) + generators(2, 1)], 'r', 'LineWidth', 3);
-    plot([p_cen(1) p_cen(1) + generators(1, 2)], [p_cen(2) p_cen(2) + generators(2, 2)], 'b', 'LineWidth', 3);
+%     figure;
+%     imshow(im_ori);
+%     hold on;
+%     p_cen = round([size(im_ori, 2)/2, size(im_ori, 1)/2]);     
+%     plot([p_cen(1) p_cen(1) + generators(1, 1)], [p_cen(2) p_cen(2) + generators(2, 1)], 'r', 'LineWidth', 3);
+%     plot([p_cen(1) p_cen(1) + generators(1, 2)], [p_cen(2) p_cen(2) + generators(2, 2)], 'b', 'LineWidth', 3);
 end
