@@ -334,13 +334,14 @@ Synthesizer::Synthesizer(void){
 	qimgInputlabelinterY_fullres = new QImage;
 	qimgInputlabelinterY_scaled = new QImage;
 
-	generatorX_scaled = 0.2; // a regular generator for expansion in X direction, in percentage
-	generatorY_scaled = 0.2; // a regular generator for expansion in Y direction, in percentage
+	generatorX_scaled = 0.05; // a regular generator for expansion in X direction, in percentage
+	generatorY_scaled = 0.05; // a regular generator for expansion in Y direction, in percentage
 	totalGeneratorX_scaled = 1.0; // the total expansion in X direction, in percentage
 	totalGeneratorY_scaled = 1.0; // the total expansion in Y direction, in percentage
 	shiftsPerGenerator_scaled = 2; // a regular generator for expansion, in the resolution of shifts
 	totalShiftsX_scaled = 1; // the total number of shifts in X direction 
 	totalShiftsY_scaled = 1; // the total number of shifts in Y direction
+
 
 }
 
@@ -613,15 +614,14 @@ int Synthesizer::smooth_ShiftMap(int p1, int p2, int l1, int l2){
 	if (l1 == l2){
 		return 0;
 	}
+
 	Point2i x1_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p1];
 	Point2i x2_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p2];
-
 	if (isValid(x1_s_a.x, x1_s_a.y) && isValid(x2_s_b.x, x2_s_b.y))
 	{
 		Point2i x1_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p1];
 		Point2i x2_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p2];
 		if (isValid(x1_s_b.x, x1_s_b.y) && isValid(x2_s_a.x, x2_s_a.y)){
-
 			int diff1 = imgInputGray_scaled(x1_s_a.y, x1_s_a.x) - imgInputGray_scaled(x1_s_b.y, x1_s_b.x);
 			int diff2 = imgInputGray_scaled(x2_s_a.y, x2_s_a.x) - imgInputGray_scaled(x2_s_b.y, x2_s_b.x);
 			double energypixel = sqrt(double(diff1*diff1)) + sqrt(double(diff2*diff2));
@@ -648,9 +648,11 @@ void Synthesizer::synthesis_OffsetStatistics(){
 
 	// set unary cost
 	gc->setDataCost(&unary_OffsetStatistics);
+	//gc->setDataCost(&unary_BB);
 
 	// set smoothness cost
 	gc->setSmoothCost(&smooth_OffsetStatistics);
+	//gc->setSmoothCost(&smooth_BB);
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gc->compute_energy();
@@ -798,9 +800,11 @@ void Synthesizer::synthesis_BB(){
 
 	// set unary cost
 	gc->setDataCost(&unary_BB);
+	//gc->setDataCost(&unary_OffsetStatistics);
 
 	// set smoothness cost
 	gc->setSmoothCost(&smooth_BB);
+	//gc->setSmoothCost(&smooth_OffsetStatistics);
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gc->compute_energy();
@@ -864,6 +868,7 @@ int Synthesizer::smooth_BB(int p1, int p2, int l1, int l2){
 			double energyinterlabel = indicator1 * (sqrt(double(diffRepinter1X*diffRepinter1X)) + sqrt(double(diffRepinter1Y*diffRepinter1Y))) + indicator2 * (sqrt(double(diffRepinter2X * diffRepinter2X)) + sqrt(double(diffRepinter2Y * diffRepinter2Y)));
 
 			retMe = ceil(energypixel + energylabel + energyinterlabel);
+			//retMe = ceil(energypixel);
 			return retMe;
 		}
 		else{

@@ -216,6 +216,11 @@ public:
 	Mat1b gcolabelSyn_fullres;
 	static vector<Point2i*> gcoNodes;
 
+
+
+
+
+
 	//vector<Point2i> gcLabels;
 	//Mat1b gcLabel;
 	//Mat1d gcLabelinterX;

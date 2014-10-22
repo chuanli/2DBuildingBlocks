@@ -47,20 +47,23 @@ private slots:
 	void swithMethod1();
 	void swithMethod2();
 	void swithMethod3();
+	void showMontage();
 
 private:
 	// scene
-	QScrollArea *scrollArea;
 	QGraphicsScene* scene;
 	QGraphicsView* view;
 	QGraphicsPixmapItem* imgDisp;
-	double scaleFactor;
+	QPainter painter;
 
 	// data
 	Synthesizer* syn;
 
 	// method control 
 	int method_now;
+
+	// montage control
+	int montage_now;
 
 	// rendering 
 	vector<vector<double>> colorList;
@@ -75,6 +78,7 @@ private:
 	QAction *swithMethod1Act;
 	QAction *swithMethod2Act;
 	QAction *swithMethod3Act;
+	QAction *showMontageAct;
 
 	// manus
 	QMenu *fileMenu;
