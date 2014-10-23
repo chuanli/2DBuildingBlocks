@@ -11,8 +11,6 @@ inline vector<double> makeVector3f(float x, float y, float z) {
 	return v;
 }
 
-
-
 // member functions
 ImageViewer::ImageViewer(){
 	method_now = 1;
@@ -121,6 +119,19 @@ void ImageViewer::slotOpen(){
 	setWindowTitle(tr("SynthesisUI"));
 }
 
+void ImageViewer::slotSave(){
+	filename_imgOutput = filename_imgInput;
+	filename_imgOutput.resize(filename_imgInput.size() - 4);
+	filename_imgOutput += "_syn_" + QString::number(method_now) + ".png";
+	qDebug() << filename_imgOutput;
+	if ((syn->totalGeneratorX_scaled > 1) || (syn->totalGeneratorY_scaled > 1)){
+		syn->qimgSyn_fullres->save(filename_imgOutput);
+	}
+	else{
+		syn->qimgInput_fullres->save(filename_imgOutput);
+	}
+}
+
 void ImageViewer::slotExpandX(){
 	doSynthesis(SLOTEXPANDX);
 }
@@ -218,6 +229,10 @@ void ImageViewer::createActions(){
 	openAct->setShortcut(tr("Ctrl+P"));
 	connect(openAct, SIGNAL(triggered()), this, SLOT(slotOpen()));
 
+	saveAct = new QAction(tr("&Save..."), this);
+	saveAct->setShortcut(tr("Ctrl+S"));
+	connect(saveAct, SIGNAL(triggered()), this, SLOT(slotSave()));
+
 	synExpandXAct = new QAction(tr("&Expand X"), this);
 	synExpandXAct->setShortcut(tr("Ctrl+Right"));
 	connect(synExpandXAct, SIGNAL(triggered()), this, SLOT(slotExpandX()));
@@ -254,6 +269,7 @@ void ImageViewer::createActions(){
 void ImageViewer::createMenus(){
 	fileMenu = new QMenu(tr("&File"), this);
 	fileMenu->addAction(openAct);
+	fileMenu->addAction(saveAct);
 	editMenu = new QMenu(tr("&Edit"), this);
 	editMenu->addAction(synExpandXAct);
 	editMenu->addAction(synShrinkXAct);

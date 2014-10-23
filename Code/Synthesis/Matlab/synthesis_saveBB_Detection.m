@@ -2,9 +2,9 @@
 warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'OffsetStatistics';
+P.name_dataset = 'TextureOptimization';
 P.name_data = 'Resized';
-P.name_prefix = 'OffsetStatistics';
+P.name_prefix = 'TextureOptimization';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -17,7 +17,7 @@ max_num_bb_type = 10;
 
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 2:2
+for i_img = 0:37
     nameDetection = [P.name_path  P.name_dataset  '\' P.name_data '\resultAIO\rob\' P.name_prefix  '(' num2str(i_img) ')_afmg.mat'];
     nameDetectionOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')Detection.txt'];
     Detection = [];

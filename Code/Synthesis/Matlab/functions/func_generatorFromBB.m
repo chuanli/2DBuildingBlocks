@@ -51,7 +51,8 @@ p_cen = FastPeakFindPadding_CLOrder(map_pro, [h, w]); % acturally it is 2*(3 - 1
 
 if isempty(p_cen)
     % set a regular sampler
-    generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
+%     generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
+    generators = [generators [16; 0] [0; para.defalt_mag]];
     generators_pro = [0.5, 0.5];
     return;
 end
@@ -68,7 +69,8 @@ p_pro = map_pro(p_idx(mask));
 
 if isempty(p_cen)
     % set a regular sampler
-    generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
+%     generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
+    generators = [generators [16; 0] [0; para.defalt_mag]];
     generators_pro = [0.5, 0.5];
     return;
 end

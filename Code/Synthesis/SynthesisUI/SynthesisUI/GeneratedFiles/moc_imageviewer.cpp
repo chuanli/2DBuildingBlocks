@@ -22,7 +22,7 @@ static const uint qt_meta_data_ImageViewer[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,22 +32,24 @@ static const uint qt_meta_data_ImageViewer[] = {
  // slots: signature, parameters, type, tag, flags
       13,   12,   12,   12, 0x08,
       24,   12,   12,   12, 0x08,
-      38,   12,   12,   12, 0x08,
-      52,   12,   12,   12, 0x08,
-      66,   12,   12,   12, 0x08,
-      80,   12,   12,   12, 0x08,
-      95,   12,   12,   12, 0x08,
-     110,   12,   12,   12, 0x08,
-     125,   12,   12,   12, 0x08,
+      35,   12,   12,   12, 0x08,
+      49,   12,   12,   12, 0x08,
+      63,   12,   12,   12, 0x08,
+      77,   12,   12,   12, 0x08,
+      91,   12,   12,   12, 0x08,
+     106,   12,   12,   12, 0x08,
+     121,   12,   12,   12, 0x08,
+     136,   12,   12,   12, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_ImageViewer[] = {
-    "ImageViewer\0\0slotOpen()\0slotExpandX()\0"
-    "slotShrinkX()\0slotExpandY()\0slotShrinkY()\0"
-    "swithMethod1()\0swithMethod2()\0"
-    "swithMethod3()\0showMontage()\0"
+    "ImageViewer\0\0slotOpen()\0slotSave()\0"
+    "slotExpandX()\0slotShrinkX()\0slotExpandY()\0"
+    "slotShrinkY()\0swithMethod1()\0"
+    "swithMethod2()\0swithMethod3()\0"
+    "showMontage()\0"
 };
 
 void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -57,14 +59,15 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         ImageViewer *_t = static_cast<ImageViewer *>(_o);
         switch (_id) {
         case 0: _t->slotOpen(); break;
-        case 1: _t->slotExpandX(); break;
-        case 2: _t->slotShrinkX(); break;
-        case 3: _t->slotExpandY(); break;
-        case 4: _t->slotShrinkY(); break;
-        case 5: _t->swithMethod1(); break;
-        case 6: _t->swithMethod2(); break;
-        case 7: _t->swithMethod3(); break;
-        case 8: _t->showMontage(); break;
+        case 1: _t->slotSave(); break;
+        case 2: _t->slotExpandX(); break;
+        case 3: _t->slotShrinkX(); break;
+        case 4: _t->slotExpandY(); break;
+        case 5: _t->slotShrinkY(); break;
+        case 6: _t->swithMethod1(); break;
+        case 7: _t->swithMethod2(); break;
+        case 8: _t->swithMethod3(); break;
+        case 9: _t->showMontage(); break;
         default: ;
         }
     }
@@ -103,9 +106,9 @@ int ImageViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

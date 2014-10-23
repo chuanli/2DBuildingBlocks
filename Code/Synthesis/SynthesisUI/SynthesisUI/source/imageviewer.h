@@ -40,6 +40,7 @@ public:
 
 private slots:
     void slotOpen();
+	void slotSave();
 	void slotExpandX();
 	void slotShrinkX();
 	void slotExpandY();
@@ -71,6 +72,7 @@ private:
 
 	// actions
 	QAction *openAct;
+	QAction *saveAct;
 	QAction *synExpandXAct;
 	QAction *synShrinkXAct;
 	QAction *synExpandYAct;

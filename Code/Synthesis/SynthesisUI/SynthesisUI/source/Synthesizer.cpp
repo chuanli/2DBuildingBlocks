@@ -642,6 +642,7 @@ void Synthesizer::synthesis_OffsetStatistics(){
 	// Prepare shifts
 	prepareShifts_OffsetStatistics();
 
+
 	// setup graph cut problem
 	//qDebug() << "colsSyn_scaled: " << colsSyn_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", totalShiftsXY_scaled: " << totalShiftsXY_scaled;
 	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
@@ -656,7 +657,7 @@ void Synthesizer::synthesis_OffsetStatistics(){
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gc->compute_energy();
-	for (int i = 0; i < 2; i++){
+	for (int i = 0; i < 4; i++){
 		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
 		qDebug() << "after expansion energy is " << gc->compute_energy();
 		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
@@ -727,9 +728,52 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 			int b_y = generatorsOS_scaled[1]->y * i_y;
 			int x = a_x + b_x;
 			int y = a_y + b_y;
-			if (x > min_x && y > min_y && x < max_x  && y < max_y){
-				list_shiftXY_scaled.push_back(new Point2i(x, y));
-				totalShiftsXY_scaled += 1;
+
+
+			// find the area of intersection
+			std::vector<int> pos_x(4);
+			std::vector<int> pos_y(4);
+			pos_x[0] = 0;
+			pos_x[1] = colsInput_scaled;
+			pos_x[2] = x;
+			pos_x[3] = x + colsInput_scaled;
+			pos_y[0] = 0;
+			pos_y[1] = rowsInput_scaled;
+			pos_y[2] = y;
+			pos_y[3] = y + rowsInput_scaled;
+
+			int start_x = *min_element(pos_x.begin(), pos_x.end());
+			int end_x = *max_element(pos_x.begin(), pos_x.end());
+			int start_y = *min_element(pos_y.begin(), pos_y.end());
+			int end_y = *max_element(pos_y.begin(), pos_y.end());
+			int intersect_x = 2 * colsInput_scaled - (end_x - start_x);
+			int intersect_y = 2 * rowsInput_scaled - (end_y - start_y);
+			double ratio_intersect;
+			if (intersect_x >= 0 && intersect_y >= 0)
+			{
+				ratio_intersect  = double((intersect_x)* (intersect_y)) / (double)(colsInput_scaled * rowsInput_scaled);
+			}
+			else{
+				ratio_intersect = 0;
+			}
+			 
+			//if (x >= min_x && y >= min_y && x <= max_x  && y <= max_y){
+			if (ratio_intersect > 0.15){
+				bool flag_in = false;
+				// check if x, y is already in the list
+				for (int z = 0; z < (int)list_shiftXY_scaled.size(); z++){
+					if (list_shiftXY_scaled[z]->x == x && list_shiftXY_scaled[z]->y == y)
+					{
+						flag_in = true;
+						break;
+					}
+				}
+				if (!flag_in)
+				{
+					list_shiftXY_scaled.push_back(new Point2i(x, y));
+					totalShiftsXY_scaled += 1;
+				}
+
 			}
 		}
 	}
@@ -808,7 +852,7 @@ void Synthesizer::synthesis_BB(){
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gc->compute_energy();
-	for (int i = 0; i < 2; i++){
+	for (int i = 0; i < 4; i++){
 		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
 		qDebug() << "after expansion energy is " << gc->compute_energy();
 		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
@@ -877,7 +921,6 @@ int Synthesizer::smooth_BB(int p1, int p2, int l1, int l2){
 	}
 	return 1000;
 }
-
 
 void Synthesizer::label2result(){
 	// prepare results

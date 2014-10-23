@@ -15,7 +15,7 @@ extern QString filename_offsetStatisticsPixelInput;
 extern QString filename_offsetStatisticsBBInput;
 extern QString filename_offsetStatisticsInput;
 extern QString filename_repInput;
-
+extern QString filename_imgOutput;
 
 
 extern double scalerRes; // control the resolution of synthesis, balance the speed and quality

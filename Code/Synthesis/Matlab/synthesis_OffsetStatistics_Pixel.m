@@ -13,9 +13,9 @@ warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'OffsetStatistics';
+P.name_dataset = 'TextureOptimization';
 P.name_data = 'Resized';
-P.name_prefix = 'OffsetStatistics';
+P.name_prefix = 'TextureOptimization';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -42,20 +42,22 @@ para.thresh_nn_far = 24; % preclude pairs that are too far , at the low resoluti
 para.thresh_peak_pro = 0.1; % minimum probability for a positive peak
 para.thresh_peak_max_num = 60;
 para.thresh_correlation = 0.5;
-para.defalt_mag = 1; % a default magnitude for assistant generators
+para.defalt_mag = 0; % a default magnitude for assistant generators
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DO NOT CHANGE AFTER THIS LINE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 2:2
+for i_img = 0:37
 
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
     nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixel.txt'];
    
     % input image
     im = imread(nameImg);
+
+    
     im_ori = im;
     % scale image 
     im = imresize(im, para.res_scale);
