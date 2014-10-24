@@ -6,7 +6,7 @@ warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 define_COOC_DefaultParams;
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'Facade';
+P.name_dataset = 'HoleFilling';
 P.name_data_input = 'Ori';
 P.name_data_output = 'Resized';
 P.name_format = 'jpg';

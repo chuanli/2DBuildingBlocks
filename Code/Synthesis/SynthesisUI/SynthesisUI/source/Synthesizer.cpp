@@ -292,6 +292,7 @@ Mat1b Synthesizer::imgInputGray_scaled;
 Mat1b Synthesizer::imgInputlabel_scaled;
 Mat1d Synthesizer::imgInputlabelinterX_scaled;
 Mat1d Synthesizer::imgInputlabelinterY_scaled;
+Mat1d Synthesizer::imgInputMask_scaled;
 
 static void meshgrid(const cv::Mat &xgv, const cv::Mat &ygv, cv::Mat1d &X, cv::Mat1d &Y)
 {
@@ -333,6 +334,10 @@ Synthesizer::Synthesizer(void){
 	qimgInputlabelinterX_scaled = new QImage;
 	qimgInputlabelinterY_fullres = new QImage;
 	qimgInputlabelinterY_scaled = new QImage;
+
+	// hole filling
+	qimgInputMask_fullres = new QImage;
+	qimgInputMask_scaled = new QImage;
 
 	generatorX_scaled = 0.05; // a regular generator for expansion in X direction, in percentage
 	generatorY_scaled = 0.05; // a regular generator for expansion in Y direction, in percentage
@@ -379,6 +384,9 @@ void Synthesizer::initialization(){
     qlabelInput_fullres->setPixmap(QPixmap::fromImage(*qimgInput_fullres));
 	*qimgInput_scaled = qimgInput_fullres->scaled(qimgInput_fullres->size() * scalerRes, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	qlabelInput_scaled->setPixmap(QPixmap::fromImage(*qimgInput_scaled));
+
+
+
 
 	// matrix for (fullres and scaled) grayscale input image
 	imgInput_fullres = qimage2mat(*qimgInput_fullres);
@@ -523,7 +531,24 @@ void Synthesizer::initialization(){
 		}
 	}
 
-
+	// hole filling
+	QFile fileMask(filename_imgMask);
+	if (fileMask.exists()){
+		qimgInputMask_fullres->load(filename_imgMask);
+		*qimgInputMask_scaled = qimgInputMask_fullres->scaled(qimgInputMask_fullres->size() * scalerRes, Qt::KeepAspectRatio, Qt::FastTransformation);
+		imgInputMask_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled); //or, rep->imgSynGray_scaled.create(rows, cols);
+		for (int r = 0; r < rowsInput_scaled; r++){
+			for (int c = 0; c < colsInput_scaled; c++){
+				QColor clrCurrent(qimgInputMask_scaled->pixel(c, r)); // qimage and opencv matrix has opposite way of indexing pixels, annoying
+				if (clrCurrent.red() != 255){
+					imgInputMask_scaled(r, c) = 1;
+				}
+			}
+		}
+	}
+	else{
+		qDebug() << "imgInputMask_fullres does not exist";
+	}
 }
 
 // Shift Map
@@ -635,6 +660,11 @@ int Synthesizer::smooth_ShiftMap(int p1, int p2, int l1, int l2){
 	return 1000;
 }
 
+void Synthesizer::fill_ShiftMap(){
+
+}
+
+
 // Offset Statistics
 void Synthesizer::synthesis_OffsetStatistics(){
 	qDebug() << "Synthesis starts (Offset Statistics) ... ";
@@ -683,37 +713,37 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
 
 
-	// find the generator zone (the expansion zone spanned by one generator at each corner)
-	std::vector<int> zone_expansion_x;
-	std::vector<int> zone_expansion_y;
-	std::vector<int> zone_generator_x;
-	std::vector<int> zone_generator_y;
-	zone_expansion_x.resize(4);
-	zone_expansion_y.resize(4);
-	zone_expansion_x[0] = 0;
-	zone_expansion_x[1] = colsSyn_scaled - colsInput_scaled;
-	zone_expansion_x[2] = colsSyn_scaled - colsInput_scaled;
-	zone_expansion_x[3] = 0;
-	zone_expansion_y[0] = 0;
-	zone_expansion_y[1] = rowsSyn_scaled - rowsInput_scaled;
-	zone_expansion_y[2] = 0;
-	zone_expansion_y[3] = rowsSyn_scaled - rowsInput_scaled;
-	zone_generator_x.resize(16);
-	zone_generator_y.resize(16);
-	for (int i = 0; i < 4; i++){
-		zone_generator_x[i * 4] = zone_expansion_x[i] - generatorsOS_scaled[0]->x + generatorsOS_scaled[1]->x;
-		zone_generator_x[i * 4 + 1] = zone_expansion_x[i] + generatorsOS_scaled[0]->x + generatorsOS_scaled[1]->x;
-		zone_generator_x[i * 4 + 2] = zone_expansion_x[i] + generatorsOS_scaled[0]->x - generatorsOS_scaled[1]->x;
-		zone_generator_x[i * 4 + 3] = zone_expansion_x[i] - generatorsOS_scaled[0]->x - generatorsOS_scaled[1]->x;
-		zone_generator_y[i * 4] = zone_expansion_y[i] - generatorsOS_scaled[0]->y + generatorsOS_scaled[1]->y;
-		zone_generator_y[i * 4 + 1] = zone_expansion_y[i] + generatorsOS_scaled[0]->y + generatorsOS_scaled[1]->y;
-		zone_generator_y[i * 4 + 2] = zone_expansion_y[i] + generatorsOS_scaled[0]->y - generatorsOS_scaled[1]->y;
-		zone_generator_y[i * 4 + 3] = zone_expansion_y[i] - generatorsOS_scaled[0]->y - generatorsOS_scaled[1]->y;
-	}
-	int min_x = *min_element(zone_generator_x.begin(), zone_generator_x.end());
-	int min_y = *min_element(zone_generator_y.begin(), zone_generator_y.end());
-	int max_x = *max_element(zone_generator_x.begin(), zone_generator_x.end());
-	int max_y = *max_element(zone_generator_y.begin(), zone_generator_y.end());
+	//// find the generator zone (the expansion zone spanned by one generator at each corner)
+	//std::vector<int> zone_expansion_x;
+	//std::vector<int> zone_expansion_y;
+	//std::vector<int> zone_generator_x;
+	//std::vector<int> zone_generator_y;
+	//zone_expansion_x.resize(4);
+	//zone_expansion_y.resize(4);
+	//zone_expansion_x[0] = 0;
+	//zone_expansion_x[1] = colsSyn_scaled - colsInput_scaled;
+	//zone_expansion_x[2] = colsSyn_scaled - colsInput_scaled;
+	//zone_expansion_x[3] = 0;
+	//zone_expansion_y[0] = 0;
+	//zone_expansion_y[1] = rowsSyn_scaled - rowsInput_scaled;
+	//zone_expansion_y[2] = 0;
+	//zone_expansion_y[3] = rowsSyn_scaled - rowsInput_scaled;
+	//zone_generator_x.resize(16);
+	//zone_generator_y.resize(16);
+	//for (int i = 0; i < 4; i++){
+	//	zone_generator_x[i * 4] = zone_expansion_x[i] - generatorsOS_scaled[0]->x + generatorsOS_scaled[1]->x;
+	//	zone_generator_x[i * 4 + 1] = zone_expansion_x[i] + generatorsOS_scaled[0]->x + generatorsOS_scaled[1]->x;
+	//	zone_generator_x[i * 4 + 2] = zone_expansion_x[i] + generatorsOS_scaled[0]->x - generatorsOS_scaled[1]->x;
+	//	zone_generator_x[i * 4 + 3] = zone_expansion_x[i] - generatorsOS_scaled[0]->x - generatorsOS_scaled[1]->x;
+	//	zone_generator_y[i * 4] = zone_expansion_y[i] - generatorsOS_scaled[0]->y + generatorsOS_scaled[1]->y;
+	//	zone_generator_y[i * 4 + 1] = zone_expansion_y[i] + generatorsOS_scaled[0]->y + generatorsOS_scaled[1]->y;
+	//	zone_generator_y[i * 4 + 2] = zone_expansion_y[i] + generatorsOS_scaled[0]->y - generatorsOS_scaled[1]->y;
+	//	zone_generator_y[i * 4 + 3] = zone_expansion_y[i] - generatorsOS_scaled[0]->y - generatorsOS_scaled[1]->y;
+	//}
+	//int min_x = *min_element(zone_generator_x.begin(), zone_generator_x.end());
+	//int min_y = *min_element(zone_generator_y.begin(), zone_generator_y.end());
+	//int max_x = *max_element(zone_generator_x.begin(), zone_generator_x.end());
+	//int max_y = *max_element(zone_generator_y.begin(), zone_generator_y.end());
 
 	// generate enough candidates and keep the ones in the generator zone
 	int num_halfpoolX = 100;
@@ -832,6 +862,54 @@ int Synthesizer::smooth_OffsetStatistics(int p1, int p2, int l1, int l2){
 	return 1000;
 }
 
+void Synthesizer::fill_OffsetStatistics(){
+
+	qDebug() << "hole filling starts (Offset Statistics) ... ";
+
+	// Prepare shifts
+	prepareShifts_OffsetStatistics();
+
+	// setup graph cut problem
+	//qDebug() << "colsSyn_scaled: " << colsSyn_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", totalShiftsXY_scaled: " << totalShiftsXY_scaled;
+	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+
+	// set unary cost
+	gc->setDataCost(&unary_fill_OffsetStatistics);
+
+	//// set smoothness cost
+	gc->setSmoothCost(&smooth_OffsetStatistics);
+
+	qDebug() << "Before optimization energy is " << gc->compute_energy();
+	for (int i = 0; i < 4; i++){
+		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gc->compute_energy();
+		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gc->compute_energy();
+	}
+
+	//// prepare results
+	label2result();
+}
+
+int Synthesizer::unary_fill_OffsetStatistics(int p, int l){
+
+	// compute the unary cost of assigning list_shiftXY_scaled[i_l] to gcoNodes[i_n]
+	int newX = -list_shiftXY_scaled[l]->x + gcoNodes[p]->x;
+	int newY = -list_shiftXY_scaled[l]->y + gcoNodes[p]->y;
+	if (isValid_fill(newX, newY)){
+		if (imgInputMask_scaled(gcoNodes[p]->y, gcoNodes[p]->x) == 1){
+			return 0;
+		}
+		else{
+			if (list_shiftXY_scaled[l]->x == 0 && list_shiftXY_scaled[l]->y == 0){
+				return 0;
+			}
+			return 1000;
+		}
+	}
+    return 1000;
+}
+
 // Building Blocks
 void Synthesizer::synthesis_BB(){
 	qDebug() << "Synthesis starts (Building blocks) ... ";
@@ -922,6 +1000,53 @@ int Synthesizer::smooth_BB(int p1, int p2, int l1, int l2){
 	return 1000;
 }
 
+void Synthesizer::fill_BB(){
+
+	prepareShifts_BB();
+
+	// setup graph cut problem
+	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+
+	// set unary cost
+	gc->setDataCost(&unary_fill_BB);
+	//gc->setDataCost(&unary_OffsetStatistics);
+
+	// set smoothness cost
+	gc->setSmoothCost(&smooth_BB);
+	//gc->setSmoothCost(&smooth_OffsetStatistics);
+
+	// optimize
+	qDebug() << "Before optimization energy is " << gc->compute_energy();
+	for (int i = 0; i < 4; i++){
+		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gc->compute_energy();
+		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gc->compute_energy();
+	}
+
+	// prepare results
+	label2result();
+}
+
+int Synthesizer::unary_fill_BB(int p, int l){
+
+	// compute the unary cost of assigning list_shiftXY_scaled[i_l] to gcoNodes[i_n]
+	int newX = -list_shiftXY_scaled[l]->x + gcoNodes[p]->x;
+	int newY = -list_shiftXY_scaled[l]->y + gcoNodes[p]->y;
+	if (isValid_fill(newX, newY)){
+		if (imgInputMask_scaled(gcoNodes[p]->y, gcoNodes[p]->x) == 1){
+			return 0;
+		}
+		else{
+			if (list_shiftXY_scaled[l]->x == 0 && list_shiftXY_scaled[l]->y == 0){
+				return 0;
+			}
+			return 1000;
+		}
+	}
+	return 1000;
+}
+
 void Synthesizer::label2result(){
 	// prepare results
 	imgSyn_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
@@ -963,6 +1088,16 @@ void Synthesizer::label2result(){
 bool Synthesizer::isValid(int x, int y){
 	if (x >= 0 && y >= 0 && x < colsInput_scaled && y < rowsInput_scaled){
 		return true;
+	}
+	return false;
+}
+
+bool Synthesizer::isValid_fill(int x, int y){
+	if (x >= 0 && y >= 0 && x < colsInput_scaled && y < rowsInput_scaled){
+		if (imgInputMask_scaled(y, x) != 1){
+			return true;
+		}
+		return false;
 	}
 	return false;
 }

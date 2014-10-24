@@ -75,21 +75,28 @@ public:
 	void prepareShifts_ShiftMap();
 	static int unary_ShiftMap(int p, int l);
 	static int smooth_ShiftMap(int p1, int p2, int l1, int l2);
+	void fill_ShiftMap();
 
 	// Offset Statistics
 	void synthesis_OffsetStatistics();
 	void prepareShifts_OffsetStatistics();
 	static int unary_OffsetStatistics(int p, int l);
 	static int smooth_OffsetStatistics(int p1, int p2, int l1, int l2);
+	void fill_OffsetStatistics();
+	static int unary_fill_OffsetStatistics(int p, int l);
 
 	// Building Blocks
 	void synthesis_BB();
 	void prepareShifts_BB();
 	static int unary_BB(int p, int l);
 	static int smooth_BB(int p1, int p2, int l1, int l2);
+	void fill_BB();
+	static int unary_fill_BB(int p, int l);
 
 	void label2result();
 	static bool isValid(int x, int y);
+	static bool isValid_fill(int x, int y);
+
 	//-------------------------------------------------------------
 	// variables
 	//-------------------------------------------------------------
@@ -141,6 +148,11 @@ public:
 	Mat1d imgInputlabelinterY_fullres;
 	static Mat1d imgInputlabelinterY_scaled;
 
+	// hole filling
+	QImage* qimgInputMask_fullres;
+	QImage* qimgInputMask_scaled;
+	static Mat1d imgInputMask_scaled;
+
 	// dimension
 	int rowsInput_fullres;
 	int colsInput_fullres;
@@ -166,9 +178,6 @@ public:
 	std::vector<std::vector<int>> repY_scaled; // repetitions Y scaled
 	std::vector<std::vector<int>> repW_scaled; // repetitions W scaled
 	std::vector<std::vector<int>> repH_scaled; // repetitions H scaled
-
-
-
 
 
 	//-------------------

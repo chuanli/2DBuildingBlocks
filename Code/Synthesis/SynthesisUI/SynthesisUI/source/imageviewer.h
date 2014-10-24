@@ -37,6 +37,7 @@ public:
 	void createActions();
 	void createMenus();
 	void doSynthesis(const int act);
+	void doHoleFilling(const int method_now);
 
 private slots:
     void slotOpen();
@@ -45,10 +46,12 @@ private slots:
 	void slotShrinkX();
 	void slotExpandY();
 	void slotShrinkY();
-	void swithMethod1();
-	void swithMethod2();
-	void swithMethod3();
-	void showMontage();
+	void slotSwitchSynMethod1();
+	void slotSwitchSynMethod2();
+	void slotSwitchSynMethod3();
+	void slotShowMontage();
+	void slotHoleFilling();
+
 
 private:
 	// scene
@@ -81,6 +84,7 @@ private:
 	QAction *swithMethod2Act;
 	QAction *swithMethod3Act;
 	QAction *showMontageAct;
+	QAction *holeFillingAct;
 
 	// manus
 	QMenu *fileMenu;

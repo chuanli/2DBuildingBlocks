@@ -22,7 +22,7 @@ static const uint qt_meta_data_ImageViewer[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,9 +37,10 @@ static const uint qt_meta_data_ImageViewer[] = {
       63,   12,   12,   12, 0x08,
       77,   12,   12,   12, 0x08,
       91,   12,   12,   12, 0x08,
-     106,   12,   12,   12, 0x08,
-     121,   12,   12,   12, 0x08,
-     136,   12,   12,   12, 0x08,
+     114,   12,   12,   12, 0x08,
+     137,   12,   12,   12, 0x08,
+     160,   12,   12,   12, 0x08,
+     178,   12,   12,   12, 0x08,
 
        0        // eod
 };
@@ -47,9 +48,9 @@ static const uint qt_meta_data_ImageViewer[] = {
 static const char qt_meta_stringdata_ImageViewer[] = {
     "ImageViewer\0\0slotOpen()\0slotSave()\0"
     "slotExpandX()\0slotShrinkX()\0slotExpandY()\0"
-    "slotShrinkY()\0swithMethod1()\0"
-    "swithMethod2()\0swithMethod3()\0"
-    "showMontage()\0"
+    "slotShrinkY()\0slotSwitchSynMethod1()\0"
+    "slotSwitchSynMethod2()\0slotSwitchSynMethod3()\0"
+    "slotShowMontage()\0slotHoleFilling()\0"
 };
 
 void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -64,10 +65,11 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 3: _t->slotShrinkX(); break;
         case 4: _t->slotExpandY(); break;
         case 5: _t->slotShrinkY(); break;
-        case 6: _t->swithMethod1(); break;
-        case 7: _t->swithMethod2(); break;
-        case 8: _t->swithMethod3(); break;
-        case 9: _t->showMontage(); break;
+        case 6: _t->slotSwitchSynMethod1(); break;
+        case 7: _t->slotSwitchSynMethod2(); break;
+        case 8: _t->slotSwitchSynMethod3(); break;
+        case 9: _t->slotShowMontage(); break;
+        case 10: _t->slotHoleFilling(); break;
         default: ;
         }
     }
@@ -106,9 +108,9 @@ int ImageViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }

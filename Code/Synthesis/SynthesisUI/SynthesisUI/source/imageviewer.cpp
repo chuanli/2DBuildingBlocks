@@ -91,7 +91,9 @@ void ImageViewer::slotOpen(){
 	filename_repInput.resize(filename_imgInput.size() - 4);
 	filename_repInput += append_BB + ".txt";
 	
-
+	filename_imgMask = filename_imgInput;
+	filename_imgMask.resize(filename_imgInput.size() - 4);
+	filename_imgMask += "_mask.bmp";
 	qDebug() << filename_imgInput;
 	qDebug() << filename_offsetStatisticsPixelInput;
 	qDebug() << filename_offsetStatisticsBBInput;
@@ -224,6 +226,35 @@ void ImageViewer::doSynthesis(const int act){
 
 }
 
+void ImageViewer::doHoleFilling(const int method_now){
+
+	syn->totalGeneratorX_scaled = 1;
+	syn->totalGeneratorY_scaled = 1;
+
+	switch (method_now){
+	case MODE_SHIFTMAP:
+		syn->fill_ShiftMap();
+		break;
+	case MODE_OFFSETSTATISTICS:
+		syn->fill_OffsetStatistics();
+		break;
+	case MODE_BB:
+		syn->fill_BB();
+		break;
+	default:;
+	};
+
+	imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgSyn_fullres));
+	scene->clear();
+	scene->addItem(imgDisp);
+	scene->setSceneRect(0, 0, syn->qimgSyn_fullres->width(), syn->qimgSyn_fullres->height());
+	view = new QGraphicsView(scene);
+	setCentralWidget(view);
+
+	resize(syn->qimgSyn_fullres->width() + 10, syn->qimgSyn_fullres->height() + 50);
+
+}
+
 void ImageViewer::createActions(){
 	openAct = new QAction(tr("&Open..."), this);
 	openAct->setShortcut(tr("Ctrl+P"));
@@ -251,19 +282,24 @@ void ImageViewer::createActions(){
 
 	swithMethod1Act = new QAction(tr("&ShiftMap on/off"), this);
 	swithMethod1Act->setShortcut(tr("Ctrl+1"));
-	connect(swithMethod1Act, SIGNAL(triggered()), this, SLOT(swithMethod1()));
+	connect(swithMethod1Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod1()));
 
 	swithMethod2Act = new QAction(tr("&Offset on/off"), this);
 	swithMethod2Act->setShortcut(tr("Ctrl+2"));
-	connect(swithMethod2Act, SIGNAL(triggered()), this, SLOT(swithMethod2()));
+	connect(swithMethod2Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod2()));
 
 	swithMethod3Act = new QAction(tr("&BB on/off"), this);
 	swithMethod3Act->setShortcut(tr("Ctrl+3"));
-	connect(swithMethod3Act, SIGNAL(triggered()), this, SLOT(swithMethod3()));
+	connect(swithMethod3Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod3()));
 
 	showMontageAct = new QAction(tr("&Montage on/off"), this);
 	showMontageAct->setShortcut(tr("Ctrl+M"));
-	connect(showMontageAct, SIGNAL(triggered()), this, SLOT(showMontage()));
+	connect(showMontageAct, SIGNAL(triggered()), this, SLOT(slotShowMontage()));
+
+	holeFillingAct = new QAction(tr("&Hole Filling"), this);
+	holeFillingAct->setShortcut(tr("Ctrl+F"));
+	connect(holeFillingAct, SIGNAL(triggered()), this, SLOT(slotHoleFilling()));
+
 }
 
 void ImageViewer::createMenus(){
@@ -279,11 +315,12 @@ void ImageViewer::createMenus(){
 	editMenu->addAction(swithMethod2Act);
 	editMenu->addAction(swithMethod3Act);
 	editMenu->addAction(showMontageAct);
+	editMenu->addAction(holeFillingAct);
 	menuBar()->addMenu(fileMenu);
 	menuBar()->addMenu(editMenu);
 }
 
-void ImageViewer::swithMethod1(){
+void ImageViewer::slotSwitchSynMethod1(){
 	method_now = 1;
 	switch (method_now){
 	case MODE_SHIFTMAP:
@@ -303,7 +340,7 @@ void ImageViewer::swithMethod1(){
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
-void ImageViewer::swithMethod2(){
+void ImageViewer::slotSwitchSynMethod2(){
 	method_now = 2;
 	switch (method_now){
 	case MODE_SHIFTMAP:
@@ -323,7 +360,7 @@ void ImageViewer::swithMethod2(){
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
-void ImageViewer::swithMethod3(){
+void ImageViewer::slotSwitchSynMethod3(){
     method_now = 3;
 	switch (method_now){
 	case MODE_SHIFTMAP:
@@ -343,12 +380,12 @@ void ImageViewer::swithMethod3(){
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
-void ImageViewer::showMontage(){
+void ImageViewer::slotShowMontage(){
 	if (montage_now == 1)
 	{
 		montage_now = 0;
 		// clear the boxes
-		if ((syn->totalGeneratorX_scaled > 1) || (syn->totalGeneratorY_scaled > 1)){
+		//if ((syn->totalGeneratorX_scaled > 1) || (syn->totalGeneratorY_scaled > 1)){
 			imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgSyn_fullres));
 			scene->clear();
 			scene->addItem(imgDisp);
@@ -356,16 +393,16 @@ void ImageViewer::showMontage(){
 			view = new QGraphicsView(scene);
 			setCentralWidget(view);
 			resize(syn->qimgSyn_fullres->width() + 10, syn->qimgSyn_fullres->height() + 50);
-		}
-		else{
-			imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
-			scene->clear();
-			scene->addItem(imgDisp);
-			scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
-			view = new QGraphicsView(scene);
-			setCentralWidget(view);
-			resize(syn->qimgInput_fullres->width() + 10, syn->qimgInput_fullres->height() + 50);
-		}
+		//}
+		//else{
+		//	imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
+		//	scene->clear();
+		//	scene->addItem(imgDisp);
+		//	scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
+		//	view = new QGraphicsView(scene);
+		//	setCentralWidget(view);
+		//	resize(syn->qimgInput_fullres->width() + 10, syn->qimgInput_fullres->height() + 50);
+		//}
 	}
 	else{
 		montage_now = 1;
@@ -380,7 +417,7 @@ void ImageViewer::showMontage(){
 
 		resize(syn->qimgSyn_fullres->width() + 10, syn->qimgSyn_fullres->height() + 50);
 
-		if ((syn->totalGeneratorX_scaled > 1) || (syn->totalGeneratorY_scaled > 1)){
+		//if ((syn->totalGeneratorX_scaled > 1) || (syn->totalGeneratorY_scaled > 1)){
 			imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgSyn_fullres));
 			scene->clear();
 			scene->addItem(imgDisp);
@@ -391,18 +428,24 @@ void ImageViewer::showMontage(){
 			view = new QGraphicsView(scene);
 			setCentralWidget(view);
 			resize(syn->qimgSyn_fullres->width() + 10, syn->qimgSyn_fullres->height() + 50);
-		}
-		else{
-			imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
-			scene->clear();
-			scene->addItem(imgDisp);
-			scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
-			view = new QGraphicsView(scene);
-			setCentralWidget(view);
-			resize(syn->qimgInput_fullres->width() + 10, syn->qimgInput_fullres->height() + 50);
-		}
+		//}
+		//else{
+		//	imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
+		//	scene->clear();
+		//	scene->addItem(imgDisp);
+		//	scene->setSceneRect(0, 0, syn->qimgInput_fullres->width(), syn->qimgInput_fullres->height());
+		//	view = new QGraphicsView(scene);
+		//	setCentralWidget(view);
+		//	resize(syn->qimgInput_fullres->width() + 10, syn->qimgInput_fullres->height() + 50);
+		//}
 
 
 
 	}
+}
+
+void ImageViewer::slotHoleFilling(){
+	syn->initialization();
+
+	doHoleFilling(method_now);
 }

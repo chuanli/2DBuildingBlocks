@@ -13,9 +13,9 @@ warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'TextureOptimization';
+P.name_dataset = 'HoleFilling';
 P.name_data = 'Resized';
-P.name_prefix = 'TextureOptimization';
+P.name_prefix = 'HoleFilling';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -30,14 +30,22 @@ else if matlabpool('size') > 0 & P.matlabpool_flag ==0
 end
 
 % parameters for statistics analysis
-para = [];
-para.res_scale = 0.25;  % this is for effeciency reason
-para.w = 8; % this is incharge of different things w.r.t thresh_nn
-para.h = 8;
-para.gs_sigma = sqrt(3);
+% para = [];
+% para.res_scale = 0.5;  % this is for effeciency reason
+% para.w = 8; % this is incharge of different things w.r.t thresh_nn
+% para.h = 8;
+% para.gs_sigma = sqrt(3);
+% para.gs_w = round(para.gs_sigma * 3) * 2 + 1;
+% para.thresh_nn = 8; % preclude pairs that are too close, at the low resolution
+% para.thresh_nn_far = 24; % preclude pairs that are too far , at the low resolution
+
+para.res_scale = 0.5;  % this is for effeciency reason
+para.w = para.res_scale * 32; % this is incharge of different things w.r.t thresh_nn
+para.h = para.res_scale * 32;
+para.gs_sigma = sqrt(3) * (para.res_scale/0.25);
 para.gs_w = round(para.gs_sigma * 3) * 2 + 1;
-para.thresh_nn = 8; % preclude pairs that are too close, at the low resolution
-para.thresh_nn_far = 24; % preclude pairs that are too far , at the low resolution
+para.thresh_nn = para.res_scale * 32; % preclude pairs that are too close, at the low resolution
+para.thresh_nn_far = 3 * para.res_scale * 32; % preclude pairs that are too far , at the low resolution
 
 para.thresh_peak_pro = 0.1; % minimum probability for a positive peak
 para.thresh_peak_max_num = 60;
@@ -49,7 +57,7 @@ para.defalt_mag = 0; % a default magnitude for assistant generators
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 0:37
+for i_img = 1:1
 
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
     nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixel.txt'];
