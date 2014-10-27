@@ -286,13 +286,22 @@
 
 int Synthesizer::rowsInput_scaled;
 int Synthesizer::colsInput_scaled;
+int Synthesizer::rowsSyn_scaled;
+int Synthesizer::colsSyn_scaled;
+
 vector<Point2i*> Synthesizer::list_shiftXY_scaled;
 vector<Point2i*> Synthesizer::gcoNodes;
 Mat1b Synthesizer::imgInputGray_scaled;
 Mat1b Synthesizer::imgInputlabel_scaled;
 Mat1d Synthesizer::imgInputlabelinterX_scaled;
 Mat1d Synthesizer::imgInputlabelinterY_scaled;
+Mat1d Synthesizer::imgInputoffsetinterX_scaled;
+Mat1d Synthesizer::imgInputoffsetinterY_scaled;
 Mat1d Synthesizer::imgInputMask_scaled;
+int Synthesizer::numRep;
+std::vector<std::vector<int>> Synthesizer::repX_scaled;
+std::vector<std::vector<int>> Synthesizer::repY_scaled;
+std::vector<std::vector<Point2i*>> Synthesizer::repOffset_scaled;
 
 static void meshgrid(const cv::Mat &xgv, const cv::Mat &ygv, cv::Mat1d &X, cv::Mat1d &Y)
 {
@@ -306,6 +315,14 @@ static void meshgridTest(const cv::Range &xgv, const cv::Range &ygv, cv::Mat1d &
 	for (int i = xgv.start; i <= xgv.end; i++) t_x.push_back((double)i);
 	for (int i = ygv.start; i <= ygv.end; i++) t_y.push_back((double)i);
 	meshgrid(cv::Mat(t_x), cv::Mat(t_y), X, Y);
+}
+
+// helper functions
+inline vector<double> makeVector3f(float x, float y, float z) {
+	vector<double> v;
+	v.resize(3);
+	v[0] = x; v[1] = y; v[2] = z;
+	return v;
 }
 
 Synthesizer::Synthesizer(void){
@@ -339,15 +356,31 @@ Synthesizer::Synthesizer(void){
 	qimgInputMask_fullres = new QImage;
 	qimgInputMask_scaled = new QImage;
 
-	generatorX_scaled = 0.05; // a regular generator for expansion in X direction, in percentage
-	generatorY_scaled = 0.05; // a regular generator for expansion in Y direction, in percentage
+	// generators
+	generatorX_scaled = 0.2; // a regular generator for expansion in X direction, in percentage
+	generatorY_scaled = 0.2; // a regular generator for expansion in Y direction, in percentage
 	totalGeneratorX_scaled = 1.0; // the total expansion in X direction, in percentage
 	totalGeneratorY_scaled = 1.0; // the total expansion in Y direction, in percentage
-	shiftsPerGenerator_scaled = 2; // a regular generator for expansion, in the resolution of shifts
+	shiftsPerGenerator_scaled = 8; // a regular generator for expansion, in the resolution of shifts
 	totalShiftsX_scaled = 1; // the total number of shifts in X direction 
 	totalShiftsY_scaled = 1; // the total number of shifts in Y direction
 
+	// none local
+	r_Nonelocal_scaled = 8;
+	r_Nonelocal_fullres = (int)(r_Nonelocal_scaled / scalerRes);
 
+	// rendering
+	colorList.resize(10);
+	colorList[0] = makeVector3f(102.0, 153.0, 255.0);
+	colorList[1] = makeVector3f(255.0, 204.0, 102.0);
+	colorList[2] = makeVector3f(102.0, 255.0, 127.0);
+	colorList[3] = makeVector3f(102.0, 230.0, 255.0);
+	colorList[4] = makeVector3f(255.0, 127.0, 102.0);
+	colorList[5] = makeVector3f(230.0, 255.0, 102.0);
+	colorList[6] = makeVector3f(102.0, 255.0, 204.0);
+	colorList[7] = makeVector3f(255.0, 102.0, 153.0);
+	colorList[8] = makeVector3f(204.0, 102.0, 255.0);
+	colorList[9] = makeVector3f(153.0, 255.0, 102.0);
 }
 
 Synthesizer::~Synthesizer(void)
@@ -482,6 +515,37 @@ void Synthesizer::initialization(){
 		}
 	}
 
+	// compute the offset between all building blocks. this is used for none local method
+	repOffset_scaled.resize(numRep * numRep);
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		for (int j_rep = 0; j_rep < numRep; j_rep++){
+			int idx = i_rep * numRep + j_rep;
+			repOffset_scaled[idx].resize(0);
+			for (int ii_rep = 0; ii_rep < (int)repX_scaled[i_rep].size(); ii_rep++){
+				for (int jj_rep = 0; jj_rep < (int)repX_scaled[j_rep].size(); jj_rep++){
+					Point2i cur_offset(repX_scaled[i_rep][ii_rep] - repX_scaled[j_rep][jj_rep], repY_scaled[i_rep][ii_rep] - repY_scaled[j_rep][jj_rep]);
+					bool flag_found = false;
+					for (int k = 0; k < repOffset_scaled[idx].size(); k++){
+						if (cur_offset.x == repOffset_scaled[idx][k]->x && cur_offset.y == repOffset_scaled[idx][k]->y){
+							flag_found = true;
+							break;
+						}
+			        }
+					if (!flag_found){
+						repOffset_scaled[idx].push_back(new Point2i(cur_offset.x, cur_offset.y));
+					}
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < repOffset_scaled.size(); i++){
+		qDebug() << "repOffset_scaled[" << i << "]:";
+		for (int j = 0; j < repOffset_scaled[i].size(); j++){
+			qDebug() << repOffset_scaled[i][j]->x << repOffset_scaled[i][j]->y;
+		}
+	}
+
 	// make fullres & scaled maps for input labels
 	imgInputlabel_fullres = Mat1b::zeros(rowsInput_fullres, colsInput_fullres); //or, rep->imgSynGray_scaled.create(rows, cols);
 	for (int i_rep = 0; i_rep < numRep; i_rep++){
@@ -502,19 +566,33 @@ void Synthesizer::initialization(){
 	//----------------------------------------------------------------
 	imgInputlabelinterX_scaled = Mat1d::zeros(rowsInput_scaled, colsInput_scaled);
 	imgInputlabelinterY_scaled = Mat1d::zeros(rowsInput_scaled, colsInput_scaled);
-	for (int i_rep = 0; i_rep < numRep; i_rep++)
-	{
-		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++)
-		{
-			cv::Mat1d X, Y;
-			meshgridTest(cv::Range(0, repW_scaled[i_rep][j_rep] - 1), cv::Range(0, repH_scaled[i_rep][j_rep] - 1), X, Y);
-			X = X * ((double)1 / (double)max(1, repW_scaled[i_rep][j_rep]));
-			Y = Y * ((double)1 / (double)max(1, repH_scaled[i_rep][j_rep]));
+	imgInputoffsetinterX_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled);
+	imgInputoffsetinterY_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled);
+
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		//for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
+		for (int j_rep = 0; j_rep < 2; j_rep++){
+			cv::Mat1d X, Y, XX, YY;
+			meshgridTest(cv::Range(0, repW_scaled[i_rep][j_rep] - 1), cv::Range(0, repH_scaled[i_rep][j_rep] - 1), XX, YY);
+			X = XX * ((double)1 / (double)max(1, repW_scaled[i_rep][j_rep]));
+			Y = YY * ((double)1 / (double)max(1, repH_scaled[i_rep][j_rep]));
 			X.copyTo(imgInputlabelinterX_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])));
 			Y.copyTo(imgInputlabelinterY_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])));
+			XX.copyTo(imgInputoffsetinterX_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])));
+			YY.copyTo(imgInputoffsetinterY_scaled(Range(repY_scaled[i_rep][j_rep], repY_scaled[i_rep][j_rep] + repH_scaled[i_rep][j_rep]), Range(repX_scaled[i_rep][j_rep], repX_scaled[i_rep][j_rep] + repW_scaled[i_rep][j_rep])));
 		}
 	}
 
+	//for (int r = 0; r < rowsInput_scaled; r++){
+	//	for (int c = 0; c < colsInput_scaled; c++){
+	//		if (imgInputoffsetinterX_scaled(r, c) != 0 || imgInputoffsetinterY_scaled(r, c) != 0){
+	//			qDebug() << imgInputoffsetinterX_scaled(r, c) << ", " << imgInputoffsetinterY_scaled(r, c);
+	//		}
+
+	//	}
+	//}
+	//imshow("imgInputoffsetinterX_scaled", imgInputoffsetinterX_scaled);
+	//imshow("imgInputoffsetinterY_scaled", imgInputoffsetinterY_scaled);
 	// make maps for rep internal labels
 	imgInputlabelinterX_fullres = Mat1d::zeros(rowsInput_fullres, colsInput_fullres);
 	imgInputlabelinterY_fullres = Mat1d::zeros(rowsInput_fullres, colsInput_fullres);
@@ -559,22 +637,25 @@ void Synthesizer::synthesis_ShiftMap(){
 	prepareShifts_ShiftMap();
 
 	// setup graph cut problem
-	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
 
 	// set unary cost
-	gc->setDataCost(&unary_ShiftMap);
+	gcGrid->setDataCost(&unary_ShiftMap);
 
 	// set smoothness cost
-	gc->setSmoothCost(&smooth_ShiftMap);
+	gcGrid->setSmoothCost(&smooth_ShiftMap);
 
 	// optimize
-	qDebug() << "Before optimization energy is " << gc->compute_energy();
+	
+
+	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
 	for (int i = 0; i < 2; i++){
-		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gc->compute_energy();
-		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gc->compute_energy();
+		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gcGrid->compute_energy();
 	}
+	
 
 	// prepare results
 	label2result();
@@ -664,7 +745,6 @@ void Synthesizer::fill_ShiftMap(){
 
 }
 
-
 // Offset Statistics
 void Synthesizer::synthesis_OffsetStatistics(){
 	qDebug() << "Synthesis starts (Offset Statistics) ... ";
@@ -675,24 +755,25 @@ void Synthesizer::synthesis_OffsetStatistics(){
 
 	// setup graph cut problem
 	//qDebug() << "colsSyn_scaled: " << colsSyn_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", totalShiftsXY_scaled: " << totalShiftsXY_scaled;
-	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
 
 	// set unary cost
-	gc->setDataCost(&unary_OffsetStatistics);
+	gcGrid->setDataCost(&unary_OffsetStatistics);
 	//gc->setDataCost(&unary_BB);
 
 	// set smoothness cost
-	gc->setSmoothCost(&smooth_OffsetStatistics);
+	gcGrid->setSmoothCost(&smooth_OffsetStatistics);
 	//gc->setSmoothCost(&smooth_BB);
 
 	// optimize
-	qDebug() << "Before optimization energy is " << gc->compute_energy();
-	for (int i = 0; i < 4; i++){
-		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gc->compute_energy();
-		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gc->compute_energy();
+	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
+	for (int i = 0; i < 2; i++){
+		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gcGrid->compute_energy();
 	}
+	qDebug() << "Smoothness; " << gcGrid->giveSmoothEnergy();
 
 	// prepare results
 	label2result();
@@ -871,20 +952,20 @@ void Synthesizer::fill_OffsetStatistics(){
 
 	// setup graph cut problem
 	//qDebug() << "colsSyn_scaled: " << colsSyn_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", totalShiftsXY_scaled: " << totalShiftsXY_scaled;
-	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
 
 	// set unary cost
-	gc->setDataCost(&unary_fill_OffsetStatistics);
+	gcGrid->setDataCost(&unary_fill_OffsetStatistics);
 
 	//// set smoothness cost
-	gc->setSmoothCost(&smooth_OffsetStatistics);
+	gcGrid->setSmoothCost(&smooth_OffsetStatistics);
 
-	qDebug() << "Before optimization energy is " << gc->compute_energy();
+	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
 	for (int i = 0; i < 4; i++){
-		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gc->compute_energy();
-		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gc->compute_energy();
+		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gcGrid->compute_energy();
 	}
 
 	//// prepare results
@@ -918,23 +999,21 @@ void Synthesizer::synthesis_BB(){
 	prepareShifts_BB();
 
 	// setup graph cut problem
-	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
 
 	// set unary cost
-	gc->setDataCost(&unary_BB);
-	//gc->setDataCost(&unary_OffsetStatistics);
+	gcGrid->setDataCost(&unary_BB);
 
 	// set smoothness cost
-	gc->setSmoothCost(&smooth_BB);
-	//gc->setSmoothCost(&smooth_OffsetStatistics);
+	gcGrid->setSmoothCost(&smooth_BB);
 
 	// optimize
-	qDebug() << "Before optimization energy is " << gc->compute_energy();
-	for (int i = 0; i < 4; i++){
-		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gc->compute_energy();
-		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gc->compute_energy();
+	//qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
+	for (int i = 0; i < 2; i++){
+		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gcGrid->compute_energy();
 	}
 
 	// prepare results
@@ -942,8 +1021,8 @@ void Synthesizer::synthesis_BB(){
 }
 
 void Synthesizer::prepareShifts_BB(){
-
-	prepareShifts_OffsetStatistics();
+	//prepareShifts_OffsetStatistics();
+	prepareShifts_ShiftMap();
 }
 
 int Synthesizer::unary_BB(int p, int l){
@@ -1005,23 +1084,23 @@ void Synthesizer::fill_BB(){
 	prepareShifts_BB();
 
 	// setup graph cut problem
-	gc = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
+	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
 
 	// set unary cost
-	gc->setDataCost(&unary_fill_BB);
+	gcGrid->setDataCost(&unary_fill_BB);
 	//gc->setDataCost(&unary_OffsetStatistics);
 
 	// set smoothness cost
-	gc->setSmoothCost(&smooth_BB);
+	gcGrid->setSmoothCost(&smooth_BB);
 	//gc->setSmoothCost(&smooth_OffsetStatistics);
 
 	// optimize
-	qDebug() << "Before optimization energy is " << gc->compute_energy();
+	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
 	for (int i = 0; i < 4; i++){
-		gc->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gc->compute_energy();
-		gc->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gc->compute_energy();
+		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after swap energy is " << gcGrid->compute_energy();
 	}
 
 	// prepare results
@@ -1047,17 +1126,213 @@ int Synthesizer::unary_fill_BB(int p, int l){
 	return 1000;
 }
 
+// None local
+void Synthesizer::synthesis_Nonelocal(){
+	qDebug() << "Synthesis starts (None local) ... ";
+
+	// Prepare shifts
+	prepareShifts_Nonelocal();
+
+	// setup graph cut problem
+	gcGeneral = new GCoptimizationGeneralGraph(colsSyn_scaled * rowsSyn_scaled, totalShiftsXY_scaled);
+
+	// set neighbors
+	setNeighbor_Nonelocal();
+
+	// set unary cost
+	gcGeneral->setDataCost(&unary_Nonelocal);
+
+	// set smoothness cost
+	gcGeneral->setSmoothCost(&smooth_Nonelocal);
+
+
+	//qDebug() << "Before optimization energy is " << gcGeneral->compute_energy();
+	for (int i = 0; i < 2; i++){
+		gcGeneral->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		qDebug() << "after expansion energy is " << gcGeneral->compute_energy();
+		//gcGeneral->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+		//qDebug() << "after swap energy is " << gcGeneral->compute_energy();
+	}
+	qDebug() << "Smoothness; " << gcGeneral->giveSmoothEnergy();
+	//qDebug() << "Unary: " << gcGeneral->giveDataEnergy() << ", Smoothness; " << gcGeneral->giveSmoothEnergy();
+
+	//// prepare results
+	label2result();
+}
+
+void Synthesizer::prepareShifts_Nonelocal(){
+	prepareShifts_OffsetStatistics();
+	//prepareShifts_ShiftMap();
+}
+
+void Synthesizer::setNeighbor_Nonelocal(){
+	for (int i_n = 0; i_n < (int)gcoNodes.size(); i_n++){
+		for (int j_n = i_n + 1; j_n < (int)gcoNodes.size(); j_n++){
+			int i_x = gcoNodes[i_n]->x;
+			int i_y = gcoNodes[i_n]->y;
+			int j_x = gcoNodes[j_n]->x;
+			int j_y = gcoNodes[j_n]->y;
+			if (abs(i_x - j_x) <= r_Nonelocal_scaled && abs(i_y - j_y) <= r_Nonelocal_scaled){
+				gcGeneral->setNeighbors(i_n, j_n, 1);
+			}
+		}
+	}
+}
+
+int Synthesizer::unary_Nonelocal(int p, int l){
+	int newX = -list_shiftXY_scaled[l]->x + gcoNodes[p]->x;
+	int newY = -list_shiftXY_scaled[l]->y + gcoNodes[p]->y;
+	if (isValid(newX, newY)){
+		return 0;
+	}
+	else{
+		return 1000;
+	}
+}
+
+int Synthesizer::smooth_Nonelocal(int p1, int p2, int l1, int l2){
+	int retMe = 0;
+	if (l1 == l2){
+		return 0;
+	}
+
+	if (is4connected(p1, p2)){
+		//return 0;
+		// if p1 and p2 are local neighbors (4 connected)
+		Point2i x1_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p1];
+		Point2i x2_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p2];
+
+		if (isValid(x1_s_a.x, x1_s_a.y) && isValid(x2_s_b.x, x2_s_b.y)){
+			Point2i x1_s_b = -*list_shiftXY_scaled[l2] + *gcoNodes[p1];
+			Point2i x2_s_a = -*list_shiftXY_scaled[l1] + *gcoNodes[p2];
+			if (isValid(x1_s_b.x, x1_s_b.y) && isValid(x2_s_a.x, x2_s_a.y)){
+				int diff1 = 1*imgInputGray_scaled(x1_s_a.y, x1_s_a.x) - imgInputGray_scaled(x1_s_b.y, x1_s_b.x);
+				int diff2 = 1*imgInputGray_scaled(x2_s_a.y, x2_s_a.x) - imgInputGray_scaled(x2_s_b.y, x2_s_b.x);
+
+				double diffRep1 = 50 * (imgInputlabel_scaled(x1_s_a.y, x1_s_a.x) != imgInputlabel_scaled(x1_s_b.y, x1_s_b.x));
+				double diffRep2 = 50 * (imgInputlabel_scaled(x2_s_a.y, x2_s_a.x) != imgInputlabel_scaled(x2_s_b.y, x2_s_b.x));
+
+				bool indicator1 = imgInputlabel_scaled(x1_s_a.y, x1_s_a.x) == imgInputlabel_scaled(x1_s_b.y, x1_s_b.x);
+				bool indicator2 = imgInputlabel_scaled(x2_s_a.y, x2_s_a.x) == imgInputlabel_scaled(x2_s_b.y, x2_s_b.x);
+				double diffRepinter1X = 8 * (imgInputlabelinterX_scaled(x1_s_a.y, x1_s_a.x) - imgInputlabelinterX_scaled(x1_s_b.y, x1_s_b.x));
+				double diffRepinter1Y = 8 * (imgInputlabelinterY_scaled(x1_s_a.y, x1_s_a.x) - imgInputlabelinterY_scaled(x1_s_b.y, x1_s_b.x));
+				double diffRepinter2X = 8 * (imgInputlabelinterX_scaled(x2_s_a.y, x2_s_a.x) - imgInputlabelinterX_scaled(x2_s_b.y, x2_s_b.x));
+				double diffRepinter2Y = 8 * (imgInputlabelinterY_scaled(x2_s_a.y, x2_s_a.x) - imgInputlabelinterY_scaled(x2_s_b.y, x2_s_b.x));
+
+				double energypixel = sqrt(double(diff1*diff1)) + sqrt(double(diff2*diff2));
+				double energylabel = sqrt(double(diffRep1*diffRep1)) + sqrt(double(diffRep2*diffRep2));
+				double energyinterlabel = indicator1 * (sqrt(double(diffRepinter1X*diffRepinter1X)) + sqrt(double(diffRepinter1Y*diffRepinter1Y))) + indicator2 * (sqrt(double(diffRepinter2X * diffRepinter2X)) + sqrt(double(diffRepinter2Y * diffRepinter2Y)));
+
+				retMe = ceil(energypixel + energylabel + energyinterlabel);
+				//retMe = ceil(energypixel);
+				return retMe;
+			}
+			else{
+				return 1000;
+			}
+		}
+		return 1000;
+	}
+	else{
+		////// if p1 and p2 are none local neighbors, check if they are building blocks
+		Point2i pt1 = -*list_shiftXY_scaled[l1] + *gcoNodes[p1];
+		Point2i pt2 = -*list_shiftXY_scaled[l2] + *gcoNodes[p2];
+		if (isValid(pt1.x, pt1.y) && isValid(pt2.x, pt2.y)){
+			// see if x1_s_a and x2_s_b land on any building block
+		    int b1 = -1;
+			int b2 = -1;
+			b1 = isBuildingBlock(pt1);
+			b2 = isBuildingBlock(pt2);
+			if (b1 > -1 && b2 > -1){
+				// compute the cost
+				retMe = eval_BBpair_Nonelocal(*gcoNodes[p1], *gcoNodes[p2], pt1, pt2, b1, b2);
+			}
+		}
+		else{
+			retMe = 1000;
+		}
+		return retMe;
+	}
+
+}
+
+int Synthesizer::debug_smooth_Nonelocal(int p1, int p2, int l1, int l2){
+	return 0;
+}
+
+int Synthesizer::eval_BBCornerpair_Nonelocal(Point2i pt1, Point2i pt2, int bbtype1, int bbtype2){
+	Point2i offset;
+	int idx;
+	if (bbtype1 < bbtype2){
+		idx = bbtype1 * numRep + bbtype2;
+		offset = pt1 - pt2;
+	}
+	else{
+		idx = bbtype2 * numRep + bbtype1;
+		offset = pt2 - pt1;
+	}
+
+	for (int i_offset = 0; i_offset < (int)repOffset_scaled[idx].size(); i_offset++){
+		if (offset.x == repOffset_scaled[idx][i_offset]->x && offset.y == repOffset_scaled[idx][i_offset]->y){
+			return 0;
+		}
+	}
+	return 1000;
+}
+
+int Synthesizer::eval_BBpair_Nonelocal(Point2i pt1syn, Point2i pt2syn, Point2i pt1input, Point2i pt2input, int bbtype1, int bbtype2){
+	Point2i offset12, offset1, offset2;
+	offset1 = getoffset_Nonelocal(pt1input);
+	offset2 = getoffset_Nonelocal(pt2input);
+	int idx;
+	idx = bbtype1 * numRep + bbtype2;
+	offset12 = (pt1syn - offset1) - (pt2syn - offset2);
+	//qDebug() << offset12.x << offset12.y;
+	for (int i_offset = 0; i_offset < (int)repOffset_scaled[idx].size(); i_offset++){
+		if (offset12.x == repOffset_scaled[idx][i_offset]->x && offset12.y == repOffset_scaled[idx][i_offset]->y){
+			return 0;
+		}
+	}
+	return 1000;
+}
+
+Point2i Synthesizer::getoffset_Nonelocal(Point2i pt){
+	pt.x = min<int>(pt.x, colsSyn_scaled - 1);
+	pt.x = max<int>(pt.x, 0);
+	pt.y = min<int>(pt.y, rowsSyn_scaled - 1);
+	pt.y = max<int>(pt.y, 0);
+
+	int x = (int)imgInputoffsetinterX_scaled(pt.y, pt.x);
+	int y = (int)imgInputoffsetinterY_scaled(pt.y, pt.x);
+	return Point2i(x, y);
+}
+
+// misc
 void Synthesizer::label2result(){
 	// prepare results
 	imgSyn_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
 	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	std::vector<int> label_used;
+	label_used.resize(0);
 	for (int i = 0; i < numPixelSyn_scaled; i++){
-		int label = gc->whatLabel(i);
+		int label;
+		if (method_now == 4){
+			label = gcGeneral->whatLabel(i);
+		}
+		else{
+			label = gcGrid->whatLabel(i);
+		}
+		
 		int newX = -list_shiftXY_scaled[label]->x + gcoNodes[i]->x;
 		int newY = -list_shiftXY_scaled[label]->y + gcoNodes[i]->y;
 		if (newX >= 0 && newX < colsInput_scaled && newY >= 0 && newY < rowsInput_scaled){
 			imgSyn_scaled(gcoNodes[i]->y, gcoNodes[i]->x) = imgInput_scaled(newY, newX);
 			gcolabelSyn_scaled(gcoNodes[i]->y, gcoNodes[i]->x) = label;
+			auto loc = std::find(label_used.begin(), label_used.end(), label);
+			int idx_shift = loc - label_used.begin();
+			if (idx_shift == label_used.size()){
+				label_used.push_back(label);
+			}
 		}
 	}
 
@@ -1083,6 +1358,102 @@ void Synthesizer::label2result(){
 		}
 	}
 	*qimgSyn_fullres = Mat2QImage(imgSyn_fullres);
+
+	// debug the nonlocal cost
+	if (method_now > 0){
+		std::vector<int> bb_x_scale, bb_y_scale, bb_x_fullres, bb_y_fullres, bb_type;
+		bb_x_scale.resize(0);
+		bb_y_scale.resize(0);
+		bb_x_fullres.resize(0);
+		bb_y_fullres.resize(0);
+		bb_type.resize(0);
+		for (int r = 0; r < rowsSyn_scaled; r++){
+			for (int c = 0; c < colsSyn_scaled; c++){
+				Point2i loc(c, r);
+				loc = loc - *list_shiftXY_scaled[gcolabelSyn_scaled(r, c)];
+				int ret_type = isBuildingBlockCorner(loc);
+				if (ret_type > -1){
+					bb_x_scale.push_back(c);
+					bb_y_scale.push_back(r);
+					bb_x_fullres.push_back(c / scalerRes);
+					bb_y_fullres.push_back(r / scalerRes);
+					bb_type.push_back(ret_type);
+				}
+			}
+		}
+
+		Mat3b im_impose_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
+		im_impose_fullres = imgSyn_fullres;
+		for (int i = 0; i < (int)bb_x_fullres.size(); i++){
+			Vec3d color(colorList[bb_type[i]][2], colorList[bb_type[i]][1], colorList[bb_type[i]][0]);
+			for (int r = 0; r < 10; r++){
+				for (int c = 0; c < 10; c++){
+					im_impose_fullres(bb_y_fullres[i] + r, bb_x_fullres[i] + c) = color;
+				}
+			}
+		}
+
+
+		int invalid_pair = 0;
+		for (int i = 0; i < (int)bb_x_scale.size(); i++){
+			for (int j = 0; j < (int)bb_x_scale.size(); j++){
+				if (i != j){
+					Point2i p1(bb_x_scale[i], bb_y_scale[i]);
+					Point2i p2(bb_x_scale[j], bb_y_scale[j]);
+					Point2i offset;
+					int idx;
+
+					if (!((abs(p1.x - p2.x) == 1 && p1.y == p2.y) || (abs(p1.y - p2.y) == 1 && p1.x == p2.x))){
+						if (abs(p1.x - p2.x) <= r_Nonelocal_scaled && abs(p1.y - p2.y) <= r_Nonelocal_scaled){
+							if (i < j){
+								idx = bb_type[i] * numRep + bb_type[j];
+								offset = p1 - p2;
+							}
+							else{
+								idx = bb_type[j] * numRep + bb_type[i];
+								offset = p2 - p1;
+							}
+							// see if offset is valid
+							int cost = 1000;
+							for (int i_offset = 0; i_offset < (int)repOffset_scaled[idx].size(); i_offset++){
+								if (offset.x == repOffset_scaled[idx][i_offset]->x && offset.y == repOffset_scaled[idx][i_offset]->y){
+									cost = 0;
+									break;
+								}
+							}
+							if (cost > 0){
+								int p_1 = p1.y * colsSyn_scaled + p1.x;
+								int p_2 = p2.y * colsSyn_scaled + p2.x;
+								int l_1;
+								int l_2;
+								if (method_now != 4){
+									l_1 = gcGrid->whatLabel(p_1);
+									l_2 = gcGrid->whatLabel(p_2);
+								}
+								else{
+									l_1 = gcGeneral->whatLabel(p_1);
+									l_2 = gcGeneral->whatLabel(p_2);
+								}
+								int sc = smooth_Nonelocal(p_1, p_2, l_1, l_2);
+								qDebug() << p_1 << ", " << p_2 << ", " << l_1 << ", " << l_2 << ", " << sc;
+								invalid_pair += 1;
+								Vec3d color(0, 0, 255);
+								for (int r = 0; r < 10; r++){
+									for (int c = 0; c < 10; c++){
+										im_impose_fullres(bb_y_fullres[i] + r, bb_x_fullres[i] + c) = color;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		//qDebug() << "invalid_pair: " << invalid_pair;
+		//imshow("im_impose_fullres", im_impose_fullres);
+	}
+
+
 }
 
 bool Synthesizer::isValid(int x, int y){
@@ -1100,4 +1471,33 @@ bool Synthesizer::isValid_fill(int x, int y){
 		return false;
 	}
 	return false;
+}
+
+bool Synthesizer::is4connected(int p1, int p2){
+	int x1 = gcoNodes[p1]->x;
+	int y1 = gcoNodes[p1]->y;
+	int x2 = gcoNodes[p2]->x;
+	int y2 = gcoNodes[p2]->y;
+	if ((abs(x1 - x2) == 1 && y1 == y2) || (abs(y1 - y2) == 1 && x1 == x2)){
+		return true;
+	}
+	return false;
+
+}
+
+int Synthesizer::isBuildingBlockCorner(Point2i pt){
+
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		for (int j_rep = 0; j_rep < (int)repX_scaled[i_rep].size(); j_rep++){
+			if (pt.x == repX_scaled[i_rep][j_rep] && pt.y == repY_scaled[i_rep][j_rep]){
+				return i_rep;
+			}
+		}
+	}
+
+	return -1;
+}
+
+int Synthesizer::isBuildingBlock(Point2i pt){
+	return (int)imgInputlabel_scaled(pt.y, pt.x) - 1;
 }

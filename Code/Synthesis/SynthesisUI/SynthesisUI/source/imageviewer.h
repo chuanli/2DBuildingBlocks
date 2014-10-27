@@ -33,7 +33,7 @@ public:
 	void RepPrep();
 
 	// rendering
-	void generateColor10();
+	//void generateColor10();
 	void createActions();
 	void createMenus();
 	void doSynthesis(const int act);
@@ -49,6 +49,7 @@ private slots:
 	void slotSwitchSynMethod1();
 	void slotSwitchSynMethod2();
 	void slotSwitchSynMethod3();
+	void slotSwitchSynMethod4();
 	void slotShowMontage();
 	void slotHoleFilling();
 
@@ -63,14 +64,11 @@ private:
 	// data
 	Synthesizer* syn;
 
-	// method control 
-	int method_now;
-
 	// montage control
 	int montage_now;
 
 	// rendering 
-	vector<vector<double>> colorList;
+	//vector<vector<double>> colorList;
 	QPen pen;
 
 	// actions
@@ -80,9 +78,10 @@ private:
 	QAction *synShrinkXAct;
 	QAction *synExpandYAct;
 	QAction *synShrinkYAct;
-	QAction *swithMethod1Act;
-	QAction *swithMethod2Act;
-	QAction *swithMethod3Act;
+	QAction *switchMethod1Act;
+	QAction *switchMethod2Act;
+	QAction *switchMethod3Act;
+	QAction *switchMethod4Act;
 	QAction *showMontageAct;
 	QAction *holeFillingAct;
 

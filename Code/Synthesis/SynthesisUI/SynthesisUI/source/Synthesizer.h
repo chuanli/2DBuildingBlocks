@@ -93,10 +93,26 @@ public:
 	void fill_BB();
 	static int unary_fill_BB(int p, int l);
 
+	// none local
+	void synthesis_Nonelocal();
+	void prepareShifts_Nonelocal();
+	void setNeighbor_Nonelocal();
+	static int unary_Nonelocal(int p, int l);
+	static int smooth_Nonelocal(int p1, int p2, int l1, int l2);
+	int debug_smooth_Nonelocal(int p1, int p2, int l1, int l2);
+	static int eval_BBCornerpair_Nonelocal(Point2i pt1, Point2i pt2, int bbtype1, int bbtype2);
+	static int eval_BBpair_Nonelocal(Point2i pt1syn, Point2i pt2syn, Point2i pt1input, Point2i pt2input, int bbtype1, int bbtype2);
+	static Point2i getoffset_Nonelocal(Point2i pt);
+
+	// misc
 	void label2result();
 	static bool isValid(int x, int y);
 	static bool isValid_fill(int x, int y);
-
+	static bool is4connected(int x, int y);
+	static bool is8connected(int p1, int p2);
+	static int isBuildingBlockCorner(Point2i pt);
+	static int isBuildingBlock(Point2i pt);
+	
 	//-------------------------------------------------------------
 	// variables
 	//-------------------------------------------------------------
@@ -147,6 +163,8 @@ public:
 	static Mat1d imgInputlabelinterX_scaled;
 	Mat1d imgInputlabelinterY_fullres;
 	static Mat1d imgInputlabelinterY_scaled;
+	static Mat1d imgInputoffsetinterX_scaled;
+	static Mat1d imgInputoffsetinterY_scaled;
 
 	// hole filling
 	QImage* qimgInputMask_fullres;
@@ -160,22 +178,22 @@ public:
 	static int colsInput_scaled;
 	int rowsSyn_fullres;
 	int colsSyn_fullres;
-	int rowsSyn_scaled;
-	int colsSyn_scaled;
+	static int rowsSyn_scaled;
+	static int colsSyn_scaled;
 	int numPixelSyn_scaled;
 	int numPixelSyn_fullres;
 
 	//-------------------
 	// repetition data
 	//-------------------
-    int numRep; 
+    static int numRep; 
 	std::vector<int>sizeRep;
 	std::vector<std::vector<int>> repX_fullres; // repetitions X fullres
 	std::vector<std::vector<int>> repY_fullres; // repetitions Y fullres
 	std::vector<std::vector<int>> repW_fullres; // repetitions W fullres
 	std::vector<std::vector<int>> repH_fullres; // repetitions H fullres
-	std::vector<std::vector<int>> repX_scaled; // repetitions X scaled
-	std::vector<std::vector<int>> repY_scaled; // repetitions Y scaled
+	static std::vector<std::vector<int>> repX_scaled; // repetitions X scaled
+	static std::vector<std::vector<int>> repY_scaled; // repetitions Y scaled
 	std::vector<std::vector<int>> repW_scaled; // repetitions W scaled
 	std::vector<std::vector<int>> repH_scaled; // repetitions H scaled
 
@@ -220,99 +238,25 @@ public:
 	vector<Point2i*> generatorsOS_scaled;
 
 	// graph cut
-	GCoptimizationGridGraph *gc;
+	GCoptimizationGridGraph *gcGrid;
+	GCoptimizationGeneralGraph *gcGeneral;
+
 	Mat1b gcolabelSyn_scaled;
 	Mat1b gcolabelSyn_fullres;
 	static vector<Point2i*> gcoNodes;
 
 
+	//-------------------
+	// None local
+	//-------------------
+	int r_Nonelocal_fullres;
+	int r_Nonelocal_scaled;
+	static std::vector<std::vector<Point2i*>> repOffset_scaled;
 
-
-
-
-	//vector<Point2i> gcLabels;
-	//Mat1b gcLabel;
-	//Mat1d gcLabelinterX;
-	//Mat1d gcLabelinterY;
-	//Mat1b gcImage;
-	//int inputcols;
-	//int inputrows;
-	//Mat1b gcolabelSyn_fullres;
-	//
-	//int rowsInput;
-	//int colsInput;
-	//int rowsSyn;
-	//int colsSyn;
-	//int rowsPaint;
-	//int colsPaint;
-
-	//int numPixelInput;
-	//int numPixelSyn;
-
-
-	//int rowsSyn_fullres;
-	//int colsSyn_fullres;
-	//int rowsPaint_fullres;
-	//int colsPaint_fullres;
-
-	//int num_shift_scaled;
-	//int dist_shift_scaled;
-	//vector<int> list_shift_scaled;
-	//int dist_shift_fullres;
-	//vector<int> list_shift_fullres;
-
-	//int num_shift_scaledY;
-	//int dist_shift_scaledY;
-	//vector<int> list_shift_scaledY;
-	//int dist_shift_fullresY;
-	//vector<int> list_shift_fullresY;
-
-
-
-	//// data related to cooccurrence
-	//int numCooC; 
-	//vector<int>sizeCooC;
-	//vector<vector<int>> coocX_fullres;
-	//vector<vector<int>> coocY_fullres;
-	//vector<vector<int>> coocX_scaled;
-	//vector<vector<int>> coocY_scaled;
-
-
-	//// cooc votes in the image
-	//vector<int>sizeVote;
-	//vector<vector<int>> voteX_fullres;
-	//vector<vector<int>> voteY_fullres;
-	//vector<vector<int>> voteX_scaled;
-	//vector<vector<int>> voteY_scaled;
-
-	//Mat1d imgVote_scaled;
-
-
-	//QImage* qimgInputlabel_fullres; // input repetition labels
-	//QImage* qimgInputlabel_scaled;
-	//Mat1b imgInputlabel_fullres;
-	//Mat1b imgInputlabel_scaled;
-
-
-
-
-	////data related to guidance map
-	//Mat1b imgGuide_fullres;
-	//Mat1b imgGuide_scaled;
-
-	//vector<int> rec_shift_list;
-	//vector<vector<pair<int, int>>> rec_bb_list;
-
-
-	//vector<int> rec_shift_listY;
-	//vector<vector<pair<int, int>>> rec_bb_listY;
-
-
-	//vector<int> config_shift_list;
-	//vector<vector<pair<int, int>>> config_bb_list;
-
-
-
+	//-------------------
+	// rendering
+	//-------------------
+	vector<vector<double>> colorList;
 };
 
 #endif

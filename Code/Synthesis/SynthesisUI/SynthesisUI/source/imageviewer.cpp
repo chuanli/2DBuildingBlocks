@@ -3,13 +3,7 @@
 
 using namespace std;
 
-// helper functions
-inline vector<double> makeVector3f(float x, float y, float z) {
-	vector<double> v;
-	v.resize(3);
-	v[0] = x; v[1] = y; v[2] = z;
-	return v;
-}
+
 
 // member functions
 ImageViewer::ImageViewer(){
@@ -62,19 +56,19 @@ ImageViewer::ImageViewer(){
 }
 
 // rendering
-void ImageViewer::generateColor10(){
-	colorList.resize(10);
-	colorList[0] = makeVector3f(102.0, 153.0, 255.0);
-	colorList[1] = makeVector3f(255.0, 204.0, 102.0);
-	colorList[2] = makeVector3f(102.0, 255.0, 127.0);
-	colorList[3] = makeVector3f(102.0, 230.0, 255.0);
-	colorList[4] = makeVector3f(255.0, 127.0, 102.0);
-	colorList[5] = makeVector3f(230.0, 255.0, 102.0);
-	colorList[6] = makeVector3f(102.0, 255.0, 204.0);
-	colorList[7] = makeVector3f(255.0, 102.0, 153.0);
-	colorList[8] = makeVector3f(204.0, 102.0, 255.0);
-	colorList[9] = makeVector3f(153.0, 255.0, 102.0);
-}
+//void ImageViewer::generateColor10(){
+//	colorList.resize(10);
+//	colorList[0] = makeVector3f(102.0, 153.0, 255.0);
+//	colorList[1] = makeVector3f(255.0, 204.0, 102.0);
+//	colorList[2] = makeVector3f(102.0, 255.0, 127.0);
+//	colorList[3] = makeVector3f(102.0, 230.0, 255.0);
+//	colorList[4] = makeVector3f(255.0, 127.0, 102.0);
+//	colorList[5] = makeVector3f(230.0, 255.0, 102.0);
+//	colorList[6] = makeVector3f(102.0, 255.0, 204.0);
+//	colorList[7] = makeVector3f(255.0, 102.0, 153.0);
+//	colorList[8] = makeVector3f(204.0, 102.0, 255.0);
+//	colorList[9] = makeVector3f(153.0, 255.0, 102.0);
+//}
 
 void ImageViewer::slotOpen(){
 	method_now = 1;
@@ -199,16 +193,17 @@ void ImageViewer::doSynthesis(const int act){
 		case MODE_BB:
 			syn->synthesis_BB();
 			break;
+		case MODE_NONELOCAL:
+			syn->synthesis_Nonelocal();
+			break;
 		default:;
 		};
-
 		imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgSyn_fullres));
 		scene->clear();
 		scene->addItem(imgDisp);
 		scene->setSceneRect(0, 0, syn->qimgSyn_fullres->width(), syn->qimgSyn_fullres->height());
 		view = new QGraphicsView(scene);
 		setCentralWidget(view);
-
 		resize(syn->qimgSyn_fullres->width() + 10, syn->qimgSyn_fullres->height() + 50);
 	}
 	else{
@@ -280,17 +275,21 @@ void ImageViewer::createActions(){
 	synShrinkYAct->setShortcut(tr("Ctrl+Down"));
 	connect(synShrinkYAct, SIGNAL(triggered()), this, SLOT(slotShrinkY()));
 
-	swithMethod1Act = new QAction(tr("&ShiftMap on/off"), this);
-	swithMethod1Act->setShortcut(tr("Ctrl+1"));
-	connect(swithMethod1Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod1()));
+	switchMethod1Act = new QAction(tr("&ShiftMap on/off"), this);
+	switchMethod1Act->setShortcut(tr("Ctrl+1"));
+	connect(switchMethod1Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod1()));
 
-	swithMethod2Act = new QAction(tr("&Offset on/off"), this);
-	swithMethod2Act->setShortcut(tr("Ctrl+2"));
-	connect(swithMethod2Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod2()));
+	switchMethod2Act = new QAction(tr("&Offset on/off"), this);
+	switchMethod2Act->setShortcut(tr("Ctrl+2"));
+	connect(switchMethod2Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod2()));
 
-	swithMethod3Act = new QAction(tr("&BB on/off"), this);
-	swithMethod3Act->setShortcut(tr("Ctrl+3"));
-	connect(swithMethod3Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod3()));
+	switchMethod3Act = new QAction(tr("&BB on/off"), this);
+	switchMethod3Act->setShortcut(tr("Ctrl+3"));
+	connect(switchMethod3Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod3()));
+
+	switchMethod4Act = new QAction(tr("&Nonelocal on/off"), this);
+	switchMethod4Act->setShortcut(tr("Ctrl+4"));
+	connect(switchMethod4Act, SIGNAL(triggered()), this, SLOT(slotSwitchSynMethod4()));
 
 	showMontageAct = new QAction(tr("&Montage on/off"), this);
 	showMontageAct->setShortcut(tr("Ctrl+M"));
@@ -311,9 +310,10 @@ void ImageViewer::createMenus(){
 	editMenu->addAction(synShrinkXAct);
 	editMenu->addAction(synExpandYAct);
 	editMenu->addAction(synShrinkYAct);
-	editMenu->addAction(swithMethod1Act);
-	editMenu->addAction(swithMethod2Act);
-	editMenu->addAction(swithMethod3Act);
+	editMenu->addAction(switchMethod1Act);
+	editMenu->addAction(switchMethod2Act);
+	editMenu->addAction(switchMethod3Act);
+	editMenu->addAction(switchMethod4Act);
 	editMenu->addAction(showMontageAct);
 	editMenu->addAction(holeFillingAct);
 	menuBar()->addMenu(fileMenu);
@@ -322,19 +322,7 @@ void ImageViewer::createMenus(){
 
 void ImageViewer::slotSwitchSynMethod1(){
 	method_now = 1;
-	switch (method_now){
-	case MODE_SHIFTMAP:
-		filename_offsetStatisticsInput = "";
-		break;
-	case MODE_OFFSETSTATISTICS:
-		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
-		break;
-	case MODE_BB:
-		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
-		break;
-	default:;
-	};
-
+    filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
 	syn->initialization();
 	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
@@ -342,19 +330,7 @@ void ImageViewer::slotSwitchSynMethod1(){
 
 void ImageViewer::slotSwitchSynMethod2(){
 	method_now = 2;
-	switch (method_now){
-	case MODE_SHIFTMAP:
-		filename_offsetStatisticsInput = "";
-		break;
-	case MODE_OFFSETSTATISTICS:
-		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
-		break;
-	case MODE_BB:
-		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
-		break;
-	default:;
-	};
-
+    filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
 	syn->initialization();
 	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
@@ -362,22 +338,19 @@ void ImageViewer::slotSwitchSynMethod2(){
 
 void ImageViewer::slotSwitchSynMethod3(){
     method_now = 3;
-	switch (method_now){
-	case MODE_SHIFTMAP:
-		filename_offsetStatisticsInput = "";
-		break;
-	case MODE_OFFSETSTATISTICS:
-		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
-		break;
-	case MODE_BB:
-		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
-		break;
-	default:;
-	};
-
+	//filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
+	filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
 	syn->initialization();
 	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
+}
+
+void ImageViewer::slotSwitchSynMethod4(){
+	//method_now = 4;
+	//filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+	//syn->initialization();
+	//qDebug() << "method_now: " << method_now;
+	//doSynthesis(SLOTSWITCHMETHOD);
 }
 
 void ImageViewer::slotShowMontage(){

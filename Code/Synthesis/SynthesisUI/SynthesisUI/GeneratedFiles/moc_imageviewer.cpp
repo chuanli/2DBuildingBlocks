@@ -22,7 +22,7 @@ static const uint qt_meta_data_ImageViewer[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -40,7 +40,8 @@ static const uint qt_meta_data_ImageViewer[] = {
      114,   12,   12,   12, 0x08,
      137,   12,   12,   12, 0x08,
      160,   12,   12,   12, 0x08,
-     178,   12,   12,   12, 0x08,
+     183,   12,   12,   12, 0x08,
+     201,   12,   12,   12, 0x08,
 
        0        // eod
 };
@@ -50,7 +51,8 @@ static const char qt_meta_stringdata_ImageViewer[] = {
     "slotExpandX()\0slotShrinkX()\0slotExpandY()\0"
     "slotShrinkY()\0slotSwitchSynMethod1()\0"
     "slotSwitchSynMethod2()\0slotSwitchSynMethod3()\0"
-    "slotShowMontage()\0slotHoleFilling()\0"
+    "slotSwitchSynMethod4()\0slotShowMontage()\0"
+    "slotHoleFilling()\0"
 };
 
 void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -68,8 +70,9 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 6: _t->slotSwitchSynMethod1(); break;
         case 7: _t->slotSwitchSynMethod2(); break;
         case 8: _t->slotSwitchSynMethod3(); break;
-        case 9: _t->slotShowMontage(); break;
-        case 10: _t->slotHoleFilling(); break;
+        case 9: _t->slotSwitchSynMethod4(); break;
+        case 10: _t->slotShowMontage(); break;
+        case 11: _t->slotHoleFilling(); break;
         default: ;
         }
     }
@@ -108,9 +111,9 @@ int ImageViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 12;
     }
     return _id;
 }

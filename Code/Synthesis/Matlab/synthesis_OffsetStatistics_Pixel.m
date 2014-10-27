@@ -13,9 +13,9 @@ warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'HoleFilling';
+P.name_dataset = 'NonFacade';
 P.name_data = 'Resized';
-P.name_prefix = 'HoleFilling';
+P.name_prefix = 'NonFacade';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -39,7 +39,7 @@ end
 % para.thresh_nn = 8; % preclude pairs that are too close, at the low resolution
 % para.thresh_nn_far = 24; % preclude pairs that are too far , at the low resolution
 
-para.res_scale = 0.5;  % this is for effeciency reason
+para.res_scale = 0.25;  % this is for effeciency reason
 para.w = para.res_scale * 32; % this is incharge of different things w.r.t thresh_nn
 para.h = para.res_scale * 32;
 para.gs_sigma = sqrt(3) * (para.res_scale/0.25);
@@ -57,7 +57,7 @@ para.defalt_mag = 0; % a default magnitude for assistant generators
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 1:1
+for i_img = 5:5
 
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
     nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixel.txt'];
@@ -65,7 +65,6 @@ for i_img = 1:1
     % input image
     im = imread(nameImg);
 
-    
     im_ori = im;
     % scale image 
     im = imresize(im, para.res_scale);
@@ -73,7 +72,8 @@ for i_img = 1:1
 
     generators = func_generatorFromOffsetStatistics(im_gray, para);
     generators = round(generators/ para.res_scale);
-    
+    generators(:, 2) = 0;
+      
     % write generators into txt file
     fileID = fopen(nameOffsetStatisticsPixelOutput,'w');
     fprintf(fileID, '%d \n', size(generators, 2));

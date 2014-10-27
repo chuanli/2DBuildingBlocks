@@ -6,9 +6,9 @@ define_COOC_DefaultParams;
 
 % Set experiment parameters
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'HoleFilling';
+P.name_dataset = 'NonFacade';
 P.name_data = 'Resized';
-P.name_prefix = 'HoleFilling';
+P.name_prefix = 'NonFacade';
 P.name_format = '.jpg';
 P.output_path = [P.name_path P.name_dataset '\' P.name_data '\resultAIO\']; mkdir(P.output_path);
 
@@ -22,10 +22,10 @@ P.method = 'rob';
 
 % parallel
 P.matlabpool_flag = 0;
-P.num_Cores = 2;
+P.num_Cores = 4;
 
 % number of images
-P.eva_num_img = 2;
+P.eva_num_img = 4;
 P.robustness_num_iter = 10;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -47,9 +47,10 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if P.detection_flag == 1
     for i_rob = 0:P.robustness_num_iter
-        for i_img = 0:P.eva_num_img - 1
+        for i_img = 5:5
+%         for i_img = 0:P.eva_num_img - 1
 %         parfor i_img = 0:P.eva_num_img - 1
-%             try
+            try
                 warning('off','all'); P_cur = P; D_train = []; D_buffer = []; P_cur.i_rob = i_rob;
                 %                 name = ['fac(' num2str(i_img) ')']; format = P_cur.name_format ;P_cur.img_name = name;
 %                 name = ['Chuan(' num2str(i_img) ')']; format = P_cur.name_format ;P_cur.img_name = name;
@@ -139,9 +140,9 @@ if P.detection_flag == 1
                     D_train = func_detection_grasp(D_train, P_cur);
                 end
                 
-%             catch
-%                 
-%             end
+            catch
+                
+            end
             
         end % parfor i_img = 0:P.eva_num_img - 1
     end % for for i_rob = 0:0
@@ -152,8 +153,8 @@ end % if P.detection_flag == 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if P.robustness_flag == 1
     disp(['Robustness analysis starts ...']);
-%     for i_img = 0:P.eva_num_img - 1
-     for i_img = 0:P.eva_num_img - 1
+    for i_img = 5:5
+%      for i_img = 0:P.eva_num_img - 1
 %         try
             warning('off','all');
             P_cur = P; D_train = []; D_buffer = [];
