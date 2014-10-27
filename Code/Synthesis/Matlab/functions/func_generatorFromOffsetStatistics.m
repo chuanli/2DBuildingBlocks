@@ -128,12 +128,12 @@ if ~isempty(p_cen)
 end 
 
 [X, Y] = meshgrid([1:size(map_pro, 2)] - num_cols, [1:size(map_pro, 1)] - num_rows);
-
-figure;
-hold on;
-surf(X, Y, map_pro);
-plot3(generators(1, :), generators(2, :), generators_pro(1, :), 'y.', 'MarkerSize', 30, 'LineWidth', 10);
-colormap (hsv);
-view(3);
+% 
+% figure;
+% hold on;
+% surf(X, Y, map_pro);
+% plot3(generators(1, :), generators(2, :), generators_pro(1, :), 'y.', 'MarkerSize', 30, 'LineWidth', 10);
+% colormap (hsv);
+% view(3);
 
 

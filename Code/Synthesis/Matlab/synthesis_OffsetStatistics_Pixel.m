@@ -13,9 +13,9 @@ warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'NonFacade';
+P.name_dataset = 'Facade';
 P.name_data = 'Resized';
-P.name_prefix = 'NonFacade';
+P.name_prefix = 'Facade';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -57,7 +57,7 @@ para.defalt_mag = 0; % a default magnitude for assistant generators
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 5:5
+for i_img = 201:599
 
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
     nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixel.txt'];
@@ -72,7 +72,9 @@ for i_img = 5:5
 
     generators = func_generatorFromOffsetStatistics(im_gray, para);
     generators = round(generators/ para.res_scale);
-    generators(:, 2) = 0;
+    generators(2, 1) = 0;
+    generators(1, 2) = 0;
+%     generators(:, 2) = 0;
       
     % write generators into txt file
     fileID = fopen(nameOffsetStatisticsPixelOutput,'w');
@@ -82,10 +84,10 @@ for i_img = 5:5
     end
     fclose(fileID);
     
-    figure;
-    imshow(im_ori);
-    hold on;
-    p_cen = round([size(im_ori, 2)/2, size(im_ori, 1)/2]);     
-    plot([p_cen(1) p_cen(1) + generators(1, 1)], [p_cen(2) p_cen(2) + generators(2, 1)], 'r', 'LineWidth', 3);
-    plot([p_cen(1) p_cen(1) + generators(1, 2)], [p_cen(2) p_cen(2) + generators(2, 2)], 'b', 'LineWidth', 3);
+%     figure;
+%     imshow(im_ori);
+%     hold on;
+%     p_cen = round([size(im_ori, 2)/2, size(im_ori, 1)/2]);     
+%     plot([p_cen(1) p_cen(1) + generators(1, 1)], [p_cen(2) p_cen(2) + generators(2, 1)], 'r', 'LineWidth', 3);
+%     plot([p_cen(1) p_cen(1) + generators(1, 2)], [p_cen(2) p_cen(2) + generators(2, 2)], 'b', 'LineWidth', 3);
 end

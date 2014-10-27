@@ -6,9 +6,9 @@ define_COOC_DefaultParams;
 
 % Set experiment parameters
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'NonFacade';
+P.name_dataset = 'Facade';
 P.name_data = 'Resized';
-P.name_prefix = 'NonFacade';
+P.name_prefix = 'Facade';
 P.name_format = '.jpg';
 P.output_path = [P.name_path P.name_dataset '\' P.name_data '\resultAIO\']; mkdir(P.output_path);
 
