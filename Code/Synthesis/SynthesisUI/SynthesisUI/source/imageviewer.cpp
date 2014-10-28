@@ -6,30 +6,36 @@ using namespace std;
 // member functions
 ImageViewer::ImageViewer(){
 	method_now = 1;
-
 	pen.setStyle(Qt::SolidLine);
 	pen.setWidth(3);
 
 	//-------------------------------------------------------------
-	// initialization
+	// parse input files and initialize data structures
 	//-------------------------------------------------------------
-
-
 	syn = new Synthesizer;
-
 	switch (method_now){
 	case MODE_SHIFTMAP:
-		filename_offsetStatisticsInput = "";
+		filename_offsetStatisticsInput = "offset statistics file";
 		break;
 	case MODE_OFFSETSTATISTICS:
-		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		if (flag_MW){
+			filename_offsetStatisticsInput = filename_offsetStatisticsPixelMWInput;
+		}
+		else{
+			filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		}
 		break;
 	case MODE_BB:
-		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
+		if (flag_MW){
+			filename_offsetStatisticsInput = filename_offsetStatisticsPixelMWInput;
+		}
+		else{
+			filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		}
 		break;
 	default:;
 	};
-
+	syn->parsingInput();
 	syn->initialization();
 
 	//-------------------------------------------------------------
@@ -37,8 +43,6 @@ ImageViewer::ImageViewer(){
 	//-------------------------------------------------------------
 	scene = new QGraphicsScene();
 	scene->clear();
-	
-	//
 
 	imgDisp = new QGraphicsPixmapItem(QPixmap::fromImage(*syn->qimgInput_fullres));
 	scene->addItem(imgDisp);
@@ -53,43 +57,33 @@ ImageViewer::ImageViewer(){
 
 }
 
-// rendering
-//void ImageViewer::generateColor10(){
-//	colorList.resize(10);
-//	colorList[0] = makeVector3f(102.0, 153.0, 255.0);
-//	colorList[1] = makeVector3f(255.0, 204.0, 102.0);
-//	colorList[2] = makeVector3f(102.0, 255.0, 127.0);
-//	colorList[3] = makeVector3f(102.0, 230.0, 255.0);
-//	colorList[4] = makeVector3f(255.0, 127.0, 102.0);
-//	colorList[5] = makeVector3f(230.0, 255.0, 102.0);
-//	colorList[6] = makeVector3f(102.0, 255.0, 204.0);
-//	colorList[7] = makeVector3f(255.0, 102.0, 153.0);
-//	colorList[8] = makeVector3f(204.0, 102.0, 255.0);
-//	colorList[9] = makeVector3f(153.0, 255.0, 102.0);
-//}
-
 void ImageViewer::slotOpen(){
 	method_now = 1;
-
 	filename_imgInput = QFileDialog::getOpenFileName(this, tr("Open image"), QDir::currentPath());
 	filename_offsetStatisticsPixelInput = filename_imgInput;
 	filename_offsetStatisticsPixelInput.resize(filename_imgInput.size() - 4);
 	filename_offsetStatisticsPixelInput += "OffsetStatisticsPixel.txt";
+	filename_offsetStatisticsPixelMWInput = filename_imgInput;
+	filename_offsetStatisticsPixelMWInput.resize(filename_imgInput.size() - 4);
+	filename_offsetStatisticsPixelMWInput += "OffsetStatisticsPixelMW.txt";
 	filename_offsetStatisticsBBInput = filename_imgInput;
 	filename_offsetStatisticsBBInput.resize(filename_imgInput.size() - 4);
-	filename_offsetStatisticsBBInput += "OffsetStatistics" + append_BB + ".txt";
-	filename_offsetStatisticsInput = "";
+	filename_offsetStatisticsBBInput += "OffsetStatistics" + name_detection + ".txt";
+	filename_offsetStatisticsBBMWInput = filename_imgInput;
+	filename_offsetStatisticsBBMWInput.resize(filename_imgInput.size() - 4);
+	filename_offsetStatisticsBBMWInput += "OffsetStatisticsBBMW.txt";
+	filename_offsetStatisticsInput = "offset statistics file";
 	filename_repInput = filename_imgInput;
 	filename_repInput.resize(filename_imgInput.size() - 4);
-	filename_repInput += append_BB + ".txt";
+	filename_repInput += name_detection + ".txt";
 	
 	filename_imgMask = filename_imgInput;
 	filename_imgMask.resize(filename_imgInput.size() - 4);
 	filename_imgMask += "_mask.bmp";
-	qDebug() << filename_imgInput;
-	qDebug() << filename_offsetStatisticsPixelInput;
-	qDebug() << filename_offsetStatisticsBBInput;
-	qDebug() << filename_repInput;
+	//qDebug() << filename_imgInput;
+	//qDebug() << filename_offsetStatisticsPixelInput;
+	//qDebug() << filename_offsetStatisticsBBInput;
+	//qDebug() << filename_repInput;
 
 	delete syn;
 
@@ -97,6 +91,7 @@ void ImageViewer::slotOpen(){
 	// initialization
 	//-------------------------------------------------------------
 	syn = new Synthesizer;
+	syn->parsingInput();
 	syn->initialization();
 
 	//-------------------------------------------------------------
@@ -174,6 +169,8 @@ void ImageViewer::doSynthesis(const int act){
 	};
 
 	qDebug() << "-----------------------------------------------------";
+	qDebug() << "method_now: " << method_now;
+	qDebug() << "flag_MW: " << flag_MW;
 	qDebug() << "X: " << "totalGeneratorX: " << syn->totalGeneratorX_scaled;
 	qDebug() << "Y: " << "totalGeneratorY: " << syn->totalGeneratorY_scaled;
 
@@ -221,9 +218,12 @@ void ImageViewer::doSynthesis(const int act){
 
 void ImageViewer::doHoleFilling(const int method_now){
 
+	qDebug() << "-----------------------------------------------------";
+	qDebug() << "method_now: " << method_now;
+	qDebug() << "flag_MW: " << flag_MW;
+
 	syn->totalGeneratorX_scaled = 1;
 	syn->totalGeneratorY_scaled = 1;
-
 	switch (method_now){
 	case MODE_SHIFTMAP:
 		syn->fill_ShiftMap();
@@ -243,7 +243,6 @@ void ImageViewer::doHoleFilling(const int method_now){
 	scene->setSceneRect(0, 0, syn->qimgSyn_fullres->width(), syn->qimgSyn_fullres->height());
 	view = new QGraphicsView(scene);
 	setCentralWidget(view);
-
 	resize(syn->qimgSyn_fullres->width() + 10, syn->qimgSyn_fullres->height() + 50);
 
 }
@@ -293,6 +292,10 @@ void ImageViewer::createActions(){
 	showMontageAct->setShortcut(tr("Ctrl+M"));
 	connect(showMontageAct, SIGNAL(triggered()), this, SLOT(slotShowMontage()));
 
+	switchMWAct = new QAction(tr("MW on/off"), this);
+	switchMWAct->setShortcut(tr("Ctrl+R"));
+	connect(switchMWAct, SIGNAL(triggered()), this, SLOT(slotSwitchMW()));
+
 	holeFillingAct = new QAction(tr("&Hole Filling"), this);
 	holeFillingAct->setShortcut(tr("Ctrl+F"));
 	connect(holeFillingAct, SIGNAL(triggered()), this, SLOT(slotHoleFilling()));
@@ -314,32 +317,42 @@ void ImageViewer::createMenus(){
 	editMenu->addAction(switchMethod4Act);
 	editMenu->addAction(showMontageAct);
 	editMenu->addAction(holeFillingAct);
+	editMenu->addAction(switchMWAct);
 	menuBar()->addMenu(fileMenu);
 	menuBar()->addMenu(editMenu);
 }
 
 void ImageViewer::slotSwitchSynMethod1(){
 	method_now = 1;
-    filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+    filename_offsetStatisticsInput = "offset statistics file";
+	syn->parsingInput();
 	syn->initialization();
-	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
 void ImageViewer::slotSwitchSynMethod2(){
 	method_now = 2;
-    filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+	if (flag_MW){
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelMWInput;
+	}
+	else{
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+	}
+	syn->parsingInput();
 	syn->initialization();
-	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
 void ImageViewer::slotSwitchSynMethod3(){
     method_now = 3;
-	//filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
-	filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+	if (flag_MW){
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelMWInput;
+	}
+	else{
+		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+	}
+	syn->parsingInput();
 	syn->initialization();
-	qDebug() << "method_now: " << method_now;
 	doSynthesis(SLOTSWITCHMETHOD);
 }
 
@@ -416,7 +429,43 @@ void ImageViewer::slotShowMontage(){
 }
 
 void ImageViewer::slotHoleFilling(){
-	syn->initialization();
+	flag_MW = false;
+	switch (method_now){
+	case MODE_SHIFTMAP:
+		filename_offsetStatisticsInput = "offset statistics file";
+		break;
+	case MODE_OFFSETSTATISTICS:
+		if (flag_MW){
+			filename_offsetStatisticsInput = filename_offsetStatisticsPixelMWInput;
+		}
+		else{
+			filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		}
+		break;
+	case MODE_BB:
+		if (flag_MW){
+			filename_offsetStatisticsInput = filename_offsetStatisticsBBMWInput;
+		}
+		else{
+			filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
+		}
+		break;
+	default:;
+	};
 
+	syn->parsingInput();
+	syn->initialization();
 	doHoleFilling(method_now);
+}
+
+void ImageViewer::slotSwitchMW(){
+	if (flag_MW == true){
+		flag_MW = false;
+	}
+	else{
+		flag_MW = true;
+	}
+	syn->parsingInput();
+	syn->initialization();
+	doSynthesis(SLOTSWITCHMETHOD);
 }

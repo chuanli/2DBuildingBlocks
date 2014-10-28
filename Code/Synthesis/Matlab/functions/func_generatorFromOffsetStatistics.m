@@ -82,7 +82,7 @@ p_pro = map_pro(p_idx(mask));
 if isempty(p_cen)
     % set a regular sampler
     generators = [generators [para.defalt_mag; 0] [0; para.defalt_mag]];
-    generators_pro = [0.5, 0.5];
+    generators_pro = [0, 0];
     return;
 end
 
@@ -111,7 +111,7 @@ if ~isempty(p_cen)
            v_p = [0, -1; 1, 0] * generators;
            v_p = para.defalt_mag * v_p/norm(v_p);
            generators = [generators v_p];
-           generators_pro = [generators_pro 0.5];
+           generators_pro = [generators_pro 0];
      end
      
      % reorder generator if it is necessary
@@ -128,12 +128,13 @@ if ~isempty(p_cen)
 end 
 
 [X, Y] = meshgrid([1:size(map_pro, 2)] - num_cols, [1:size(map_pro, 1)] - num_rows);
-% 
-% figure;
-% hold on;
-% surf(X, Y, map_pro);
-% plot3(generators(1, :), generators(2, :), generators_pro(1, :), 'y.', 'MarkerSize', 30, 'LineWidth', 10);
-% colormap (hsv);
-% view(3);
+
+figure;
+hold on;
+surf(X, Y, map_pro);
+plot3(generators(1, :), generators(2, :), generators_pro(1, :), 'y.', 'MarkerSize', 60, 'LineWidth', 10);
+colormap (hsv);
+view(3);
+daspect([50, 50, 1]);
 
 

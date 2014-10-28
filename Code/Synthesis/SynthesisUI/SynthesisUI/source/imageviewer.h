@@ -52,7 +52,7 @@ private slots:
 	void slotSwitchSynMethod4();
 	void slotShowMontage();
 	void slotHoleFilling();
-
+	void slotSwitchMW();
 
 private:
 	// scene
@@ -84,6 +84,8 @@ private:
 	QAction *switchMethod4Act;
 	QAction *showMontageAct;
 	QAction *holeFillingAct;
+	QAction *switchMWAct;
+
 
 	// manus
 	QMenu *fileMenu;

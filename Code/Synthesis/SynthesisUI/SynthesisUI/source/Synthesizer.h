@@ -68,6 +68,7 @@ public:
 	Synthesizer(void);
 	~Synthesizer(void);
 	Mat qimage2mat(const QImage& qimage);
+	void parsingInput();
 	void initialization();
 
 	// Shift Map
@@ -89,6 +90,7 @@ public:
 	// Building Blocks
 	void synthesis_BB();
 	void prepareShifts_BB();
+	void prepareShifts_BBMW();
 	static int unary_BB(int p, int l);
 	static int smooth_BB(int p1, int p2, int l1, int l2);
 	void fill_BB();
@@ -244,9 +246,9 @@ public:
 
 	Mat1b gcolabelSyn_scaled;
 	Mat1b gcolabelSyn_fullres;
+	Mat3b gcoBBlabelSynColor_scaled;
+	Mat3b gcoBBlabelSynColor_fullres;
 	static vector<Point2i*> gcoNodes;
-
-
 	//-------------------
 	// None local
 	//-------------------

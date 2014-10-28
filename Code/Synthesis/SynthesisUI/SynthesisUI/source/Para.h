@@ -9,17 +9,18 @@
 
 using namespace std;
 
-extern QString append_BB;
+extern QString name_detection;
 extern QString filename_imgInput;
 extern QString filename_imgMask;
 extern QString filename_offsetStatisticsPixelInput;
+extern QString filename_offsetStatisticsPixelMWInput;
 extern QString filename_offsetStatisticsBBInput;
+extern QString filename_offsetStatisticsBBMWInput;
 extern QString filename_offsetStatisticsInput;
 extern QString filename_repInput;
 extern QString filename_imgOutput;
 
-
-
+extern bool flag_MW; // flag for Manhattan world flag. set true for facades
 extern double scalerRes; // control the resolution of synthesis, balance the speed and quality
 extern int method_now; // method control
 

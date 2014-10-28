@@ -378,13 +378,13 @@ Synthesizer::Synthesizer(void){
 	colorList[0] = makeVector3f(102.0, 153.0, 255.0);
 	colorList[1] = makeVector3f(255.0, 204.0, 102.0);
 	colorList[2] = makeVector3f(102.0, 255.0, 127.0);
-	colorList[3] = makeVector3f(102.0, 230.0, 255.0);
-	colorList[4] = makeVector3f(255.0, 127.0, 102.0);
-	colorList[5] = makeVector3f(230.0, 255.0, 102.0);
-	colorList[6] = makeVector3f(102.0, 255.0, 204.0);
-	colorList[7] = makeVector3f(255.0, 102.0, 153.0);
-	colorList[8] = makeVector3f(204.0, 102.0, 255.0);
-	colorList[9] = makeVector3f(153.0, 255.0, 102.0);
+	colorList[3] = makeVector3f(255.0, 127.0, 102.0);
+	colorList[4] = makeVector3f(102.0, 230.0, 255.0);
+	colorList[5] = makeVector3f(41.0, 112.0, 255.0);
+	colorList[6] = makeVector3f(255.0, 184.0, 41.0);
+	colorList[7] = makeVector3f(235.0, 156.0, 0.0);
+	colorList[8] = makeVector3f(0.0, 78.0, 235.0);
+	colorList[9] = makeVector3f(255.0, 102.0, 230.0);
 
 	// gco
 	weight_pixel = 1;
@@ -417,13 +417,12 @@ QImage Mat2QImage(const cv::Mat3b &src) {
 	return dest;
 }
 
-void Synthesizer::initialization(){
-
+void Synthesizer::parsingInput(){
 	//----------------------------------------------------------------
-	// initialize images
+	// images
 	//----------------------------------------------------------------
 	qimgInput_fullres->load(filename_imgInput);
-    qlabelInput_fullres->setPixmap(QPixmap::fromImage(*qimgInput_fullres));
+	qlabelInput_fullres->setPixmap(QPixmap::fromImage(*qimgInput_fullres));
 	*qimgInput_scaled = qimgInput_fullres->scaled(qimgInput_fullres->size() * scalerRes, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	qlabelInput_scaled->setPixmap(QPixmap::fromImage(*qimgInput_scaled));
 
@@ -437,32 +436,9 @@ void Synthesizer::initialization(){
 	colsInput_fullres = qimgInput_fullres->width();
 	rowsInput_scaled = qimgInput_scaled->height();
 	colsInput_scaled = qimgInput_scaled->width();
-	
-	//----------------------------------------------------------------
-	// initialize offset statistics generators
-	//----------------------------------------------------------------
-	QFile fileOS(filename_offsetStatisticsInput);
-	if (fileOS.open(QIODevice::ReadOnly)){
-		QTextStream in(&fileOS);
-		in >> numGeneratorsOS;
-		generatorsOS_fullres.resize(numGeneratorsOS);
-		for (int i_g = 0; i_g < numGeneratorsOS; i_g++){
-			generatorsOS_fullres[i_g] = new Point2i(0, 0);
-			in >> generatorsOS_fullres[i_g]->x;
-			in >> generatorsOS_fullres[i_g]->y;
-		}
-		generatorsOS_scaled.resize(numGeneratorsOS);
-		for (int i_g = 0; i_g < numGeneratorsOS; i_g++){
-			generatorsOS_scaled[i_g] = new Point2i((int)round(generatorsOS_fullres[i_g]->x * scalerRes), (int)round(generatorsOS_fullres[i_g]->y * scalerRes));
-		}
-	}
-
-	//for (int i_g = 0; i_g < numGeneratorsOS; i_g++){
-	//	qDebug() << generatorsOS_scaled[i_g]->x << ", " << generatorsOS_scaled[i_g]->y;
-	//}
 
 	//----------------------------------------------------------------
-	// initialize repetitions
+	// repetitions
 	//----------------------------------------------------------------
 	numRep = 0;
 	QFile fileRep(filename_repInput);
@@ -491,7 +467,58 @@ void Synthesizer::initialization(){
 			}
 		}
 	}
+	else{
+		qDebug() << filename_repInput << " does not exist, only pixels will be used";
+	}
 
+	//----------------------------------------------------------------
+	// generators (from offset statistics)
+	//----------------------------------------------------------------
+	QFile fileOS(filename_offsetStatisticsInput);
+	if (fileOS.open(QIODevice::ReadOnly)){
+		QTextStream in(&fileOS);
+		in >> numGeneratorsOS;
+		generatorsOS_fullres.resize(numGeneratorsOS);
+		for (int i_g = 0; i_g < numGeneratorsOS; i_g++){
+			generatorsOS_fullres[i_g] = new Point2i(0, 0);
+			in >> generatorsOS_fullres[i_g]->x;
+			in >> generatorsOS_fullres[i_g]->y;
+		}
+		generatorsOS_scaled.resize(numGeneratorsOS);
+		for (int i_g = 0; i_g < numGeneratorsOS; i_g++){
+			generatorsOS_scaled[i_g] = new Point2i((int)round(generatorsOS_fullres[i_g]->x * scalerRes), (int)round(generatorsOS_fullres[i_g]->y * scalerRes));
+		}
+	}
+	else{
+		qDebug() << filename_offsetStatisticsInput << " does not exist, regular sampling will be used";
+	}
+
+	//----------------------------------------------------------------
+	// hole filling mask
+	//----------------------------------------------------------------
+	QFile fileMask(filename_imgMask);
+	if (fileMask.exists()){
+		qimgInputMask_fullres->load(filename_imgMask);
+		*qimgInputMask_scaled = qimgInputMask_fullres->scaled(qimgInputMask_fullres->size() * scalerRes, Qt::KeepAspectRatio, Qt::FastTransformation);
+		imgInputMask_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled); //or, rep->imgSynGray_scaled.create(rows, cols);
+		for (int r = 0; r < rowsInput_scaled; r++){
+			for (int c = 0; c < colsInput_scaled; c++){
+				QColor clrCurrent(qimgInputMask_scaled->pixel(c, r)); // qimage and opencv matrix has opposite way of indexing pixels, annoying
+				if (clrCurrent.red() != 255){
+					imgInputMask_scaled(r, c) = 1;
+				}
+			}
+		}
+	}
+	else{
+		qDebug() << filename_imgMask << " does not exist, not in hole filling mode";
+	}
+}
+
+void Synthesizer::initialization(){
+	//----------------------------------------------------------------
+	// some maps for repetitions
+	//----------------------------------------------------------------
 	// make sure the labels are inside of the image
 	for (int i_rep = 0; i_rep < numRep; i_rep++){
 		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
@@ -545,13 +572,6 @@ void Synthesizer::initialization(){
 		}
 	}
 
-	//for (int i = 0; i < (int)repOffset_scaled.size(); i++){
-	//	qDebug() << "repOffset_scaled[" << i << "]:";
-	//	for (int j = 0; j < (int)repOffset_scaled[i].size(); j++){
-	//		qDebug() << repOffset_scaled[i][j]->x << repOffset_scaled[i][j]->y;
-	//	}
-	//}
-
 	// make fullres & scaled maps for input labels
 	imgInputlabel_fullres = Mat1b::zeros(rowsInput_fullres, colsInput_fullres); //or, rep->imgSynGray_scaled.create(rows, cols);
 	for (int i_rep = 0; i_rep < numRep; i_rep++){
@@ -567,9 +587,6 @@ void Synthesizer::initialization(){
 		}
 	}
 
-	//----------------------------------------------------------------
-	// initialize internal label
-	//----------------------------------------------------------------
 	imgInputlabelinterX_scaled = Mat1d::zeros(rowsInput_scaled, colsInput_scaled);
 	imgInputlabelinterY_scaled = Mat1d::zeros(rowsInput_scaled, colsInput_scaled);
 	imgInputoffsetinterX_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled);
@@ -589,23 +606,10 @@ void Synthesizer::initialization(){
 		}
 	}
 
-	//for (int r = 0; r < rowsInput_scaled; r++){
-	//	for (int c = 0; c < colsInput_scaled; c++){
-	//		if (imgInputoffsetinterX_scaled(r, c) != 0 || imgInputoffsetinterY_scaled(r, c) != 0){
-	//			qDebug() << imgInputoffsetinterX_scaled(r, c) << ", " << imgInputoffsetinterY_scaled(r, c);
-	//		}
-
-	//	}
-	//}
-	//imshow("imgInputoffsetinterX_scaled", imgInputoffsetinterX_scaled);
-	//imshow("imgInputoffsetinterY_scaled", imgInputoffsetinterY_scaled);
-	// make maps for rep internal labels
 	imgInputlabelinterX_fullres = Mat1d::zeros(rowsInput_fullres, colsInput_fullres);
 	imgInputlabelinterY_fullres = Mat1d::zeros(rowsInput_fullres, colsInput_fullres);
-	for (int i_rep = 0; i_rep < numRep; i_rep++)
-	{
-		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++)
-		{
+	for (int i_rep = 0; i_rep < numRep; i_rep++){
+		for (int j_rep = 0; j_rep < sizeRep[i_rep]; j_rep++){
 			cv::Mat1d X, Y;
 			meshgridTest(cv::Range(0, repW_fullres[i_rep][j_rep] - 1), cv::Range(0, repH_fullres[i_rep][j_rep] - 1), X, Y);
 			X = X * ((double)1 / (double)max(1, repW_fullres[i_rep][j_rep]));
@@ -613,25 +617,6 @@ void Synthesizer::initialization(){
 			X.copyTo(imgInputlabelinterX_fullres(Range(repY_fullres[i_rep][j_rep], repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]), Range(repX_fullres[i_rep][j_rep], repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep])));
 			Y.copyTo(imgInputlabelinterY_fullres(Range(repY_fullres[i_rep][j_rep], repY_fullres[i_rep][j_rep] + repH_fullres[i_rep][j_rep]), Range(repX_fullres[i_rep][j_rep], repX_fullres[i_rep][j_rep] + repW_fullres[i_rep][j_rep])));
 		}
-	}
-
-	// hole filling
-	QFile fileMask(filename_imgMask);
-	if (fileMask.exists()){
-		qimgInputMask_fullres->load(filename_imgMask);
-		*qimgInputMask_scaled = qimgInputMask_fullres->scaled(qimgInputMask_fullres->size() * scalerRes, Qt::KeepAspectRatio, Qt::FastTransformation);
-		imgInputMask_scaled = Mat1b::zeros(rowsInput_scaled, colsInput_scaled); //or, rep->imgSynGray_scaled.create(rows, cols);
-		for (int r = 0; r < rowsInput_scaled; r++){
-			for (int c = 0; c < colsInput_scaled; c++){
-				QColor clrCurrent(qimgInputMask_scaled->pixel(c, r)); // qimage and opencv matrix has opposite way of indexing pixels, annoying
-				if (clrCurrent.red() != 255){
-					imgInputMask_scaled(r, c) = 1;
-				}
-			}
-		}
-	}
-	else{
-		qDebug() << "imgInputMask_fullres does not exist";
 	}
 }
 
@@ -651,9 +636,7 @@ void Synthesizer::synthesis_ShiftMap(){
 	// set smoothness cost
 	gcGrid->setSmoothCost(&smooth_ShiftMap);
 
-	// optimize
-	
-
+	// gco 
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
 	for (int i = 0; i < 2; i++){
 		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
@@ -668,7 +651,7 @@ void Synthesizer::synthesis_ShiftMap(){
 }
 
 void Synthesizer::prepareShifts_ShiftMap(){
-	qDebug() << "Prepare shifts ...";
+	qDebug() << "Prepare shifts using ShiftMap (regular sampling) ...";
 	// compute the dimension of the synthesis image
 	totalShiftsX_scaled = (totalGeneratorX_scaled - 1) / (generatorX_scaled / (double)shiftsPerGenerator_scaled) + 1;
 	totalShiftsY_scaled = (totalGeneratorY_scaled - 1) / (generatorY_scaled / (double)shiftsPerGenerator_scaled) + 1;
@@ -707,8 +690,6 @@ void Synthesizer::prepareShifts_ShiftMap(){
 	qDebug() << "totalShiftsX: " << totalShiftsX_scaled << ", colsSyn_scaled: " << colsSyn_scaled << ", colsPerShiftX_scaled : " << colsPerShiftX_scaled;
 	qDebug() << "totalShiftsY: " << totalShiftsY_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", rowsPerShiftY_scaled : " << rowsPerShiftY_scaled;
 }
-
-
 
 int Synthesizer::unary_ShiftMap(int p, int l){
 	
@@ -758,22 +739,24 @@ void Synthesizer::synthesis_OffsetStatistics(){
 	qDebug() << "Synthesis starts (Offset Statistics) ... ";
 
 	// Prepare shifts
-	prepareShifts_OffsetStatisticsMW();
-
-
+	if (flag_MW){
+		prepareShifts_OffsetStatisticsMW();
+	}
+	else
+	{
+		prepareShifts_OffsetStatistics();
+	}
+	
 	// setup graph cut problem
-	//qDebug() << "colsSyn_scaled: " << colsSyn_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", totalShiftsXY_scaled: " << totalShiftsXY_scaled;
 	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
 
 	// set unary cost
 	gcGrid->setDataCost(&unary_OffsetStatistics);
-	//gc->setDataCost(&unary_BB);
 
 	// set smoothness cost
 	gcGrid->setSmoothCost(&smooth_OffsetStatistics);
-	//gc->setSmoothCost(&smooth_BB);
 
-	// optimize
+	// gco
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
 	for (int i = 0; i < 2; i++){
 		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
@@ -904,7 +887,7 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 }
 
 void Synthesizer::prepareShifts_OffsetStatisticsMW(){
-	qDebug() << "Prepare shifts ...";
+	qDebug() << "Prepare shifts (MW offset statistics) ...";
 	// compute the dimension of the synthesis image
 	totalShiftsX_scaled = (totalGeneratorX_scaled - 1) / (generatorX_scaled / (double)shiftsPerGenerator_scaled) + 1;
 	totalShiftsY_scaled = (totalGeneratorY_scaled - 1) / (generatorY_scaled / (double)shiftsPerGenerator_scaled) + 1;
@@ -918,8 +901,12 @@ void Synthesizer::prepareShifts_OffsetStatisticsMW(){
 	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
 
 	// recompute number of shifts
-	colsPerShiftX_scaled = abs(generatorsOS_scaled[0]->x);
-	rowsPerShiftY_scaled = abs(generatorsOS_scaled[1]->y);
+	if (abs(generatorsOS_scaled[0]->x) != 0){
+		colsPerShiftX_scaled = abs(generatorsOS_scaled[0]->x);
+	}
+	if (abs(generatorsOS_scaled[1]->y) != 0){
+		rowsPerShiftY_scaled = abs(generatorsOS_scaled[1]->y);
+	}
 	totalShiftsX_scaled = ceil((double)(colsSyn_scaled - colsInput_scaled) / (double)colsPerShiftX_scaled) + 1;
 	totalShiftsY_scaled = ceil((double)(rowsSyn_scaled - rowsInput_scaled) / (double)rowsPerShiftY_scaled) + 1;
 	totalShiftsXY_scaled = totalShiftsX_scaled * totalShiftsY_scaled;
@@ -946,13 +933,9 @@ void Synthesizer::prepareShifts_OffsetStatisticsMW(){
 			gcoNodes[y * colsSyn_scaled + x] = new Point2i(x, y);
 		}
 	}
-
 	qDebug() << "totalShiftsX: " << totalShiftsX_scaled << ", colsSyn_scaled: " << colsSyn_scaled << ", colsPerShiftX_scaled : " << colsPerShiftX_scaled;
 	qDebug() << "totalShiftsY: " << totalShiftsY_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", rowsPerShiftY_scaled : " << rowsPerShiftY_scaled;
-
 }
-
-
 
 int Synthesizer::unary_OffsetStatistics(int p, int l){
 
@@ -1002,7 +985,6 @@ void Synthesizer::fill_OffsetStatistics(){
 	prepareShifts_OffsetStatistics();
 
 	// setup graph cut problem
-	//qDebug() << "colsSyn_scaled: " << colsSyn_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", totalShiftsXY_scaled: " << totalShiftsXY_scaled;
 	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
 
 	// set unary cost
@@ -1012,7 +994,7 @@ void Synthesizer::fill_OffsetStatistics(){
 	gcGrid->setSmoothCost(&smooth_OffsetStatistics);
 
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
-	for (int i = 0; i < 4; i++){
+	for (int i = 0; i < 2; i++){
 		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
 		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
 		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
@@ -1047,7 +1029,12 @@ void Synthesizer::synthesis_BB(){
 	qDebug() << "Synthesis starts (Building blocks) ... ";
 
 	// Prepare shifts
-	prepareShifts_BB();
+	if (flag_MW){
+		prepareShifts_BBMW();
+	}
+	else{
+		prepareShifts_BB();
+	}
 
 	// setup graph cut problem
 	gcGrid = new GCoptimizationGridGraph(colsSyn_scaled, rowsSyn_scaled, totalShiftsXY_scaled);
@@ -1059,7 +1046,7 @@ void Synthesizer::synthesis_BB(){
 	gcGrid->setSmoothCost(&smooth_BB);
 
 	// optimize
-	//qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
+	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
 	for (int i = 0; i < 2; i++){
 		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
 		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
@@ -1072,8 +1059,10 @@ void Synthesizer::synthesis_BB(){
 }
 
 void Synthesizer::prepareShifts_BB(){
-	//prepareShifts_OffsetStatistics();
-	//prepareShifts_ShiftMap();
+	prepareShifts_OffsetStatistics();
+}
+
+void Synthesizer::prepareShifts_BBMW(){
 	prepareShifts_OffsetStatisticsMW();
 }
 
@@ -1148,7 +1137,7 @@ void Synthesizer::fill_BB(){
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
-	for (int i = 0; i < 4; i++){
+	for (int i = 0; i < 2; i++){
 		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
 		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
 		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
@@ -1363,7 +1352,8 @@ Point2i Synthesizer::getoffset_Nonelocal(Point2i pt){
 
 // misc
 void Synthesizer::label2result(){
-	// prepare results
+
+	// generate synthesis image
 	imgSyn_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
 	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
 	std::vector<int> label_used;
@@ -1413,104 +1403,25 @@ void Synthesizer::label2result(){
 	}
 	*qimgSyn_fullres = Mat2QImage(imgSyn_fullres);
 
-	// debug the nonlocal cost
-	if (method_now > 0){
-		std::vector<int> bb_x_scale, bb_y_scale, bb_x_fullres, bb_y_fullres, bb_type;
-		bb_x_scale.resize(0);
-		bb_y_scale.resize(0);
-		bb_x_fullres.resize(0);
-		bb_y_fullres.resize(0);
-		bb_type.resize(0);
-		for (int r = 0; r < rowsSyn_scaled; r++){
-			for (int c = 0; c < colsSyn_scaled; c++){
-				Point2i loc(c, r);
-				loc = loc - *list_shiftXY_scaled[gcolabelSyn_scaled(r, c)];
-				int ret_type = isBuildingBlockCorner(loc);
-				if (ret_type > -1){
-					bb_x_scale.push_back(c);
-					bb_y_scale.push_back(r);
-					bb_x_fullres.push_back(c / scalerRes);
-					bb_y_fullres.push_back(r / scalerRes);
-					bb_type.push_back(ret_type);
+	// generate synthesis BB label image
+	gcoBBlabelSynColor_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	gcoBBlabelSynColor_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
+	for (int r = 0; r < rowsSyn_scaled; r++){
+		for (int c = 0; c < colsSyn_scaled; c++){
+			int cc = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->x + c;
+			int rr = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->y + r;
+			if (rr >= 0 && rr < rowsInput_scaled && cc >= 0 && cc < colsSyn_scaled){
+				int bb_type = imgInputlabel_scaled(rr, cc) - 1;
+				if (bb_type > -1){
+					Vec3d color(colorList[bb_type][2], colorList[bb_type][1], colorList[bb_type][0]);
+					gcoBBlabelSynColor_scaled(r, c) = color;
 				}
 			}
 		}
-
-		Mat3b im_impose_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
-		im_impose_fullres = imgSyn_fullres;
-		for (int i = 0; i < (int)bb_x_fullres.size(); i++){
-			Vec3d color(colorList[bb_type[i]][2], colorList[bb_type[i]][1], colorList[bb_type[i]][0]);
-			for (int r = 0; r < 10; r++){
-				for (int c = 0; c < 10; c++){
-					if (bb_y_fullres[i] + r > -1 && bb_y_fullres[i] + r < rowsSyn_fullres && bb_x_fullres[i] + c > -1 && bb_x_fullres[i] + c < colsSyn_fullres){
-						im_impose_fullres(bb_y_fullres[i] + r, bb_x_fullres[i] + c) = color;
-					}
-					
-				}
-			}
-		}
-
-
-		int invalid_pair = 0;
-		for (int i = 0; i < (int)bb_x_scale.size(); i++){
-			for (int j = 0; j < (int)bb_x_scale.size(); j++){
-				if (i != j){
-					Point2i p1(bb_x_scale[i], bb_y_scale[i]);
-					Point2i p2(bb_x_scale[j], bb_y_scale[j]);
-					Point2i offset;
-					int idx;
-
-					if (!((abs(p1.x - p2.x) == 1 && p1.y == p2.y) || (abs(p1.y - p2.y) == 1 && p1.x == p2.x))){
-						if (abs(p1.x - p2.x) <= r_Nonelocal_scaled && abs(p1.y - p2.y) <= r_Nonelocal_scaled){
-							if (i < j){
-								idx = bb_type[i] * numRep + bb_type[j];
-								offset = p1 - p2;
-							}
-							else{
-								idx = bb_type[j] * numRep + bb_type[i];
-								offset = p2 - p1;
-							}
-							// see if offset is valid
-							int cost = 1000;
-							for (int i_offset = 0; i_offset < (int)repOffset_scaled[idx].size(); i_offset++){
-								if (offset.x == repOffset_scaled[idx][i_offset]->x && offset.y == repOffset_scaled[idx][i_offset]->y){
-									cost = 0;
-									break;
-								}
-							}
-							if (cost > 0){
-								int p_1 = p1.y * colsSyn_scaled + p1.x;
-								int p_2 = p2.y * colsSyn_scaled + p2.x;
-								int l_1;
-								int l_2;
-								if (method_now != 4){
-									l_1 = gcGrid->whatLabel(p_1);
-									l_2 = gcGrid->whatLabel(p_2);
-								}
-								else{
-									l_1 = gcGeneral->whatLabel(p_1);
-									l_2 = gcGeneral->whatLabel(p_2);
-								}
-								int sc = smooth_Nonelocal(p_1, p_2, l_1, l_2);
-								qDebug() << p_1 << ", " << p_2 << ", " << l_1 << ", " << l_2 << ", " << sc;
-								invalid_pair += 1;
-								Vec3d color(0, 0, 255);
-								for (int r = 0; r < 10; r++){
-									for (int c = 0; c < 10; c++){
-										im_impose_fullres(bb_y_fullres[i] + r, bb_x_fullres[i] + c) = color;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		//qDebug() << "invalid_pair: " << invalid_pair;
-		imshow("im_impose_fullres", im_impose_fullres);
 	}
-
-
+	cv::resize(gcoBBlabelSynColor_scaled, gcoBBlabelSynColor_fullres, Size(colsSyn_fullres, rowsSyn_fullres), 0, 0, INTER_NEAREST);
+	*qimgSynlabelColor_fullres = Mat2QImage(gcoBBlabelSynColor_fullres);
+	imshow("gcoBBlabelSynColor_fullres", gcoBBlabelSynColor_fullres);
 }
 
 bool Synthesizer::isValid(int x, int y){
