@@ -1,38 +1,4 @@
-%% A script for step through detection experiments
-warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
-
-% Set default parameters
-define_COOC_DefaultParams;
-
-% Set experiment parameters
-P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'Facade';
-P.name_data = 'Resized';
-P.name_prefix = 'Facade';
-P.name_format = '.jpg';
-P.output_path = [P.name_path P.name_dataset '\' P.name_data '\resultAIO\']; mkdir(P.output_path);
-
-% parallel
-P.matlabpool_flag = 0;
-P.num_Cores = 4;
-% start parallel
-if  matlabpool('size') == 0 & P.matlabpool_flag ==1
-    matlabpool('open', P.num_Cores);
-else if matlabpool('size') > 0 & P.matlabpool_flag ==0
-        matlabpool close;
-    end
-end
-
-% set experiment mode
-% follow these step to step through our detection:
-% P.method = 'pre';
-% P.method = 'dl';
-% P.method = 'bb';
-P.method = 'rob';
-
-% number of images
-P.eva_num_img = 24;
-P.robustness_num_iter = 10;
+function flag_done = func_detection(P)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DO NOT CHANGE AFTER THIS LINE
@@ -45,12 +11,11 @@ define_SetMethod;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if P.detection_flag == 1
     for i_rob = 0:P.robustness_num_iter
-        parfor i_img = 20:P.eva_num_img - 1
+        parfor i_img = 0:P.eva_num_img - 1
             try
                 warning('off','all'); P_cur = P; D_train = []; D_buffer = []; P_cur.i_rob = i_rob;
                 name = [P.name_prefix '(' num2str(i_img) ')']; format = P_cur.name_format ;P_cur.img_name = name;
-                im_train = double(imread([P_cur.name_path '\' P_cur.name_dataset '\' P_cur.name_data '\' name P_cur.name_format]))/255;
-                
+                im_train = double(imread([P_cur.name_path '\' P_cur.name_dataset '\' P_cur.name_data '\' name P_cur.name_format]))/255;                
                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 % Embedding based methods
                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,7 +100,7 @@ if P.detection_flag == 1
                 end
                 
             catch
-                
+                ;
             end
             
         end % parfor i_img = 0:P.eva_num_img - 1
@@ -147,9 +112,8 @@ end % if P.detection_flag == 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if P.robustness_flag == 1
     disp(['Robustness analysis starts ...']);
-%     for i_img = 5:5
      for i_img = 0:P.eva_num_img - 1
-%         try
+        try
             warning('off','all');
             P_cur = P; D_train = []; D_buffer = [];
             name = [P.name_prefix '(' num2str(i_img) ')']; format = P_cur.name_format ;P_cur.img_name = name;
@@ -167,9 +131,9 @@ if P.robustness_flag == 1
                 end
             end % for i_rob = 2:P.robustness_num_iter
             Merge = func_robust_merge_singleimage(P_cur, name, format);
-%         catch
-%             
-%         end
+        catch
+            ;
+        end
     end
 end
 
@@ -179,19 +143,10 @@ end
 if P.ccw_flag == 1
     disp(['CCW starts ...']);
     parfor i_img = 0:P.eva_num_img - 1
-%     parfor i_img = 30:30
-%     for i_img = 30:30
-        % detect
         warning('off','all');
         P_cur = P; D_train = []; D_buffer = [];
         Detect = func_detection_ccw(P_cur, i_img);
     end
 end
 
-if matlabpool('size') > 0
-    matlabpool close;
-end
-
-return;
-
-
+flag_done = true;

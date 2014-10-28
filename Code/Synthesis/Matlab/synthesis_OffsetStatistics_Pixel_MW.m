@@ -20,7 +20,7 @@ P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
 
-P.matlabpool_flag = 0;
+P.matlabpool_flag = 1;
 P.num_Cores = 4;
 if  matlabpool('size') == 0 & P.matlabpool_flag ==1
     matlabpool('open', P.num_Cores);
@@ -57,10 +57,10 @@ para.defalt_mag = 0; % a default magnitude for assistant generators
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 0:0
+parfor i_img = 0:599
 
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
-    nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixel.txt'];
+    nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixelMW.txt'];
    
     % input image
     im = imread(nameImg);
@@ -74,15 +74,14 @@ for i_img = 0:0
     generators = round(generators/ para.res_scale);
     generators(2, 1) = 0;
     generators(1, 2) = 0;
-%     generators(:, 2) = 0;
-      
+    
     % write generators into txt file
-%     fileID = fopen(nameOffsetStatisticsPixelOutput,'w');
-%     fprintf(fileID, '%d \n', size(generators, 2));
-%     for i = 1:size(generators, 2)
-%         fprintf(fileID, '%d %d \n', generators(1, i), generators(2, i));
-%     end
-%     fclose(fileID);
+    fileID = fopen(nameOffsetStatisticsPixelOutput,'w');
+    fprintf(fileID, '%d \n', size(generators, 2));
+    for i = 1:size(generators, 2)
+        fprintf(fileID, '%d %d \n', generators(1, i), generators(2, i));
+    end
+    fclose(fileID);
     
 %     figure;
 %     imshow(im_ori);
