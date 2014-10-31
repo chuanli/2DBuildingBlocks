@@ -40,12 +40,21 @@ int main(int argc, char *argv[])
 	filename_offsetStatisticsBBInput.append("OffsetStatistics");
 	filename_offsetStatisticsBBInput.append(name_detection);
 	filename_offsetStatisticsBBInput.append(".txt");
+	filename_offsetStatisticsBBMWInput.append(name_inputpath);
+	filename_offsetStatisticsBBMWInput.append(name_imgInput);
+	filename_offsetStatisticsBBMWInput.append("OffsetStatistics");
+	filename_offsetStatisticsBBMWInput.append(name_detection);
+	filename_offsetStatisticsBBMWInput.append("MW");
+	filename_offsetStatisticsBBMWInput.append(".txt");
+
 	filename_repInput.append(name_inputpath);
 	filename_repInput.append(name_imgInput);
 	filename_repInput.append(name_detection);
 	filename_repInput.append(".txt");
 
 	filename_imgOutput.append(name_inputpath);
+	filename_imgOutput.resize(filename_imgOutput.size() - 6);
+	filename_imgOutput.append("output\\");
 	filename_imgOutput.append(name_imgInput);
 	filename_imgOutput.append("_syn_");
 	filename_imgOutput.append(QString::number(cmd_totalGeneratorX_scaled));
@@ -60,6 +69,8 @@ int main(int argc, char *argv[])
 	filename_imgOutput.append(name_imgInputformat);
 
 	filename_imgBBOutput.append(name_inputpath);
+	filename_imgBBOutput.resize(filename_imgBBOutput.size() - 6);
+	filename_imgBBOutput.append("output\\");
 	filename_imgBBOutput.append(name_imgInput);
 	filename_imgBBOutput.append("_synBB_");
 	filename_imgBBOutput.append(QString::number(cmd_totalGeneratorX_scaled));
@@ -87,7 +98,7 @@ int main(int argc, char *argv[])
 		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput; // sampling using BB statistics 
 		break;
 	case 5:
-		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput; // sampling using MW BB statistics 
+		filename_offsetStatisticsInput = filename_offsetStatisticsBBMWInput; // sampling using MW BB statistics 
 		break;
 	default:
 		break;
@@ -96,6 +107,7 @@ int main(int argc, char *argv[])
 	qDebug() << "filename_offsetStatisticsPixelInput: " << filename_offsetStatisticsPixelInput;
 	qDebug() << "filename_offsetStatisticsPixelMWInput: " << filename_offsetStatisticsPixelMWInput;
 	qDebug() << "filename_offsetStatisticsBBInput: " << filename_offsetStatisticsBBInput;
+	qDebug() << "filename_offsetStatisticsBBMWInput: " << filename_offsetStatisticsBBMWInput;
 	qDebug() << "filename_offsetStatisticsInput: " << filename_offsetStatisticsInput;
 	qDebug() << "filename_repInput: " << filename_repInput;
 	qDebug() << "filename_imgOutput: " << filename_imgOutput;

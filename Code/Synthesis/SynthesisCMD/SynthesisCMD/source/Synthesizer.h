@@ -194,8 +194,8 @@ public:
 	GCoptimizationGridGraph *gcGrid;
 	GCoptimizationGeneralGraph *gcGeneral;
 
-	Mat1b gcolabelSyn_scaled;
-	Mat1b gcolabelSyn_fullres;
+	Mat1i gcolabelSyn_scaled;
+	Mat1i gcolabelSyn_fullres;
 	Mat3b gcoBBlabelSynColor_scaled;
 	Mat3b gcoBBlabelSynColor_fullres;
 	static vector<Point2i*> gcoNodes;

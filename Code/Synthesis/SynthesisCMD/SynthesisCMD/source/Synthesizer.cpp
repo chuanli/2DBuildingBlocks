@@ -100,8 +100,8 @@ Synthesizer::Synthesizer(void){
 	colorList[9] = makeVector3f(255.0, 102.0, 230.0);
 	// gco
 	weight_pixel = 1;
-	weight_label = 50;
-	weight_labelinter = 8;
+	weight_label = 10;
+	weight_labelinter = 2;
 
 	// 
 	numGeneratorsOS = 0;
@@ -327,8 +327,6 @@ void Synthesizer::synthesis_ShiftMap(){
 	gcGrid->setSmoothCost(&smooth_ShiftMap);
 
 	// optimize
-	
-
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
 	for (int i = 0; i < 2; i++){
 		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
@@ -336,8 +334,6 @@ void Synthesizer::synthesis_ShiftMap(){
 		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
 		qDebug() << "after swap energy is " << gcGrid->compute_energy();
 	}
-	
-
 	// prepare results
 	label2result();
 }
@@ -354,7 +350,7 @@ void Synthesizer::prepareShifts_ShiftMap(){
 	rowsSyn_scaled = rowsInput_scaled + (totalShiftsY_scaled - 1) * rowsPerShiftY_scaled;
 	numPixelSyn_scaled = colsSyn_scaled * rowsSyn_scaled;
 	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
-	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
 	// compute candidate shifts
 	list_shiftX_scaled.resize(totalShiftsX_scaled);
 	for (int i_s = 0; i_s < totalShiftsX_scaled; i_s++){
@@ -381,6 +377,9 @@ void Synthesizer::prepareShifts_ShiftMap(){
 
 	qDebug() << "totalShiftsX: " << totalShiftsX_scaled << ", colsSyn_scaled: " << colsSyn_scaled << ", colsPerShiftX_scaled : " << colsPerShiftX_scaled;
 	qDebug() << "totalShiftsY: " << totalShiftsY_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", rowsPerShiftY_scaled : " << rowsPerShiftY_scaled;
+	//for (int i = 0; i < totalShiftsXY_scaled; i++){
+	//	qDebug() << list_shiftXY_scaled[i]->x << ", " << list_shiftXY_scaled[i]->y;
+	//}
 }
 
 int Synthesizer::unary_ShiftMap(int p, int l){
@@ -481,7 +480,7 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 	rowsSyn_scaled = rowsInput_scaled + (totalShiftsY_scaled - 1) * rowsPerShiftY_scaled;
 	numPixelSyn_scaled = colsSyn_scaled * rowsSyn_scaled;
 	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
-	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
 
 
 	//// find the generator zone (the expansion zone spanned by one generator at each corner)
@@ -597,7 +596,7 @@ void Synthesizer::prepareShifts_OffsetStatisticsMW(){
 	rowsSyn_scaled = rowsInput_scaled + (totalShiftsY_scaled - 1) * rowsPerShiftY_scaled;
 	numPixelSyn_scaled = colsSyn_scaled * rowsSyn_scaled;
 	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
-	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
 
 	// recompute number of shifts
 	if (abs(generatorsOS_scaled[0]->x) != 0){
@@ -1072,18 +1071,12 @@ Point2i Synthesizer::getoffset_Nonelocal(Point2i pt){
 void Synthesizer::label2result(){
 	// prepare results
 	imgSyn_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
-	gcolabelSyn_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
 	std::vector<int> label_used;
 	label_used.resize(0);
 	for (int i = 0; i < numPixelSyn_scaled; i++){
 		int label;
-		if (mode_method == 4){
-			label = gcGeneral->whatLabel(i);
-		}
-		else{
-			label = gcGrid->whatLabel(i);
-		}
-		
+		label = gcGrid->whatLabel(i);
 		int newX = -list_shiftXY_scaled[label]->x + gcoNodes[i]->x;
 		int newY = -list_shiftXY_scaled[label]->y + gcoNodes[i]->y;
 		if (newX >= 0 && newX < colsInput_scaled && newY >= 0 && newY < rowsInput_scaled){
@@ -1095,8 +1088,7 @@ void Synthesizer::label2result(){
 				label_used.push_back(label);
 			}
 		}
-	}
-
+	}	
 	totalShiftsXY_fullres = totalShiftsXY_scaled;
 	list_shiftXY_fullres.resize(totalShiftsXY_fullres);
 	for (int xy = 0; xy < totalShiftsXY_fullres; xy++){
@@ -1104,7 +1096,7 @@ void Synthesizer::label2result(){
 	}
 	rowsSyn_fullres = rowsSyn_scaled / scalerRes;
 	colsSyn_fullres = colsSyn_scaled / scalerRes;
-	gcolabelSyn_fullres = Mat1b::zeros(rowsSyn_fullres, colsSyn_fullres);
+	gcolabelSyn_fullres = Mat1i::zeros(rowsSyn_fullres, colsSyn_fullres);
 	cv::resize(gcolabelSyn_scaled, gcolabelSyn_fullres, Size(colsSyn_fullres, rowsSyn_fullres), 0, 0, INTER_NEAREST);
 	imgSyn_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
 	for (int r = 0; r < rowsSyn_fullres; r++){

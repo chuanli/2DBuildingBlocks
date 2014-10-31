@@ -13,10 +13,10 @@ P.name_format = '.jpg';
 P.output_path = [P.name_path P.name_dataset '\' P.name_data '\resultAIO\']; mkdir(P.output_path);
 
 % set experiment mode
-P.method = 'rob';
+P.method = 'gt';
 
 % number of images
-P.eva_num_img =  4;
+P.eva_num_img =  600;
 
 % round for rendering
 P.eva_robID = 0;

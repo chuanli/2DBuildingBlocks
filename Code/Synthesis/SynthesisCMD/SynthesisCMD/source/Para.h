@@ -23,6 +23,7 @@ extern QString filename_imgInput;
 extern QString filename_offsetStatisticsPixelInput;
 extern QString filename_offsetStatisticsPixelMWInput;
 extern QString filename_offsetStatisticsBBInput;
+extern QString filename_offsetStatisticsBBMWInput;
 extern QString filename_offsetStatisticsInput;
 extern QString append_BB;
 extern QString filename_repInput;

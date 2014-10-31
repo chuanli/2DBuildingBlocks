@@ -1,5 +1,5 @@
-%% A script to compute offset statistics for pixels
-% output two MW generators
+%% A script to compute offset statistics for detection
+% output generators
 
 warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
@@ -11,6 +11,8 @@ P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
 
+max_num_bb_type = 3;
+
 P.matlabpool_flag = 0;
 P.num_Cores = 4;
 if  matlabpool('size') == 0 & P.matlabpool_flag ==1
@@ -20,6 +22,7 @@ else if matlabpool('size') > 0 & P.matlabpool_flag ==0
     end
 end
 
+% parameters for statistics analysis
 para.res_scale = 0.25;  % this is for effeciency reason
 para.w = para.res_scale * 32; % this is incharge of different things w.r.t thresh_nn
 para.h = para.res_scale * 32;
@@ -31,31 +34,45 @@ para.thresh_peak_pro = 0.5; % minimum probability for a positive peak
 para.thresh_peak_max_num = 10;
 para.thresh_correlation = 0.5;
 para.defalt_mag = 0; % a default magnitude for assistant generators
-    
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DO NOT CHANGE AFTER THIS LINE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 410:410
+for i_img = 432:432
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
-    nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixelMW.txt'];
-   
-    % input image
+    nameRep = [P.name_path  P.name_dataset  '\' P.name_data '\resultAIO\rob\' P.name_prefix  '(' num2str(i_img) ')_afmg.mat'];
+    nameOffsetStatisticsDetectionOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsDetectionMW.txt'];
+    
+    % input image & repitition
     im = imread(nameImg);
-
     im_ori = im;
-    % scale image 
-    im = imresize(im, para.res_scale);
-    im_gray = rgb2gray(im);   
+    
+    Rep = [];
+    if exist(nameRep, 'file')
+        load(nameRep);
+        Rep = Merge;
+    else
+        Rep.rep = [];
+    end
 
-    generators = func_generatorFromOffsetStatistics(im_gray, para);
+    num_bb_type = min(max_num_bb_type, size(Rep.rep, 2));
+    
+    % scale image and detection
+    im = imresize(im, para.res_scale);
+    for i_rep = 1:num_bb_type
+        Rep.rep{1, i_rep} = round(Rep.rep{1, i_rep} * para.res_scale);
+    end
+    
+%     func_generatorFromGT;
+    generators = func_generatorFromBB(im, Rep, para);
     generators = round(generators/ para.res_scale);
     generators(2, 1) = 0;
     generators(1, 2) = 0;
     
     % write generators into txt file
-    fileID = fopen(nameOffsetStatisticsPixelOutput,'w');
+    fileID = fopen(nameOffsetStatisticsDetectionOutput,'w');
     fprintf(fileID, '%d \n', size(generators, 2));
     for i = 1:size(generators, 2)
         fprintf(fileID, '%d %d \n', generators(1, i), generators(2, i));

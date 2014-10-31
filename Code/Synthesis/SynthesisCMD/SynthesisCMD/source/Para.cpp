@@ -15,6 +15,7 @@ QString filename_imgInput = "";
 QString filename_offsetStatisticsPixelInput = "";
 QString filename_offsetStatisticsPixelMWInput = "";
 QString filename_offsetStatisticsBBInput = "";
+QString filename_offsetStatisticsBBMWInput = "";
 QString filename_offsetStatisticsInput = "";
 QString append_BB = "";
 QString filename_repInput = "";
