@@ -124,7 +124,7 @@ if ~isempty(p_cen)
          generators_pro(:, 1) = generators_pro(:, 2);
          generators_pro(:, 2) = temp_pro;
      end
-     
+         
 end 
 
 [X, Y] = meshgrid([1:size(map_pro, 2)] - num_cols, [1:size(map_pro, 1)] - num_rows);

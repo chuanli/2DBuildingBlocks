@@ -4,14 +4,14 @@
 warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'NonFacade';
+P.name_dataset = 'ShiftMap';
 P.name_data = 'Resized';
-P.name_prefix = 'NonFacade';
+P.name_prefix = 'ShiftMap';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
 
-max_num_bb_type = 10;
+max_num_bb_type = 3;
 
 % parameters for statistics analysis
 para.res_scale = 0.5;  % this is for effeciency reason
@@ -22,17 +22,18 @@ para.gs_w = round(para.gs_sigma * 3) * 2 + 1;
 para.thresh_nn = para.res_scale * 32; % preclude pairs that are too close, at the low resolution
 para.thresh_nn_far = 3 * para.res_scale * 32; % preclude pairs that are too far , at the low resolution
 
-para.thresh_peak_pro = 0.1; % minimum probability for a positive peak
+para.thresh_peak_pro = 0.5; % minimum probability for a positive peak
 para.thresh_peak_max_num = 60;
 para.thresh_correlation = 0.5;
 para.defalt_mag = 0; % a default magnitude for assistant generators
+para.min_divergence_cos = 0.95;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DO NOT CHANGE AFTER THIS LINE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 0:599
+for i_img = 0:25
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
     nameRep = [P.name_path  P.name_dataset  '\' P.name_data '\resultAIO\rob\' P.name_prefix  '(' num2str(i_img) ')_afmg.mat'];
     nameOffsetStatisticsDetectionOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsDetection.txt'];
@@ -57,10 +58,16 @@ for i_img = 0:599
         Rep.rep{1, i_rep} = round(Rep.rep{1, i_rep} * para.res_scale);
     end
     
-%     func_generatorFromGT;
     generators = func_generatorFromBB(im, Rep, para);
     generators = round(generators/ para.res_scale);
-    generators(:, 2) = 0;
+    % switch to MW if the generator diverse too much from the principle
+    % directions (otherwise incapable of horizontal/vertical retargeting)
+    if abs(dot(generators(:, 1), [1, 0])/(norm(generators(:, 1)) * norm([1, 0]))) < para.min_divergence_cos
+        generators(:, 1) = [0; 0];
+    end
+    if abs(dot(generators(:, 2), [0, 1])/(norm(generators(:, 2)) * norm([0, 1]))) < para.min_divergence_cos
+        generators(:, 2) = [0; 0];
+    end  
     
     % write generators into txt file
     fileID = fopen(nameOffsetStatisticsDetectionOutput,'w');

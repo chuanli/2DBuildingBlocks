@@ -433,7 +433,12 @@ void Synthesizer::synthesis_OffsetStatistics(){
 	switch (mode_sampling)
 	{
 	case 2:
-		prepareShifts_OffsetStatistics();
+		if (abs(generatorsOS_scaled[0]->x) == 0){
+			prepareShifts_OffsetStatisticsMW();
+		}
+		else{
+			prepareShifts_OffsetStatistics();
+		}
 		break;
 	case 3:
 		prepareShifts_OffsetStatisticsMW();
@@ -482,7 +487,6 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
 	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
 
-
 	//// find the generator zone (the expansion zone spanned by one generator at each corner)
 	//std::vector<int> zone_expansion_x;
 	//std::vector<int> zone_expansion_y;
@@ -514,6 +518,8 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 	//int min_y = *min_element(zone_generator_y.begin(), zone_generator_y.end());
 	//int max_x = *max_element(zone_generator_x.begin(), zone_generator_x.end());
 	//int max_y = *max_element(zone_generator_y.begin(), zone_generator_y.end());
+
+
 
 	// generate enough candidates and keep the ones in the generator zone
 	int num_halfpoolX = 100;
@@ -738,13 +744,23 @@ void Synthesizer::synthesis_BB(){
 		prepareShifts_ShiftMap();
 		break;
 	case 2:
-		prepareShifts_OffsetStatistics();
+		if (abs(generatorsOS_scaled[0]->x) == 0){
+			prepareShifts_OffsetStatisticsMW();
+		}
+		else{
+			prepareShifts_OffsetStatistics();
+		}
 		break;
 	case 3:
 		prepareShifts_OffsetStatisticsMW();
 		break;
 	case 4:
-		prepareShifts_BB();
+		if (abs(generatorsOS_scaled[0]->x) == 0){
+			prepareShifts_BBMW();
+		}
+		else{
+			prepareShifts_BB();
+		}
 		break;
 	case 5:
 		prepareShifts_BBMW();

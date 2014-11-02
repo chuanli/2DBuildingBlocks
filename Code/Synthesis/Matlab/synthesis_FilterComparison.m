@@ -1,22 +1,21 @@
 %% A script for discarding results that are too similar
 warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
-list_numdiff = zeros(1, 600);
-for i_img = 0:599
-    i_img
-        name_outpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Facade\Syn\Output\'];  % argv[1]
+list_numdiff = zeros(1, 21);
+for i_img = 0:25
+        name_outpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\ShiftMap\Syn\Output\'];  % argv[1]
         name_outputformat = ['.jpg']; % argv[3]
         totalGeneratorX_scaled = 1.5;
         totalGeneratorY_scaled = 1;
 
-        mode1_method = 1; % argv[4]
-        mode1_sampling = 1; % argv[5]
+        mode1_method = 2; % argv[4]
+        mode1_sampling = 2; % argv[5]
         name1_detection = ['Detection']; % argv[6]                
         mode2_method = 3; % argv[4]
-        mode2_sampling = 5; % argv[5]
+        mode2_sampling = 4; % argv[5]
         name2_detection = ['Detection']; % argv[6]
        
-        name1_imgOutput = [ name_outpath 'Facade' '(' num2str(i_img) ')_syn_' num2str(totalGeneratorX_scaled) '_' num2str(totalGeneratorY_scaled)  '_' num2str(mode1_method) '_' num2str(mode1_sampling) '_' name1_detection name_outputformat]; % argv[2]
-        name2_imgOutput = [ name_outpath 'Facade' '(' num2str(i_img) ')_syn_' num2str(totalGeneratorX_scaled) '_' num2str(totalGeneratorY_scaled)  '_' num2str(mode2_method) '_' num2str(mode2_sampling) '_' name1_detection name_outputformat]; % argv[2]
+        name1_imgOutput = [ name_outpath 'ShiftMap' '(' num2str(i_img) ')_syn_' num2str(totalGeneratorX_scaled) '_' num2str(totalGeneratorY_scaled)  '_' num2str(mode1_method) '_' num2str(mode1_sampling) '_' name1_detection name_outputformat]; % argv[2]
+        name2_imgOutput = [ name_outpath 'ShiftMap' '(' num2str(i_img) ')_syn_' num2str(totalGeneratorX_scaled) '_' num2str(totalGeneratorY_scaled)  '_' num2str(mode2_method) '_' num2str(mode2_sampling) '_' name1_detection name_outputformat]; % argv[2]
         
         im1 = double(imread(name1_imgOutput))/255;
         im2 = double(imread(name2_imgOutput))/255;
