@@ -4,6 +4,7 @@
 QString name_inputpath = "";
 QString name_imgInput = "";
 QString name_imgInputformat = "";
+QString name_imgOutputformat = ".png";
 int mode_method = 0;
 int mode_sampling = 0;
 QString name_detection = "";

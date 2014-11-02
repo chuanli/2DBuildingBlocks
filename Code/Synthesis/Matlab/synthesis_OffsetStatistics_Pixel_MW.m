@@ -4,9 +4,9 @@
 warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'Facade';
+P.name_dataset = 'OffsetStatistics';
 P.name_data = 'Resized';
-P.name_prefix = 'Facade';
+P.name_prefix = 'OffsetStatistics';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -37,7 +37,7 @@ para.defalt_mag = 0; % a default magnitude for assistant generators
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 410:410
+for i_img = 0:20
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
     nameOffsetStatisticsPixelOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsPixelMW.txt'];
    

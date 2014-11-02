@@ -12,6 +12,7 @@ using namespace std;
 extern QString name_inputpath;
 extern QString name_imgInput;
 extern QString name_imgInputformat;
+extern QString name_imgOutputformat;
 extern int mode_method;
 extern int mode_sampling;
 extern QString name_detection;
@@ -29,6 +30,7 @@ extern QString append_BB;
 extern QString filename_repInput;
 extern QString filename_imgOutput;
 extern QString filename_imgBBOutput;
+
 
 extern double scalerRes; // control the resolution of synthesis, balance the speed and quality
 

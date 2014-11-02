@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 	filename_imgBBOutput.append(QString::number(mode_sampling));
 	filename_imgBBOutput.append("_");
 	filename_imgBBOutput.append(name_detection);
-	filename_imgBBOutput.append(name_imgInputformat);
+	filename_imgBBOutput.append(name_imgOutputformat);
 
 	switch (mode_sampling){
 	case 1:
