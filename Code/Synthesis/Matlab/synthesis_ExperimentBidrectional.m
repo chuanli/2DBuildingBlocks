@@ -10,10 +10,10 @@ else if matlabpool('size') > 0 & P.matlabpool_flag ==0
     end
 end
 
-if 1 % shiftmap 
+if 1
     parfor i_img = 0:4
-        name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
-        name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
         mode_method = 1; % argv[4]
         mode_sampling = 1; % argv[5]
@@ -30,10 +30,10 @@ if 1 % shiftmap
     end
 end
 
-if 1 % offset pixel
+if 1
     parfor i_img = 0:4
-        name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
-        name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
         mode_method = 2; % argv[4]
         mode_sampling = 3; % argv[5]
@@ -50,11 +50,30 @@ if 1 % offset pixel
     end
 end
 
-
-if 0 % shiftmap + BB
+if 1
     parfor i_img = 0:4
-        name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
-        name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_imgInputformat = ['.jpg']; % argv[3]
+        mode_method = 2; % argv[4]
+        mode_sampling = 2; % argv[5]
+        name_detection = ['Detection']; % argv[6]
+        totalGeneratorX_scaled = 1.5;
+        totalGeneratorY_scaled = 1;
+        scalerRes = 0.5;
+        try
+            name_imgInput = [ 'Bidrectional' '(' num2str(i_img) ')']; % argv[2]
+            CommandStr = [name_cmd ' ' name_inputpath ' ' name_imgInput ' ' name_imgInputformat ' ' num2str(mode_method) ' ' num2str(mode_sampling) ' ' name_detection ' ' num2str(totalGeneratorX_scaled) ' ' num2str(totalGeneratorY_scaled) ' ' num2str(scalerRes )];
+            system(CommandStr);
+        catch
+        end
+    end
+end
+
+if 1
+    parfor i_img = 0:4
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
         mode_method = 3; % argv[4]
         mode_sampling = 1; % argv[5]
@@ -71,10 +90,30 @@ if 0 % shiftmap + BB
     end
 end
 
-if 0 % pixel offset + BB
+if 1 
     parfor i_img = 0:4
-        name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
-        name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_imgInputformat = ['.jpg']; % argv[3]
+        mode_method = 3; % argv[4]
+        mode_sampling = 2; % argv[5]
+        name_detection = ['Detection']; % argv[6]
+        totalGeneratorX_scaled = 1.5;
+        totalGeneratorY_scaled = 1;
+        scalerRes = 0.5;
+        try
+            name_imgInput = [ 'Bidrectional' '(' num2str(i_img) ')']; % argv[2]
+            CommandStr = [name_cmd ' ' name_inputpath ' ' name_imgInput ' ' name_imgInputformat ' ' num2str(mode_method) ' ' num2str(mode_sampling) ' ' name_detection ' ' num2str(totalGeneratorX_scaled) ' ' num2str(totalGeneratorY_scaled) ' ' num2str(scalerRes )];
+            system(CommandStr);
+        catch
+        end
+    end
+end
+
+if 0
+    parfor i_img = 0:4
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
         mode_method = 3; % argv[4]
         mode_sampling = 3; % argv[5]
@@ -91,10 +130,30 @@ if 0 % pixel offset + BB
     end
 end
 
-if 1 % bb statistics + BB
+if 1
     parfor i_img = 0:4
-        name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
-        name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_imgInputformat = ['.jpg']; % argv[3]
+        mode_method = 3; % argv[4]
+        mode_sampling = 4; % argv[5]
+        name_detection = ['Detection']; % argv[6]
+        totalGeneratorX_scaled = 1.5;
+        totalGeneratorY_scaled = 1;
+        scalerRes = 0.5;
+        try
+            name_imgInput = [ 'Bidrectional' '(' num2str(i_img) ')']; % argv[2]
+            CommandStr = [name_cmd ' ' name_inputpath ' ' name_imgInput ' ' name_imgInputformat ' ' num2str(mode_method) ' ' num2str(mode_sampling) ' ' name_detection ' ' num2str(totalGeneratorX_scaled) ' ' num2str(totalGeneratorY_scaled) ' ' num2str(scalerRes )];
+            system(CommandStr);
+        catch
+        end
+    end
+end
+
+if 1
+    parfor i_img = 0:4
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
         mode_method = 3; % argv[4]
         mode_sampling = 5; % argv[5]
@@ -111,10 +170,10 @@ if 1 % bb statistics + BB
     end
 end
 
-if 0 % gt
+if 0
     parfor i_img = 0:4
-        name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
-        name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
+        name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
+        name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
         mode_method = 3; % argv[4]
         mode_sampling = 5; % argv[5]

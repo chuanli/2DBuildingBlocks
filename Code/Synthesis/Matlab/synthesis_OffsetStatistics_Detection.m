@@ -4,9 +4,9 @@
 warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'ShiftMap';
+P.name_dataset = 'PatchMatch';
 P.name_data = 'Resized';
-P.name_prefix = 'ShiftMap';
+P.name_prefix = 'PatchMatch';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -33,7 +33,7 @@ para.min_divergence_cos = 0.95;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 mkdir([P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input ]);
 
-for i_img = 0:25
+for i_img = 0:4
     nameImg = [P.name_path  P.name_dataset  '\' P.name_data '\' P.name_prefix '(' num2str(i_img) ')' P.name_format];
     nameRep = [P.name_path  P.name_dataset  '\' P.name_data '\resultAIO\rob\' P.name_prefix  '(' num2str(i_img) ')_afmg.mat'];
     nameOffsetStatisticsDetectionOutput = [P.name_path  P.name_dataset  '\' P.name_syn '\' P.name_syn_input '\' P.name_prefix  '(' num2str(i_img) ')OffsetStatisticsDetection.txt'];
