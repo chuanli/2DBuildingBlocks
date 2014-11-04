@@ -1,0 +1,56 @@
+%%% colors
+\usepackage{color}
+\definecolor{ChrisCol}{RGB}{255,50,50}
+\definecolor{MichaelCol}{RGB}{100,120,240}
+\newcommand{\michael}[1]{{\color{MichaelCol}{ [michael] #1}}}
+\newcommand{\mleft}[1]{{\color{MichaelCol}{$\leftarrow$ #1}}}
+\newcommand{\chris}[1]{{\color{ChrisCol}{ [chris] #1}}}
+%\newcommand{\chris}
+
+%\newcommand{\chris}{}
+\definecolor{revisionColor}{rgb}{0.3,0.2,0.75}
+\newcommand{\revised}[1]{{\textcolor{revisionColor}{#1}}}
+\definecolor{revisionColorTwo}{rgb}{0.3,0.6,0.75}
+%\newcommand{\revisedtwo}[1]{{\textcolor{revisionColorTwo}{#1}}}
+\definecolor{revisionColorThree}{rgb}{0.3,0.6,1.0}
+%\newcommand{\revisedthree}[1]{{\textcolor{revisionColorTwo}{#1}}}
+%\newcommand{\revised}[1]{#1}
+%\newcommand{\revisedtwo}[1]{#1}
+%\newcommand{\revisedthree}[1]{#1}
+
+
+%%% notation
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\newcommand{\domain}{\mathcal{I}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\bv}[1]{\mathbf{#1}}
+\newcommand{\vecx}{\bv{x}}
+\newcommand{\vecy}{\bv{y}}
+\newcommand{\vecp}{\bv{p}}
+\newcommand{\vecq}{\bv{q}}
+\newcommand{\vecr}{\bv{r}}
+\newcommand{\vecg}{\bv{g}}
+\newcommand{\vecz}{\bv{z}}
+\newcommand{\vech}{\bv{h}}
+\newcommand{\transfT}{\bv{T}}
+\newcommand{\iwidth}{w}
+\newcommand{\iheight}{h}
+\newcommand{\imgFun}{f_{img}}
+\newcommand{\RGB}{[0,1]^3}
+\newcommand{\allTransf}{\mathcal{T}}
+\newcommand{\matchFun}{m}
+\newcommand{\matchFunExplain}{$m$ for \emph{``matching''}}
+\newcommand{\corrMap}{m}
+
+%%% misc
+\usepackage{lineno}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{stackrel}
+\usepackage{tabularx}
+\usepackage{subfig}
+%\usepackage[none]{hyphenat}

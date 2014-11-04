@@ -1,0 +1,582 @@
+\documentclass{acmtog}
+
+\acmVolume{VV}
+\acmNumber{N}
+\acmYear{YYYY}
+\acmMonth{Month}
+\acmArticleNum{XXX}  
+\acmdoi{10.1145/XXXXXXX.YYYYYYY}
+
+\acmVolume{28}
+\acmNumber{4}
+\acmYear{2009}
+\acmMonth{August}
+\acmArticleNum{106}  
+\acmdoi{10.1145/1559755.1559763}
+
+\input{macros}
+
+\begin{document}
+
+\markboth{xxx et al.}{Approximate Building Blocks for Image Parsing and Synthesis}
+
+\title{Approximate Building Blocks for Image Parsing and Synthesis} % title
+
+\author{xxx {\upshape and} xxx
+\affil{University of xxx}}
+
+\category{I.3.7}{Computer Graphics}{Three-Dimensional Graphics and Realism}[Color, shading, shadowing, and texture]
+\category{I.3.5}{Computer Vision}{Scene Analysis}[Object recognition]
+
+\terms{xxx}
+
+\keywords{image parsing, symmetry detection, image synthesis}
+
+\acmformat{xxx and xxx, 2015. Approximate Building Blocks for Image Parsing and Synthesis.  {ACM Trans. Graph.} xx, xx, Article xx (xx 2015), xx pages.\newline  DOI $=$
+xxxx}
+
+\maketitle
+
+\begin{bottomstuff} 
+some personal info.
+\end{bottomstuff}
+
+\begin{abstract} 
+In this paper, we introduce the concept of approximate building blocks for fully-automatic image parsing. We consider translational repetitive elements in images and characterize building blocks as maximal, coherently transformed regions that are instantiated frequently. We develop an algorithm for constructing approximate building blocks from noisy and ambiguous image features, based on a spectral embedding of co-occurrence patterns. We evaluate our method on a large benchmark data set and obtain clear improvements over state-of-the-art methods. We apply our image parsing method to texture synthesis, where we improve results by learning patterns of nearby landmarks induced by the building blocks, which also leads to quality improvements over previous work.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:Introduction}
+
+Data-driven methods have become a central research focus of contemporary computer graphics. The goal is to devise \emph{structure aware} modeling algorithms that discover structure in real-world data and utilize it for the generation of 2D and 3D content.
+
+A key problem in this context is to capture redundancy induced by correspondences: Many real-world phenomena are composite in nature: They can be broken down to smaller building blocks, where several instances of a few types of such building blocks constitute the full object. The knowledge of building blocks gives us two important pieces of information: First, they expose the variety of appearances of one and the same underlying phenomenon, which helps us to detect the components in a more robust and invariant way, and to build generative models based on statistics of corresponding parts. Second, the geometric relations between building blocks are usually not arbitrary, but bound to their (unknown) semantics. Therefore, observing relations between building blocks unveils stronger constraints of how composite shapes are structured. Both of these aspects are useful for improving generative models that synthesize new variants of example data, as we need them in computer graphics.
+
+Our paper addresses the problem of finding building blocks in image data using a fully unsupervised algorithm, i.e., it does not require any prior training data or user intervention. This restriction is very useful when we want to utilize the building block decompositions as structural side information for other tasks. We explore this exemplarily for image synthesis from example images.
+
+Finding correspondences within data has received a lot of attention in recent years \cite{Mitra2012}. However, only a few unsupervised methods exists that try to decompose objects into constituent parts. Many methods are restricted to clean data with perfect correspondences. This excludes real-world data sources (such as parsing photographs, which are inherently ambiguous), and does not permit any in-class variation (such as recognizing different windows in a facade image as one type of building block). Structural priors such as regular placement can help resolving ambiguities, but it also restricts the potential patterns reported \cite{Wu2010DL}. 
+
+\begin{figure*}[t!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{Fig/SystemOverview/Teaser}
+  \caption{...} 
+	\label{fig:Teaser}
+\end{figure*}
+
+We replace structural priors by the assumption of coherently mapped building blocks, which are related by a common transformation and residual distortions. We discover such structures by relating co-occurance maps of images features using a spectral embedding, which draws its robustness out of the ability to use the whole 4D matching information in a single optimization for discovering coherently mapped pieces. We evaluate our method on a large benchmark data set of facade images. In comparison to previous methods, both with \cite{Wu2010DL} and without structural priors \cite{LIPMANsig2010,Liu2013GRASP}, we obtain a significant improvement.
+
+To demonstrate the utility of building block information to generative tasks in computer graphics, we apply our method to guide image synthesis. Traditional texture synthesis methods~\cite{EfrosL99NP,Wei2000FT,Kwatra2003Graphcut,Kwatra2005TO} rely on a local, Markovian structure model that is oblivious to higher level constraints and therefore cannot produce images that are meaningfully structured on a coarser scale without human annotation~\cite{Hertzmann2001IA}. We use building blocks as landmarks and learn their relative placement and include this information into the image synthesis model. This leads to improvements over earlier Markovian models \cite{Kwatra2005TO}. We also compare to the latest state-of-the-art method based on statistical priors of image offsets~\cite{He2012PO}. Our method yields comparable or better results, and provides an additional semantic annotation layer, which can used for user interaction in constrained image synthesis.
+
+In summary, the main contribution of this paper is a new approach for discovering \emph{approximate building blocks} in unreliable data. We develop the idea in the context of an automatic image parsing technique that discovers translational building blocks, and outperforms previous methods in this task. We demonstrate the utility of the discovered building blocks and their geometric relations by applying it to image synthesis, where we can get improvements over unguided methods without sacrificing the fully automatic mode of operation.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\columnwidth,natwidth=1920,natheight=502]{Fig/buildingBlocks2s.png}
+	\caption{Building blocks comprise all image content that is mapped together under the same transformation.}
+	\label{fig:buildingBlocks}
+\end{figure}
+
+\section{Related Work}
+\label{sec:RelatedWork}
+
+In this section, we discuss related work in symmetry detection, visual pattern mining, and texture synthesis.
+
+\textbf{Symmetry detection} has drawn a considerable amount of interests in both the 2D \cite{Lee2009SR,Wu2010DL} and 3D case \cite{Mitra2006PAA,Pauly2008,LIPMANsig2010,HuangMesh2013}. Most methods perform certain voting, either in the feature space or in the transformation space, and detect symmetries at the local maximums of the vote density. A key for successful detection is to get a good signal to noise ratio for the true repetitions. In feature space, this can be addressed as a feature selection problem. Both global \cite{Wang2008Factor,Agrawal2012RI,Bokeloh2009SD} and local \cite{Leung1996} searches are proposed to find more reliable features, sometimes even constellation of features \cite{Liu2013GRASP}.
+%
+However, matching is still challenging under strong appearance variation. This problem is partially overcome by voting in the transformation space \cite{Hays2006Texture,Mitra2006PAA}, where spatial mappings between pairwise-matched features are aggregated to amplify the true repetition signal. For lattice-like patterns, detection can be further improved by assuming regular (or near-regular) transformations \cite{Pauly2008,Wu2010DL,Zhao2011TS,Tai2012PF}, see \cite{Lin2006Eva} for a survey.
+%
+However, this also prohibits detection of irregular patterns. Our method was inspired by the \emph{microtile} decomposition of Kalojanov et al.~\shortcite{KALOJANOVsgp2012}, which characterize generically placed building blocks. However, their method is strictly limited to exact data; even small, numerical errors already cause instability.
+
+We also draw inspiration from Lipman et al.~\cite{LIPMANsig2010}, who use spectral clustering to find cliques of pairwise corresponding points in noisy data. Our method extends their model towards cliques of coherently mapped build blocks (rather than points), which improves detection performance.
+
+\textbf{Visual pattern mining:} Supervised, discriminatively trained models (such as \cite{Felzenszwalb2010DPM}) have demonstrated impressive capabilities in structuring images. Unsupervised pattern mining has been addressed by Singh et al.~\shortcite{SINGHeccv2012}. The original method still requires a large background (negative) training set. In our paper, we adapt the basic technique for mining patterns in a single image, where building-block priors provide additional constraints. More recently, great effort has also been made towards fa{\c{c}}ade parsing. Numerous methods \cite{Teboul2011SG,Martinovic2012AT,Bao2013PF} have been proposed to extract semantic layout of building fa{\c{c}}ades. Convincing images can be later synthesized, using methods such as \cite{Dai2013Facade}. However these methods only work on fa{\c{c}}ade and need either supervised learning or manual interaction, while we aim at a fully unsupervised method that generalizes well for a broader range of subjects, so it could directly used to improve existing image synthesis and editing approaches. 
+Cheng et al.~\cite{Cheng2010RepFinder} propose a method for finding repetitive image content for use in synthesis applciations. However, in that method, both the mining and synthesis steps again need considerable human supervision. Landes et al.~\cite{Landes2009} find repetitive patterns and re-arrange them in the synthesis image. Here, the use of a simple feature comparison (SIFT with a Euclidean metric) limits the scope of the automatic detections.
+
+\textbf{Texture synthesis} has received a lot of attention in computer graphics, see \cite{Wei2009STAR} for a comprehensive survey. In order to overcome the limitations of the Markov Random Field (MRF) model, various forms of guidance have been employed, for example, using an additional image layer with user annotations \cite{Hertzmann2001IA} or on-the-fly user interaction ~\cite{Barnes2009,Hu2013PPI}. Automating the creation of guidance map is still an on-going research topics, with some success in low level feature maps. For example, Lefebvre and Hoppe~\shortcite{Lefebvre2006ATS} use distance transforms on feature maps to guide the synthesis of high-quality textures with pronounced meso-structure. However, the feature transform cannot structure complex images beyond textures. Rosenberger et al.~\shortcite{Rosenberger2009LSS} extend the idea to irregular textures with non-stationary statistics, such as aged or weathered surfaces. Dishler et al.~\shortcite{Dischler2002} use ``texture particles'' as landmarks, similar to our guidance scheme; however, only textures (with some meso-structure) are synthesized due to limitations in the detection stage. Tiling grammars similar to our higher-level structure have been recently employed to guide the placement of discrete elements~\cite{Ma2011DET,Ma2013DET}, however our method handles image data rather than discrete elements and builds the tiling grammar fully automatically from an image. Our application is also related to image retargeting, recomposition and inpainting. Along this direction, various methods have been experimented to avoid local optimal solutions results from the MRFs model. For example, \cite{Simakov2008SV} uses bidirectional matching and a gradual resizing procedure for retain the image structure in retargeting (especially for image shrinking); \cite{Pritch09ICCV,He2012PO} studied pixel offset, and use graph cut to find the optimal pixel assignment for the output image that produces a smooth offset field. Nonetheless, these methods all operate on image pixels, hence can not eliminate structural artefacts. An exception is \cite{Wu2010SS}, which use deformable lattice to retain structure during image resizing. However their method is restricted to images has a global repetition (such as lattice), and is difficult to be used for recomposition. In this paper we will show using additional structure knowledge is able to improve the performance of the conventional pixel based MRF methods. 
+
+\section{Image Parsing}
+\label{sec:ImageParsing}
+
+
+	
+In the following, we will present our method for detecting building blocks in images. This is performed in four steps: 
+
+\textbf{Step 1 --- feature learning:} First, we learn a suitable dictionary of image features that captures discriminative features of the image. This step is a well-established method in the literature to boost the recognition performance later on; we employ a variant of the pipeline of Singh et al.~\shortcite{SINGHeccv2012} for this purpose.
+
+The next two step make the main conceptual contribution of this paper: 
+
+\textbf{Step 2 --- finding building block transformations:} Rather than using the image features as is, we cluster features that form the same cliques. These characterize the building blocks of the image.
+
+\textbf{Step 3 --- cutting out building block instances:} Once we know the transformations, we setup a series of multi-label graph-cut problems to segment foreground and background and separate the individual instances.
+
+Finally, we improve results by combining independent results:
+
+\textbf{Step 4 --- model selection:} Our implementation of the feature learning step 1 is a simple greedy algorithm; we can therefore improve the results by running the pipeline multiple times and building a joint model using a description length criterion.
+
+The pipeline is summarized in Algorithm \ref{alg:ImageParsing} for interested readers.
+
+
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.95\columnwidth]{Fig/DL1.png}
+	\caption{Feature correspondence can be sharpened by learning one-vs-all SVM. discriminative learning leads to sharper results with better signal-to-noise level.}
+	\label{fig:DL1}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.95\columnwidth]{Fig/DL2.png}
+	\caption{Discriminative learning iteratively increases the purity of each cluster.}
+	\label{fig:DL2}
+\end{figure}
+
+\subsection{Step 1: Discriminative Features}
+\label{sec:IterativeDL}
+
+In the first step, we employ an unsupervised discriminative clustering scheme to find good features, i.e., local image patches that show up repeatedly in the image and can easily be distinguished from others. This step is not essential for the building block model proposed in this paper, but it makes later computations faster and more robust. %To this end, we mostly adopt the discriminative patches discovery method by Singh et al.~\shortcite{SINGHeccv2012}; we summarize the main steps below for completeness and reproducibility.
+
+\textbf{Low-level HOG features:} As numerous other image understanding methods, we also use histograms-of-oriented gradients (HOG)~\cite{DALALcvpr2005} as low-level feature descriptors. We compute $8\times 8$-pixels sized histograms of oriented gradients on a regular grid (8-pixel spacing), and perform all further processing (also step 2,3,4) at the level of these \emph{HOG-cells}. In other words, a $w \times h$--RGB-pixel image is converted into a $w/8 \times h/8$-hog-cell image, which is more invariant to illumination changes and small-scale distortion. We use the code provided by Felzenszwalb et al.~\shortcite{Felzenszwalb2010DPM} to compute this representation.
+
+\textbf{Feature descriptors:} For building an initial dictionary of feature descriptors, we consider fixed patches of $8 \times 8$ HOG-cells, i.e., of $64^2$ pixels. We initialize step 1 by building a first dictionary using $K$-means clustering; initially, we set $K$ to half the number of initial features.
+
+The goal of iterative discriminative learning is now to purify the dictionary by making each cluster more discriminative against all the other clusters, hence discovering features that are easy to recognize. For this, we iterate the following procedure:
+ 
+\textbf{Representative feature:} For each cluster in the current dictionary, we use the median patch (the one with smallest distance to all other cluster members) as the representative, denoted in the following by $\bv{t}_i, i = 1..K$. The learning algorithm then iterates between a \emph{learning} and a \emph{detection} step.
+
+\textbf{Learning:} We train a linear support vector for each cluster in one-versus-all fashion: One of the clusters provides the positive training set and all others the negative set. Doing this for each cluster yields weight vectors $\bv{w}_i$ that characterize each feature cluster.
+
+\textbf{Detection:} The detection step updates the dictionary using sliding window detection. For each $8\times 8$-patch of HOG-cells in the image, it computes:
+%
+\begin{equation}
+m_{\textbf{t}_i}(\textbf{x}) = \exp\left(-||\textbf{w}_i\cdot(HOG(\textbf{t}_i) - HOG(\textbf{x}))||_2 \right),
+\label{eq:finalMatching}
+\end{equation}
+%
+where $HOG(\bv{x})$ denotes the local $64^2$ pixel HOG patch for image position $\bv{x}$ and median template $\bv{t}_i$, respectively. The result is one \emph{co-occurance map} for each feature cluster $\bv{t}_i$. Such a map is a scalar image that for each HOG-cell indicates the strength of the match with $\bv{t}_i$; Figure \ref{fig:DL1} compare the co-occurrence maps before and after the learning process.
+
+\textbf{Rebuilding the dictionary:} For the next iteration, we rebuild the the dictionary by using non-maxima suppression ($\frac{1}{4}$ patch size) on the co-occurance maps. Matches with a score below a threshold of $\theta = 0.5$ are removed to avoid spurious local maxima. The threshold is intentionally set to a relative low value to allow considerable appearance variation in the repetitive objects. The whole pipeline is then iterated to refine the results. 
+
+\begin{figure}
+	\centering
+		\includegraphics[width=\columnwidth]{Fig/coOccurranceDetection.png}
+	\caption{We detect building block types by clustering correspondence maps. Each building block type has the same correspondence map up to a global translation.}
+	\label{fig:coOccurranceDetection}
+\end{figure}
+
+Figure \ref{fig:DL2} shows the purification of a dictionary with increasing number of learning iterations. Each image shows the average (not the median) of a cluster. This shows how the purity of each cluster increases over iterations. We use three iterations, which are usually sufficient to converge to a good solution.
+
+\begin{figure*}[t!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{Fig/SpectralClustering.png}
+  \caption{By spectral embedding the co-occurrence maps (right), our algorithm is able to group together parts of the same type of building block. Notice the word A and B have very different visual appearance but are highly correlated by their co-occurrence maps. In contrast, spectral embedding the HoG features (middle) will falsely group visually similar patches that do not belong the same building block, for example, word B and C.} 
+	\label{fig:SpectralClustering}
+\end{figure*}
+
+
+\subsection{Step 2: Building Blocks Transformations}
+\label{sec:ComputingCooC}
+
+The first step provides us with good features for detecting visually important structures in the image. Our objective is now to find building blocks, which are more complex image regions in arbitrary shape.
+
+\textbf{Building blocks:} As illustrated in Figure~\ref{fig:buildingBlocks}, we define \emph{building blocks} as maximal pieces that are always reused as a whole. This means, the pieces appear multiple times in the data; and in each instance, the same transformation is used to copy the data. Maximizing the area for which this is holds yields the spatial extend of the building blocks.
+
+
+For an $w \times h$ input image, let $\domain = [0,w/8] \times [0, h/8]$ denote the domain of the HOG-cell representation of the image. We consider a group of \emph{admissible transformations} $\allTransf$ that can be used to move image content (used to relate instances of building blocks). We restrict $\allTransf$ to translations in this paper, for simplicity. Extensions to larger groups (such as similarity transforms, homographies) are possible but left for future work.
+
+We now first establish pairwise correspondences between points $\vecp, \vecq \in \domain$:
+%
+\begin{equation}
+\matchFun(\vecp, \vecq) \rightarrow [0,1]
+\label{eq:correspondences}
+\end{equation}
+
+Large values, close to $1$, indicate good matches, while near-zero values indicate mismatch. This correspondence information serves as (abstract) input to our algorithm (we will finally use the trained dictionary to obtain this information, but the method discussed here is in principle independent of that).
+
+\begin{algorithm}
+\caption{Image Parising}\label{alg:ImageParsing}
+\begin{algorithmic}[1]
+\Require{Input image $I$, Maximum number of iteration $N$ for dictionary initialization, maximum number of iteration $M$ for discriminative learning}
+\For{$i \gets 1 \textrm{ to } N$}
+
+     $Dict$ = InitializeDictionary($I$)
+			
+			\For{$j \gets 1 \textrm{ to } M$}
+			
+			    \ \ \ \ \ \ [$Dict$, $CoocurrenceMap$] = Learn($I$, $Dict$)
+			
+			\EndFor
+			
+\State			$BuildingBlockCliques_{i}$ = Cluster($CoocurrenceMap$)
+			
+\State			$BuildingBlocks_{i}$ = Label($I$, $BuildingBlockCliques_{i}$)
+     \EndFor
+			
+\State $Result$ = ModelSeletction($BuildingBlocks_{i}$, $i = 1:N$)			
+\end{algorithmic}
+\end{algorithm}
+
+Robust detection of building blocks is based on the following idea: If two words $\vecp,\vecq$ belong to the same building block, their templates should be consistently mapped to all instances of this building block. This means, if $\bv{T}_1,...,\bv{T}_n \in \allTransf$ are transformations that map the considered instance to all further instances, we expect the correspondences $\tilde{m}(\vecp, \bv{T}_i(\vecp))$ have high values for all $i=1..n$ and for all $\vecp$ inside a correctly detected building block. 
+
+While this is a suitable optimization criterion, the challenge is that there are two simultaneously unknown quantities:
+\begin{enumerate}
+	\item[(i)] \textbf{Instance placement:} We do not yet know the transformations $\bv{T}_1,...,\bv{T}_n$, indeed, not even the number $n$ of building blocks.
+	\item[(ii)] \textbf{Instance shape:} We do not know the shape of the building block (area over which we can vary $\vecp$ to obtain high matching scores).
+\end{enumerate}
+ 
+Our algorithm solves problem problems (i) and (ii) subsequently.
+
+\subsubsection{Co-occurance clustering}
+
+In order to address problem (i), finding the transformations, we consider the collection of all 2D slices of the 4D matching function $m$. Consistently with Equation~\ref{eq:finalMatching}, we define the \emph{co-occurance map} of the feature at point $\vecp \in \domain$ as:
+%
+\begin{equation}
+m_{\vecp}(\vecx) := m(\vecp, \vecx)
+\label{eq:corr-map}
+\end{equation}
+%
+This is a simple scalar image, depiciting the spatially-varying strength of match against the feature at image position $\vecp$. If two image positions $\vecp$ and $\vecq$ are part of the same building block, they will have related co-occurrance maps $\corrMap_\vecp,\corrMap_\vecq$ (Figure~\ref{fig:coOccurranceDetection}). The following holds for any point in any of the instances of the building blocks, which makes the method particularly robust:
+In absence of noise, the co-occurance maps of all points on the same building block type will be exact translationally shifted copies of each other. Even in the noisy case, we can expect the images to still resemble each other. Because we obtain an image for every point on a building block, we have a large amount of information we can integrate to even detect weak signals in very noisy and unreliable correspondence information: By comparing the whole image we are able to drastically reduce the noise of the pixel-wise matching function, and clustering the space of all such images can further detect weak patterns. This is the key property for the robustness of our method, and explains the favorable performance in practice. Unlike previous transformation voting methods~\cite{Mitra2006PAA}, transformations from different instances do not mix and pollute the voting space, and spectral methods are improved by being able to utilize all instance information simultaneously rather than corresponding point orbits.
+
+To find clusters of such related co-occurance maps, we employ a spectral clustering algorithm, which has a global view of all pairwise relations. We first compute the normalized cross-correlation (denoted by $\otimes$) of all pairs of co-occurrance maps $\corrMap_{p},\corrMap_{q}$ to find and score their best translational alignment. We then build a dissimilarity matrix $\textbf{D}$ where
+%
+\begin{equation}
+\textbf{d}_{p, q} = \textbf{d}_{p, q} = 1 - \corrMap_{p} \otimes \corrMap_{q} \text{ for all } p,q \in K\text{.}
+\label{eq:distanceMatrix}
+\end{equation}
+%
+We now reconstruct a low dimensional embedding using classical (spectral) multidimensional scaling, where similar co-occurrence maps are located close to each other. We then extract modes of this embedding using meanshift clustering (with bandwidth 0.5), which result in $Q$ clusters ($Q \leq K$). We only keep the median point in each cluster to represent the modes in an outlier-robust way. Figure \ref{fig:SpectralClustering} shows an example of spectral clustering based on co-occurrence maps and compare the result with spectral clustering based on HoG feature distance. By spectral embedding the co-occurrence maps (right), our algorithm is able to group together parts of the same type of building block. For example the word A and B have very different visual appearance but are highly correlated by their co-occurrence maps. In contrast, spectral embedding the HoG features (middle) will falsely group visually similar patches that do not belong the same building block, for example, word B and C.
+
+Each cluster in the embedding is essentially a clique for distributing instances of a particular type of building blocks. We denote the cliques as $\bar{\corrMap}_1,...\bar{\corrMap}_Q$. They are encoded as binary masks in image space by applying the same thresholding and non-maxima supression to the co-occurrence maps as described in the second last paragraph of Section \ref{sec:IterativeDL}. In these masks, one pixel is set to one for each local maxima and all other cells have value zero. Knowing the cliques, we next identify the exact shapes of each building block instance.  
+
+Finally, we can easily integrate the learned dictionaries computed in step 1 by computing and embedding the co-occurance maps only for the dictionary entries rather than for all image features. This dramatically reduces the costs for spectral embedding over a naive all-pairs approach and additionally profits from the pre-sharpened detectors.
+
+%It is important to note that our clustering is also very different from symmetry factored embedding~\cite{LIPMANsig2010}, which considers only equality of points, not of whole co-occurance map.
+
+\subsection{Step 3: Computing Building Blocks}
+\label{sec:ComputingBB}
+
+We now identify each building block instance in the image by solving a two-step labeling assignment problem (Figure~\ref{fig:GraphCut}): The first step assigns a type label to each HoG cell in the image. The second step subsequently considers the set of cells with the same type and assigns instance labels. Both steps are cast as a multi-label graph cut optimizations \cite{BOYKOVpami2001}: 
+%
+\begin{equation}
+E(L) = \sum_{x\in I} E_{d}(L(x)) + \sum_{(x, x'|x\in I, x' \in I)}E_{s}(L(x), L(x'))
+\label{eq:GC}
+\end{equation}
+%
+Here $x$ denote HoG cells within the image domain $I$. The neighbouring cells $(x, x')$ are 4-connected. For the first graph cut problem, $L(x)$ is a labeling map of building block types, for the second graph cut problem, it is a labeling map for instances of each type of building blocks. Next we explain how the data cost $E_{d}$ and the smoothness cost $E_{s}$ are defined for each of these two problems.
+
+\begin{figure}[t!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{Fig/GraphCut.png}
+  \caption{The outputs of the two-step labeling assigment problem. Left: the first step computes a labeling map for building block types. Right: the second step computes a labeling map for building block instances. The slight color variation in the right picture is for helping readers separate different building block instances.} 
+	\label{fig:GraphCut}
+\end{figure}
+
+
+\subsubsection{Class Labeling}
+
+The goal of the first step is to label each HoG cell in the image with its most likely building block class, including a background label for non-repetitive content. For this, we step up the costs as following:
+
+\textbf{Data costs:} The data term is computed by testing the building block cliques against the input image: We move the clique $\bar{\corrMap}_i$ over the image and measure the entry-wise variances of the HoG cells that it lands on:
+%
+\begin{equation}
+E_{d}(L(x) = i) = \frac{1}{| \bar{\corrMap}_i |}\sum_{x \in \bar{\corrMap}_i + \delta}(I(x) - \bar{I(x)})^2
+\label{eq:gc1data}
+\end{equation}
+%
+Here $\delta$ indicates the shift of the clique. If a clique has all sites located on the same class of building block, we should observe a low variance. Shifts that land a clique on a mixture of different building block class lead to a high error. The procedure is repeated for the building block cliques of all classes, $\bar{\corrMap}_1,...\bar{\corrMap}_Q$, yielding data costs for $Q$ type labels. As an optimization in practice, we limit shifts to $8 \times 8$ HoG cells for efficiency, limiting the maximum size of a building block to 64 pixels; this was sufficient for our examples and can easily be enlarged, if needed.
+
+We set very high data cost if the clique is shifted outside of the image boundary. Our HoG descriptors have $31$ dimensions in each cell; hence the largest possible data cost per instance is $\varepsilon = \sqrt{(31\times2^2)} \approx 11$. We use cost $10\varepsilon$ (i.e., the equivalent of to 10 maximally wrong instances) whenever the non-zero entry is shifted outside of the image boundary. A background label $K+1$ tags cells that do not belong to any repetition; background labels obtain a constant penalty of $5\varepsilon$ to discourage trivial solutions. 
+
+\textbf{Smoothness costs: } We setup a smoothness term that encourages adjacent cells to have the same label, encoding the prior assumption that building blocks form contiguous shapes with simple (i.e., short) boundaries. We use a constant pairwise penalty of $\varepsilon$ between pairs of neighboring nodes (4-connected) with differing labels. We opt against weighting by image content such as edges to prevent typical sub-structure such as windows frames from influencing the result.
+
+Finally this multi-label graph-cut problem is solved using the standard $\alpha$ expansion inference approach~\cite{BOYKOVpami2001}. An example result is shown in the left picture of Figure \ref{fig:GraphCut}. The labeling map is superimposed on top the input image, and the uncovered part indicates the places where no building blocks could been found.
+
+\subsubsection{Instance Labeling}
+
+We now have a map that specifies the building block class for each HoG cell. However, the shape of the building blocks, or, equivalently, the boundaries between potentially adjacent blocks of the same type, is not yet know. We again use graph cut to solve this problem. In the following, we consider one fixed building block class $i \in \{1,..,Q\}$ and its clique $\bar{\corrMap}_i$. The algorithm described below is repeated for each type. 
+
+In order to obtain instance labels, we assign an index $1,...,M_i$ to each non-zero cell of $\bar{\corrMap}_i$ in arbitrary but fixed order. Then the costs are defined as following:
+
+% Now we are ready to cut out building blocks as individual elements from each repetition. This can also be cast as a multi-label graph cut problem where the labels are the identities of the elements. Let us use $\textbf{R}_{i}^{j}$ to denote the $jth$ element in $\textbf{R}_{i}$.
+
+\textbf{Data costs:} We test the clique $\bar{\corrMap}_i$, however this time not against the input image but against the labeling map $L^{1}(x)$ output by the previous step. We compute the data cost of assigning the $j$th instance of clique $\bar{\corrMap}_i$ to HoG cell $x$ using the following indication function: 
+\begin{equation}
+E_{d}(L(x) = j) = \left\{
+\begin{array}{rl}
+\infty &  \{L^{1}(x) \neq i:x \in \bar{\corrMap}_i\ + \delta \}  \neq \emptyset\\
+0 & \text{otherwise }
+\end{array} \right.
+\label{eq:gc2data}
+\end{equation}
+%
+This function considers if the clique has been shifted to coincide with any cells of a different buliding block type. If any site of the clique coincides with a cell of a different class, or lies outside the image boundary, we set the data cost to infinity, as this is an inconsistent solution. Otherwise the assignment is valid and will cost zero.
+
+\textbf{Smoothness costs:} We use the same costs of $\varepsilon$ for each edge connecting cells with different instance labels.
+
+The solution is obtained again via multi-label graph cut. The right picture of Figure \ref{fig:GraphCut} shows an example result. Notice it is important to keep building blocks of the same repetition in the same shape. This can be easily achieved by taking the intersection of the binary masks of the identified instances.  
+%In the meantime they also represent the the maximum size of the repetitive objects as any expansion will either reach outside of the image or create collision between existing building blocks.
+
+\subsection{Step 4: Model Selection}
+\label{sec:ModelSelection}
+
+As a fully unsupervised approach, our method has the risk of overfitting the dictionary built at the very beginning of the image parsing step (Section \ref{sec:ImageParsing}). In fact, if we run our algorithm with different random k-means initializations, the results are often different. Meanwhile, features that are missing from the initial dictionary have little hope to be detected in the later steps. These problems can be solved using robustness analysis (Figure \ref{fig:Rob}). The idea is straightforward: we try multiple detections with different initializations, and combine detection from different attempts to get the best result. %However the number of candidate combinations grows exponentially with the number of attempts, the practical challenge is how to efficiently search for an optimal solution.
+We determine the best set using a greedy algorithm that adds one building block type at a time, always picking the \emph{best} type first and discarding other types where instances would overlap with instances of selected types.
+
+The quality of building block types is evaluate using two criteria: a robustness term that selects instance patterns that are commonly shared by different detections, and a compression term that selects types that offer high compression rate.
+
+\textbf{Robustness:} Robust building block classes are more likely to find matches from different initializations. We define the similarity measurement between two building block classes by first counting the number of their overlapping building block instances, and then dividing the number by the maximum cardinality of the two classes. We perform pairwise matching between all building block classes, and compute the robustness score of a building block class as the average of its $N$ top similarity measurement. Here $N$ is the number of dictionaries that is used in Algorithm \ref{alg:ImageParsing}. Notice this score is always within $[0, 1]$ because the similarity measurement between two classes is within [0, 1].
+
+\textbf{Compression:} The robustness term often already finds good explanations but it is bias towards types with a small number of instances (because of the smaller denominator in the objective). The compression term compensate for this by favoring building blocks with large expressive power, i.e., that explain large portions of the image. We use the compression ratio $\frac{P_{covered} - P_{block}}{P_{img}}$, where $P_{img}$ is the total number of pixels in the image, $P_{covered}$ is the number of pixels covered by all instances of the building block, and $P_{block}$ is the overhead of storing the first instance of the building block. This score is also between $[0, 1]$.
+
+\textbf{Greedy selection:} We rank building block classes according to the unweighted sum of their scores. We sequentially collect the best class if overlaps within no more than 25\% of the current collection. Figure \ref{fig:Rob} shows two examples of the selected model.
+
+
+\begin{figure}[t!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{Fig/Robustness.png}
+  \caption{Building blocks from different trials are combined to give the optimal explanation of the input image.} \label{fig:Rob}
+\end{figure}
+
+\section{Evaluation}
+\label{sec:Evaluation}
+
+We have implemented our image parsing framework in Matlab. Our experiments have been performed with a 2Ghz quad-core Intel Core-i7 processor and 16 GB RAM. It took on average about 5 seconds for a single run on a $300 \times 300$ pixel image, i.e., 2.5 minutes per image when performing model selection out of 30 initializations. In the remaining of this section we extensively evaluate our detection of 2D building blocks, with comprehensive comparisons against different methods, as well as the intermediate results of our own approach.
+
+\subsection{Dataset}
+In order to prove our algorithm is able to identify meaningful building blocks, we conduct an evaluation on the fa{\c{c}}ade data set created by \cite{ZHANGsig13}. This data set contains 600 fa{\c{c}}ade images of various structures. For each image a box pattern has been interactive created by the authors, identifying repetitive elements such as windows or balconies. We use these labels as the ground truth to quantitatively evaluate our detection. We remove non-repetitive boxes from the data set (7285 boxes remain). We also test our algorithm on a collection of non-facade images. The results can be found in the supplementary materials.
+
+\subsection{Methodology}
+We quantify the results using the standard precision and recall analysis and an additional stress test (Figure \ref{fig:prDetection}). In this section we first explain how precision and recall are computed, and then explain how they can be consistently measured across different detection methods. 
+
+\subsubsection{Precision and Recall}
+
+We name a set of repetitive patterns by $X$. $|X|$ is the cardinality of the set (number of building block classes), and $|X_{i}|$ is the number of repetitive objects in a single pattern $X_{i}$ (number of building block instances in a single class). We use $D$ and $G$ to denote the sets of detected patterns and ground truth patterns of the same image, respectively. 
+
+The computation of precision and recall is based on a bi-directional pattern matching between $D$ and $G$: ``precision'' is the number of matched objects in $D$ divided by the total number of objects in $D$; ``recall'' is the number of matched objects in $G$ divided by the total number of objects in $G$. Notice the matching must be done between \emph{patterns}, not individual objects. Otherwise objects in the same pattern can be matched to different patterns in the counter set, contradicting with the hypothesis that they are repetitive. This is a crucial difference of our evaluation setting from the conventional image segmentation \cite{MartinFTM01}, which are performed on the object level. 
+
+In order to match two patterns $D_{i}$ and $G_{j}$, we define the following matching score function:
+%
+\begin{equation}
+S(D_{i}, G_{j}) = S(G_{j}, D_{i}) = min(|D_{i} \bigcap  G_{j}|, |G_{j} \bigcap D_{i}|)
+\label{eq:match}
+\end{equation}
+%
+where $|D_{i} \bigcap  G_{j}|$ is the number of object in $D_{i}$ that intersect with $G_{j}$, and $|G_{j} \bigcap  D_{i}|$ is the number of object in $G_{j}$ that intersect with $D_{i}$. Two object intersect if and only if their bounding boxes intersect. Taking the minimum avoids over-counting the objects that have multiple intersections. Each pattern in $G$ will produce a different matching score for $D_{i}$, and only the highest score, $max(S(D_{i}, G_{j = 1:|G|}))$, is kept to compute the precision of $D_{i}$. The precision for an image detection can then be computed as
+%
+\begin{equation}
+Precision = \frac{\sum_i^{|D|}\omega_{i}max(S(D_{i}, G_{j = 1:|G|}))}{\sum_i^{|D|}\omega_{i}|D_{i}|}
+\label{eq:precision}
+\end{equation}
+%
+Here $\omega$ is a weight set differently for each pattern -- it is simply the number of image pixels the pattern covers. This helps to remove statistical bias toward small objects:  small objects get smaller weight to avoid over-counting, and repetitions that have big objects (often coincides with small cardinality) get larger weights to avoid under-counting. We compute recall in a symmetric way by swapping the $D$ and $G$ terms in Equation \ref{eq:precision}. 
+
+\subsubsection{Curve Generation}
+
+Next we need to generate precision and recall (PR) curve, which can be a non-trivial problem in practice: first, repetition detection algorithms usually involve a number of key parameters and tuning a single parameter may not generate the full spectrum of the PR curve. Second, different algorithms produces different outputs that can not be directly compared: for example segmentation based methods \cite{LIPMANsig2010} always result in a full image coverage, where objects will not overlap; detection based methods \cite{Wu2010DL},\cite{Liu2013GRASP} only give a partial image coverage, where objects may overlap. 
+
+In this paper we use a simple but effective scheme to achieve a consistent measure of PR curve across different algorithms. The hypothesis is that the PR space of an algorithm can be sufficiently explored by testing the algorithm with its default parameters on a sufficiently large image dataset. To do so, we first apply the algorithm on each image with its default parameters (see the later section for parameter settings of different algorithms). We then evaluate the resulting repetition patterns $D$ for each image and generate a per-image PR curve. Per-image PR curves of different images are weighted and averaged into a dataset PR curve for the algorithm (Figure \ref{fig:prDetection}). The weight is set as the total area covered by the ground truth repetitions in each image.   
+
+In order to generate the per-image PR curve, we gradually remove patterns from $D$ and simultaneously compute the recall and precision using the remaining patterns. Specifically, we remove one pattern each time, starting from the largest one (highest $\omega_{i}$ in Equation \ref{eq:precision}), until only the smallest pattern remains. The PR curve for this image is then linearly interpolated between the resulting scores. Notice such a pattern removal process is independent from the design of the detection algorithm, so the per-image curve is generated in a fair way.
+\begin{figure*}[t!]
+    \centering
+    \subfloat[PR curves: different methods]{{\includegraphics[width=.5\columnwidth]{Fig/prDiffMethods.png} }}%
+    \enskip
+    \subfloat[PR curves: different steps]{{\includegraphics[width=.5\columnwidth]{Fig/prDiffSteps.png} }}%
+    \enskip
+    \subfloat[Pressure tests: different methods]{{\includegraphics[width=.5\columnwidth]{Fig/pressureDiffMethods.png} }}%
+    \enskip
+    \subfloat[Pressure tests: different steps]{{\includegraphics[width=.5\columnwidth]{Fig/pressureDiffSteps.png} }}%
+    \caption{Quantitative comparison between different repetition detection methods.}%
+    \label{fig:prDetection}%
+\end{figure*}
+
+
+\subsection{Results Analysis}
+
+We first compare our detection with a baseline method (supervised sliding window detection) and the state of the art alternatives (\cite{LIPMANsig2010}, \cite{Wu2010DL}, \cite{Liu2013GRASP}). The performance of each algorithm is illustrated by its PR curve in Figure \ref{fig:prDetection}a. We also report the PR curves of intermediate results output by different steps of our algorithm in Figure \ref{fig:prDetection}b. We perform stress testing by adding a minimum overlapping ratio request for valid matches in Equation \ref{eq:match}. The results are reported as F-score v.s. overlapping ratio curves for different algorithms in Figure \ref{fig:prDetection}c and Figure \ref{fig:prDetection}d. The optimal F-score for each method, together with their corresponding precisions and recalls, can be found in Table \ref{tb:QNT1}. 
+
+\subsubsection{Comparison: different methods}
+
+The baseline is a straight forward supervised sliding window detection (SSW) using Euclidean distance to a number of HoG templates. We randomly select 10 images from the dataset and use the ground truth labels as the templates. Specifically we use the median of each ground truth repetition as the template, and apply a sliding window for each repetition. In the evaluation stage we keep up to 10 repetitive patterns (that have the highest weights in Equation \ref{eq:precision}). The resulting PR curve (Figure \ref{fig:prDetection}a, black) shows very poor detection, with the optimal F-score (the harmonic mean of precision and recall) of 0.5341. This indicates the strong variation of object appearance can not be captured by detectors that are trained from a limited number of images. 
+
+\begin{table*}[ht]
+    \centering
+    \begin{tabular}{ | l | l | l | l | l | l | l | l | l | l |}
+    \hline
+                         & Supervision  & HogSpec     &  SFD     & CCW      & Grasp      & SW        & DL        & BB       & Robustness \\ \hline
+		F-score							 & 0.5341 		  & 0.6193       & 0.5318   & 0.6465   & 0.6324    & 0.5726 	 & 0.6326    & 0.6458   & 0.7007 \\ \hline
+    Recall               & 0.6667       & 0.7172       & 0.6162   & 0.6667   & 0.6566    & 0.7879    & 0.6969    & 0.6971   & 0.7576 \\ \hline
+    Precision            & 0.4455       & 0.5449       & 0.4678   & 0.6275   & 0.6100    & 0.4497    & 0.5791    & 0.6017   & 0.6518 \\
+    \hline
+    \end{tabular}
+    \caption{Quantitative comparison between different methods.} \label{tb:QNT1}
+\end{table*}
+
+
+We then compare with the symmetry factored distance (SFD) method \cite{LIPMANsig2010} (Figure \ref{fig:prDetection}a, purple), which uses global symmetry to find re-occurring objects. We compute the symmetry factor distance (SFD) between each pair of (densely sampled) HoG features and apply spectral clustering (number of clusters is set to 10). The SFD is computed by the Euclidean distance between the overlapping HoG cells of the original image and the image that is shifted by the translation vector between the pair of features. The spectral clustering produces an image segmentation where each segmentation represents the union of a set of repetitive objects. We further ``cut out'' individual objects from the clusters using a simple 4-connected region growing process in the image space. As the purple curve in Figure \ref{fig:prDetection}a shows, this produces low quality detections (F-score of 0.5318). It shows the partial symmetry in the facades is very difficult to identify using global transformation voting. In fact, even directly applying spectral clustering (number of clusters is also set to 10) using HoG distance embedding (Figure \ref{fig:prDetection}a, HogSpec, green) gives better results (F-score of 0.6193).
+
+Next we test two state of the arts image repetition detections \cite{Wu2010DL} and \cite{Liu2013GRASP}. \cite{Wu2010DL} use a grid-based method to identify repetitive structures. Multiple grids can be detected from the same image as different repetitive patterns. This method (Figure \ref{fig:prDetection}a, orange) produces overall good detection ( F-score of 0.6465), especially at the low recall end. However it can not identify non-grid repetitions, which results in the poor performance at the high recall end. Liu et al \cite{Liu2013GRASP} uses stochastic search to find correlated features and links them into repetitive objects. This is similar to our building block detection which uses spectral clustering to find correlated detections and then uses graph cut to find object labels for each feature. The key of \cite{Liu2013GRASP} is a ``greedy randomized adaptive search procedure'' that drive the search toward maximum average affinity between the objects. We implement the search algorithm as described in \cite{Liu2013GRASP}, and restrict the search to translational symmetry to avoid over-fitting of the actually translational facade dataset. We found the search often produce less satisfactory detections (Figure \ref{fig:prDetection}a, blue, F-score of 0.6324). One important reason is they do not enforce bijective matching between features of repetitive objects. Although this allows the handling of object deformation, the model still over-fit repetitions that are observed from the front-parallel view. Another reason is the use of \emph{average affinity} as the single optimizing criteria, which biases the search towards movement that removes potential outliers and leads to partial detection. Compare to these methods, our detection (Figure \ref{fig:prDetection}a, red) gives the best F-score (0.7007). Compare to the second best method (\cite{Wu2010DL}) we have significant better performance at the high recall end with only marginal lost on the high precision end. 
+
+Figure \ref{fig:QLTDetection} shows an qualitative comparison between different methods. The repetitive objects are indicated by boxes of the same color. Readers can see that supervised sliding window detection (Figure \ref{fig:QLTDetection} a) can result in missdetection due to insufficient training data. HoG embedding  (Figure \ref{fig:QLTDetection} b) only finds noisy correspondences and does not identify objects of the same shape. Symmetry factored distance \cite{LIPMANsig2010} (Figure \ref{fig:QLTDetection} c) does not work at all for this case as no global transformation can be identified. Grid-based repetition detection \cite{Wu2010DL}  (Figure \ref{fig:QLTDetection} d) gives accurate but incomplete image parsing result. \cite{Liu2013GRASP} (Figure \ref{fig:QLTDetection} e) also produce sub-optimal detection due to the greedy searching procedure. In comparison, our result (Figure \ref{fig:QLTDetection} i) is able to find the optimal image parsing under the definition of building blocks. Notice it is able to distinguish two different types of window -- one with arched top (red) and the other without (yellow). This shows our algorithm is able to identify the largest reusable pieces.
+
+
+\subsubsection{Comparison: different steps}
+
+We also compare the intermediate results output from different steps of our algorithm (Figure \ref{fig:prDetection}b). The baseline (black) is the sliding window detection using initial kmeans clustering. We use the median of each cluster as a template for sliding, and keep upto 10 clusters to generate the per-image PR curves. As readers can see this gives very low quality detection (F-score of 0.5726). Discriminative learning (Figure \ref{fig:prDetection}b, orange) significantly boosts the performance (F-score of 0.6326), thanks to the weight vector learned from SVMs. Building block detection (Figure \ref{fig:prDetection}b, blue) is able to further improve the detection (F-score of 0.6458) and produce a more compact structure representation (the average number of cliques per image is reduced from 17 to 5). Model selection (Figure \ref{fig:prDetection}b, red) avoids overfitting to the initial kmeans dictionary and produces the best result. An example of qualitative comparison of these steps can also be found in Figure \ref{fig:QLTDetection} f-i.
+
+\subsubsection{Stress test}
+
+We perform stress test by incorporating a threshold of minimum overlapping ratio for valid matches in Equation \ref{eq:match}.  The overlapping ratio, as its name suggested, is computed by normalizing the area of two intersecting bounding boxes. For precision, the area is normalized by the size of the detected object; for recall, it is normalized by by the size of the ground truth object. Increasing the threshold from zero to 0.5 creates the F-measurement v.s. pressure curves as shown in Figure \ref{fig:prDetection}c and Figure \ref{fig:prDetection} d. Overall our method performs better than all other methods. The only exception is it is overtaken by \cite{Wu2010DL} (Figure \ref{fig:prDetection}c, orange) when pressure is larger than 0.25. This is because our method tends to over-segment the objects which results in low recall for the high pressure test. 
+
+
+\begin{figure*}[t!]
+  \centering
+	\begin{tabular}{ccccc}
+    \centering
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_ssw.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_hogspec.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_sfd.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_ccw.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_grasp.png} \\
+    Supervised sliding window &
+    HoG embedding &
+    \protect\cite{LIPMANsig2010} &
+    \protect\cite{Wu2010DL} &
+    \protect\cite{Liu2013GRASP} \vspace{3mm} \\
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_sw.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_dl.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_bb.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_rob.png} &
+		\includegraphics[width=.35\columnwidth]{Fig/fac(61)_GT.png} \\
+		Unsupervised sliding window&
+    Discriminative learning&
+    Building Blocks&
+    Model Selection&
+    Ground truth
+	\end{tabular}
+    \caption{Qualitative comparisons between different repetition detection methods (top) and between different steps of our methods. Notice our final output (i) is able to distinguish two different types of window -- one with arched top (red) and the other without (yellow). This shows our algorithm is able to identify the largest re-usable pieces by building block definition. }%
+    \label{fig:QLTDetection}%
+\end{figure*}
+
+
+\section{Image Synthesis}
+\label{sec:ImageSynthesis}
+
+Our image parsing results have potentials to benefit many interesting applications in both computer vision and computer graphics. In this paper we demonstrate building blocks are able to improve image synthesis and editing. Specifically, they provide a higher level guidance that reduces certain artefacts produced by conventional pixel-based synthesis methods. In addition, they can be used as an image abstraction that makes the task of interactive editing more convenient. 
+
+\revised{
+The key idea is to augment the conventional pixel based MRF models \cite{Pritch09ICCV} using an additional layer of building block information. Specifically, we propose two different types of building blocks constraints: First, as each pixel has a building block class label (zero for the background), so it should be distinguishable from pixels of different classes. Second, each pixel, except for the background, can be augmented by the local coordinate frame of its parent building block, so it can be distinguished from other pixels inside the same building block. Inspired by the success of pixel offset statistics \cite{He2012PO}, we use building blocks offset statistics to generate better candidate shifts for stitching.}
+
+\revised{
+The rest of this section explains how to apply these additional constraints for two specific applications: image targeting and interactive editing. Although in this paper we apply the constraints to synthesis methods that based on image stitching (\cite{Pritch09ICCV,He2012PO}), in principle they can be also applied to synthesis methods that use patch blending, such as \cite{Kwatra2005TO} and \cite{Simakov2008SV}. We choose to focus on the former methods because they perform better for synthesizing regular or semi-regular structures. Nonetheless results from \cite{Kwatra2005TO} and \cite{Simakov2008SV} will also be extensively discussed in the paper and in the supplementary materials.
+}
+
+
+\subsection{Image Retargeting}
+
+The goal of image retargeting is to synthesis new images by resizing. In \cite{Pritch09ICCV} and \cite{He2012PO} this is cast as a labeling problem, where each pixel in the synthesized image is assigned with a offset label that maps it back to the input image. Candidate labels $L$ can be generated by prescription \cite{Pritch09ICCV},  or by co-occurrence statistics \cite{He2012PO}. They are assigned to the synthesized image by minimizing the standard MRF energy function (Equation \ref{eq:GC}). Although these method are designed to find optimal labeling assignment, implausible stitches can still occur due to only pixel level energy is minimized (Figure \ref{fig:SynCompare}, see the bottom left and bottom middle pictures of each group). 
+
+\subsubsection{Building Blocks Constraints}
+
+To overcome this problem, we incorporate building block constraints into the energy function and redefine the smoothness term as the following:
+
+\revised{
+\begin{equation}
+E_{s} = \omega_{1}E_{s}^{pixel} + \omega_{2}E_{s}^{class} + \omega_{3}E_{s}^{position}
+\label{eq:EPixelSmooth}
+\end{equation}
+}
+
+Here $E_{s}^{pixel}$ is the conventional pixel-based smoothness term as used by \cite{Pritch09ICCV} and \cite{He2012PO}. It penalizes two neighboring labels $a, b$ that creates a seam for adjacent pixels $x, x'$:
+%
+\begin{equation}
+E_{s}^{pixel}(x, x', a, b) = |I(x + s_{a}) - I(x + s_{b})| + |I(x' + s_{a}) - I(x' + s_{b})|
+\label{eq:ESmooth}
+\end{equation}
+%
+In addition to it, we define two building block costs: the class smoothness cost $E_{s}^{class}$ and the position smoothness cost $E_{s}^{position}$. They are Potts models with different distance metrics: The class smoothness term uses the hamming distance between building block class labels \revised{$E_{s}^{class} = $}, so is able to penalizes falsely stitched building block classes. The position smoothness cost uses Eculidean distance between pixels' positions in their parent building block's local frame \revised{$E_{s}^{position} = $}, hence penalizes internally mis-configured building blocks. Notice this term is only activated for pixels that are assigned with the same class label, and the position is normalized according to the size of the parent building block. In this way the position smoothness term has the class smoothness cost as the upper bound. Only in this way the sub-modular constraint for graph cut optimization \cite{BOYKOVpami2001} can be met.
+
+\begin{figure}[t!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{Fig/IntermediumSyn/IntermediumSyn}
+  \caption{IntermediumSyn of each step.} \label{fig:IntermediumSyn}
+\end{figure}
+
+\revised{Notice the theoretical upper bound of these three costs are different: $sup E_{s}^{pixel} = 255 \times 2 = 500$, $sup E_{s}^{class} = 1 \times 2 = 2$, and $sup E_{s}^{position} = 1 \times 4 = 4$. In practice we should weight these costs properly so none of them, especially $E_{s}^{pixel}$, becomes predominant. However, our observation is that it is rare to have large $E_{s}^{pixel}$ surviving in the result -- as they will be naturally removed as clear seams. In practice the ``semantic'' artifacts are caused by pixels of similar values, in which case $E_{s}^{pixel}$ is usually less than 50. Based on this observation, we set $(\omega_{1}, \omega_{2}, \omega_{3})$ to $(1, 10, 2)$ to remove artifacts that couldn't not be handled by $E_{s}^{pixel}$ alone. Figure \ref{fig:IntermediumSyn} b) shows the retargeting result of a) using \cite{Pritch09ICCV}. Although the stitching of the arches is clearly mis-stitched to human, such artifacts can not be avoided if only pixel smoothness is considered. In cooperating the class smoothness cost and the position smoothness cost is able to reduce the artifacts (Figure \ref{fig:IntermediumSyn} c)). The improvement is more obvious in the class label map, shown in the bottom row of the figure. Especially, the noisy yellow labels at the floor of b) is removed, which results in more plausible synthesis in c).}
+
+\subsubsection{Building Blocks Based Offsets}
+\revised{
+As pointed out in \cite{He2012PO}, the selection of offset labels is crucially important to stitching performance. Regular sampling has a risk of being too dense or too sparse for an optimal solution. For example, the artifacts in the middle part of the Figure \ref{fig:IntermediumSyn} c) (glasses window) is caused by a local optimal solution due to offset samples that do not conform to the regularity in the facade. In practice we found synthesis can be significantly improved by using offset labels generated from building blocks statistics, as shown in Figure \ref{fig:IntermediumSyn} d). Our building blocks based offsets sampling is performed as following: we first compute a probability density map (PDF) of offset statistics by accumulating pairwise building blocks offsets. Only building blocks of the same class can vote for their offset. We then detection local peaks in the PDF as \cite{He2012PO} did. These local peaks can be directly used as candidate offsets for image completion, as described in \cite{He2012PO}. For our task of image retargeting, a larger montage must be created so the synthesis domain can be fully covered. In theory this can be achieved by recursively sampling new peaks from the PDF. However the number of offsets will increase as a power function and the search of offset labeling quickly becomes infeasible in practice. To handle this problem, we find predominant offsets and use them as grid generators to efficiently create the montage: the first generator is the strongest peak in the PDF, and the second generator is the next strongest peak that satisfies a minimum angular distance to the first generator. The minimum angular (set to $\frac{\pi}{3}$) requirement de-correlates the two generators so the montage can be efficiently expanded as a 2-D grid in both horizontal and vertical directions. Additional generators can be combined with these two to create extra grids in the pursuit of higher variability in the result. In practice, we find a 2d grid is a good trade off between stability and variability.}
+
+\revised{Since we use a grid based offset layout, it is important to investigate whether such layout can handle various size of the retargeting image. Conventional pixel based method \cite{Pritch09ICCV}\cite{He2012PO} often generates mis-stitched or mis-aligned objects when the image size that is a fraction of the generator (top row, Figure \ref{fig:incompatible}). Figure \ref{fig:incompatible} a) and b) (top row) are created using \cite{He2012PO}, which mis-aligned objects to accommodate them in the retargeted image. Figure \ref{fig:incompatible} c) (top row) is created using \cite{Pritch09ICCV}, which created artificial stitching that distorts the shape of the windows. Such artifacts can be better revealed in the building block label layer, as shown next to the retargeted images. In contrast, building blocks give additional constraints that is able to correct some of these artifacts (bottom row, Figure \ref{fig:incompatible}). Specifically, in Figure \ref{fig:incompatible} a) (bottom), our method consistently uses the ornament (green building block) to fill the middle of the facade and in Figure \ref{fig:incompatible} b) (bottom), it snaps balcony and the lower floor window (yellow and blue building blocks). Notice for these cases, we use the same generators of the top row to create the results in the bottom row, so the improvement purely comes from the building blocks constraints. However, we can also create a montage that is larger than the retarget image and allow regular structure to propagate beyond the image boundary. This is used to create Figure \ref{fig:incompatible} c) (bottom). Despite these successful examples, it is worth mentioning failure cases can also be created for strongly incompatible image sizes. This will be discussed together with other failure cases later in the paper.}
+
+\begin{figure*}[t!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{Fig/incompatible/incompatible}
+  \caption{incompatible.} \label{fig:incompatible}
+\end{figure*}
+
+\subsubsection{User study}
+\revised{Here comes the user study.}
+
+\revised{discuss consistent sampling w.r.t \cite{He2012PO} in the user study section. The later is true because the statistics is acquired from the same information (building blocks labels) that is used for guiding the synthesis. }
+
+
+
+
+Figure \ref{fig:SynCompare} shows qualitative comparison between different synthesis methods. As readers can see blending based methods, such as \cite{Kwatra2005TO} and \cite{Simakov2008SV}, tend to create blur due to the averaging of conflicting image patches. Stitching based methods, such as \cite{Pritch09ICCV} and \cite{He2012PO}, do not create blur, but at the cost of creating visually implausible seams. Sometimes such seams are related to image semantic and is unavoidable if only pixel-level optimization is used. For example, in the facade example of Figure \ref{fig:SynCompare}, \cite{He2012PO} falsely stitched two different type of windows, as pointed out by the red arrow. In contrast, with building blocks constraint we are able to avoid such artefact based on a higher level of image understanding (see our supplementary video for more details). 
+
+Similar to \cite{He2012PO}, we use co-occurrence statistics to generate candidate labels. This improves the quality and efficiency of the synthesis. Different to \cite{He2012PO}, we do not need to compute pairwise pixel distance to get the offset image statistics. Instead, can we directly use the co-occurrence statistics between building blocks. In practice we can sample candidate labels on the fly to generate randomness in the synthesis results (see our supplementary video for an example).
+
+\begin{figure*}
+	\centering
+		\includegraphics[width=0.97\linewidth]{Fig/SynCompare.png}
+	\caption{Qualitative comparisons of image retargeting. For each example, we show the input image (top left), the results of \protect\cite{Kwatra2005TO} (top middle), \protect\cite{Simakov2008SV} (top right), \protect\cite{Pritch09ICCV} (bottom left), \protect\cite{He2012PO} (bottom middle) and our result (bottom right).}
+	\label{fig:SynCompare} \vspace{-10pt}
+\end{figure*}
+
+
+\subsection{Interactive editing}
+
+Building blocks also provide an image abstraction that makes interactive editing more convenient. Figure \ref{fig:Edit} shows some examples of user edited facades (more examples can be found in the supplementary video). There are various ways to utilize building blocks for user interaction: For example, they can be used as handles for image reshuffle. A user can add, remove or shift building blocks in the current image, the other building blocks are then re-configured to keep the structure of the synthesized image plausible. A user can also scribble a guidance map in a ``paint by \emph{building block} number'' fashion for creating new images. In this case, the guidance map is used to compute the data cost in Equation \ref{eq:GC}, which encourages the synthesized labeling map to match the guidance. Thanks to our automatic image parsing algorithm, users do not need to create the guidance map for the input image (like \cite{Hertzmann2001IA} did). In such way they are free from the non-trivial image analysis tasks, hence can focus on the creative side of the work. 
+
+\begin{figure*}
+	\centering
+		\includegraphics[width=1\linewidth]{Fig/Edit.png}
+	\caption{Examples of images that are generated by user editing.}
+	\label{fig:Edit} \vspace{-10pt}
+\end{figure*}
+ 
+
+\revised{
+\subsection{Failure Cases}
+Despite the benefit of building blocks constraints, our method can still fail due to various types of reasons. We discuss some of the representative cases in Figure \ref{fig:failure}. The first example (top left) shows contour intuitive stitching can be generated due to the lack of information for non-repetitive objects, in this case, the hexagonal window. In additional, the regular ornaments at the top of the image encourages and the color variation in the gray wall also contribute to the artifact. The second example (top middle) shows mis-alignment can be generated for inaccurate detection. In this case, the noisy detection of the yellow building block is responsible for the artifacts in the retargeted facade. The third example (top right) shows a case of strongly incompatible image size. Here the energy minization only gives suboptimal solution that breaks the regularity of the scene. The fourth example (bottom left) failed to capture the global reflective symmetry in the input image, as well as it Palladian roof. The last example (bottom right) shows an example of complex, non-repetitive structure where our detection failed to find useful structure. In this case our method performs like a texture synthesis and creates artifacts (in the middle of the image).}
+
+
+
+\begin{figure*}
+	\centering
+		\includegraphics[width=1\linewidth]{Fig/failure/failure}
+	\caption{failure.}
+	\label{fig:failure} \vspace{-10pt}
+\end{figure*}
+ 
+
+\section{Conclusions and Future Work}
+
+We have a proposed a new method for discovering image structure and utilizing it in image synthesis. The image parsing algorithm is our main contribution. It detects translational building blocks in images based on fuzzy correspondence information from HoG descriptors. No human intervention and no training data is required. Our parsing algorithm is able to detect meaningful image elements in even challenging images. It outperforms discriminative feature clustering that lack the notion of building blocks as well as grid-based detectors that rely on regularly placed instances in a large-scale benchmark with human-labeled data. As an application, we show conventional image synthesis can be improved by augmenting the pixel-based MRF model with building block information. We also demonstrate building blocks as convenient handles for interactive image editing. 
+
+\textbf{Limitations and Future Work:} Our method has a number of limitations, some of which could be addressed in future work. First of all, it is limited to translational building blocks. While the feature and learning pipeline is able to compensate some distortions, strong perspective, scaling, or rotation cannot be handled. We believe that this can be extended quite easily; the main challenge is that we need to replace the global alignment of co-occurrence maps with local alignments that take the coordinate frame of pairwise matches into account. Second, as shown in the pressure test, statistics favors the grid-based detection when the demand of shape accuracy is high. This implies higher level regularity, when observed, should be incorporated to improve our detection. This is important because only high quality detection is able to help later applications. For example, inaccurate detection can only downgrades image synthesis by imposing useless constraints. Further, although our model uses tiling grammar to extend the local MRF model, the inference of such grammar is combinatorially hard. In many cases our model still fail to find a global optimal solution and consequently, failed to correct structural artefact in the synthesized image. Here, we could think of including more comprehensive, global relations such as symmetry or hierarchy~\cite{Hu2013PPI}, or we could use the inverse procedural modeling approach in the spirit of \cite{BOKELOHsig2010,Sylvain2010AT} to obtain stronger guarantees for a subset of structures. In summary, conventional pixel-level synthesis has to rely on MRF-based texture generation; while guidance helps, we still observe artifacts and failure cases. A more fundamental understanding of image structure would be necessary to obtain more powerful models.
+
+\begin{acks}
+We are grateful to the following people ... 
+\end{acks}
+
+\bibliographystyle{acmtog}
+\bibliography{paper}
+
+
+\received{September 2008}{March 2009}
+
+\end{document}

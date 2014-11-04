@@ -6,12 +6,12 @@ define_COOC_DefaultParams;
 
 % Set experiment parameters
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'OffsetStatistics';
+P.name_dataset = 'Teaser';
 P.name_data = 'Resized';
-P.name_prefix = 'OffsetStatistics';
+P.name_prefix = 'Teaser';
 P.name_format = '.jpg';
 P.output_path = [P.name_path P.name_dataset '\' P.name_data '\resultAIO\']; mkdir(P.output_path);
-P.eva_num_img = 21;
+P.eva_num_img = 10;
 P.robustness_num_iter = 20;
 
 % parallel
