@@ -517,14 +517,6 @@ As pointed out in \cite{He2012PO}, the selection of offset labels is crucially i
   \caption{incompatible.} \label{fig:incompatible}
 \end{figure*}
 
-\subsubsection{User study}
-\revised{Here comes the user study.}
-
-\revised{discuss consistent sampling w.r.t \cite{He2012PO} in the user study section. The later is true because the statistics is acquired from the same information (building blocks labels) that is used for guiding the synthesis. }
-
-
-
-
 Figure \ref{fig:SynCompare} shows qualitative comparison between different synthesis methods. As readers can see blending based methods, such as \cite{Kwatra2005TO} and \cite{Simakov2008SV}, tend to create blur due to the averaging of conflicting image patches. Stitching based methods, such as \cite{Pritch09ICCV} and \cite{He2012PO}, do not create blur, but at the cost of creating visually implausible seams. Sometimes such seams are related to image semantic and is unavoidable if only pixel-level optimization is used. For example, in the facade example of Figure \ref{fig:SynCompare}, \cite{He2012PO} falsely stitched two different type of windows, as pointed out by the red arrow. In contrast, with building blocks constraint we are able to avoid such artefact based on a higher level of image understanding (see our supplementary video for more details). 
 
 Similar to \cite{He2012PO}, we use co-occurrence statistics to generate candidate labels. This improves the quality and efficiency of the synthesis. Different to \cite{He2012PO}, we do not need to compute pairwise pixel distance to get the offset image statistics. Instead, can we directly use the co-occurrence statistics between building blocks. In practice we can sample candidate labels on the fly to generate randomness in the synthesis results (see our supplementary video for an example).
@@ -536,6 +528,58 @@ Similar to \cite{He2012PO}, we use co-occurrence statistics to generate candidat
 	\label{fig:SynCompare} \vspace{-10pt}
 \end{figure*}
 
+\begin{figure*}[t!]
+  \centering
+	\begin{tabular}{cccc}
+    \centering
+		\includegraphics[width=.35\columnwidth]{Fig/QLT_representative/ShiftMap(2).jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/ShiftMap(2)_syn_shfitmap.jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/ShiftMap(2)_syn_offset.jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/ShiftMap(2)_syn_ours.jpg} \\
+		\includegraphics[width=.35\columnwidth]{Fig/QLT_representative/OffsetStatistics(0).jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/OffsetStatistics(0)_syn_shiftmap.jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/OffsetStatistics(0)_syn_offset.jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/OffsetStatistics(0)_syn_ours.jpg} \\
+    input image &
+    \protect\cite{Pritch09ICCV} &
+    \protect\cite{He2012PO} &
+    ours \vspace{3mm} \\
+		\includegraphics[width=.35\columnwidth]{Fig/QLT_representative/TextureOptimization(20).jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/TextureOptimization(20)_syn_TO.png} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/TextureOptimization(20)_syn_BDS.png} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/TextureOptimization(20)_syn_ours.jpg} \\
+		\includegraphics[width=.35\columnwidth]{Fig/QLT_representative/Bidrectional(3).jpg} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/Bidrectional(3)_syn_TO.png} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/Bidrectional(3)_syn_BDS.png} &
+		\includegraphics[width=.52\columnwidth]{Fig/QLT_representative/Bidrectional(3)_syn_ours.jpg} \\
+		input image &
+    \protect\cite{Kwatra2005TO}&
+    \protect\cite{Simakov2008SV}&
+    ours
+	\end{tabular}
+    \caption{Qualitative comparison with representative images of alternative methods. }%
+    \label{fig:QLT_representative}%
+\end{figure*}
+
+
+
+\subsubsection{User study}
+\revised{We perform comprehensive user studies to evaluate our method against different methods on different datasets. Specifically, we compare with four different alternatives methods: shiftmap\cite{Pritch09ICCV}, pixel offset statistics\cite{He2012PO}, texture optimization\cite{Kwatra2005TO} and bidirectional synthesis\cite{Simakov2008SV}. These four approaches can be divided into two categories: stitching based methods \cite{Pritch09ICCV}\cite{He2012PO} and blending based methods \cite{Kwatra2005TO}\cite{Simakov2008SV}. Our observation is stitching based methods tend to perform better on near-regular or regular structures, and blending based methods tend to handle stochastic texture better. For this reason, we use different dataset to compare with different methods: we compare with \cite{Pritch09ICCV}\cite{He2012PO} on the facade dataset of \cite{ZHANGsig13} (600 images) and on the collection of their representative images (46 images). We compare with \cite{Kwatra2005TO}\cite{Simakov2008SV} only on the collection of their representative images (43 images) as they are not designed to handle image with strong regularities.}
+
+\revised{The task of the user study is following: we create a new image of 1.5 width of the original image use different methods. An user is shown with 100 randomly selected input images with a pair of its retargeted results. One of the results is created using our method, and the other one is created using a different method. The user is asked to select the better one from the pair. The user can also choose not to give an selection when the two images has similar visual quality. We collect the result from 45 trials (4500 pairwise comparisons) and analysis the average performance as show in Figure \ref{fig:userstudy}. Figure \ref{fig:QLT_representative} shows some examples of the images used for the user study (input are representative images of the competitors). The full collection of the images used for user study with extra analysis of the results can be found in the supplementary materials.}
+
+\revised{Figure \ref{fig:userstudy} a) compares the performance of our method against \cite{Pritch09ICCV}\cite{He2012PO} on the facade dataset of \cite{ZHANGsig13}. In this figure we also report our results in two different settings: building blocks constraints without building blocks offsets (\emph{ours1}) and building blocks constraints with building blocks offsets (\emph{ours2}). This is to show the improvement gained from different aspects of our methods. When building blocks offsets are not used, we use the offsets from the competitor algorithm to ensure the difference in the results purely come from the building blocks constraints. As Figure \ref{fig:userstudy} a) shows, our result is selected for $25\%$ and $20\%$ of the time, compared to \cite{Pritch09ICCV}'s $6\%$ and \cite{He2012PO}'s $5.1\%$ respectively. With building blocks offset, our advantage is increased to $40\%$ and $24\%$, compared to \cite{Pritch09ICCV}'s $2.6\%$ and \cite{He2012PO}'s $3.1\%$. This indicates that combing building blocks offsets with building blocks constraints gives overall the best performance, as the offsets are acquired from the same information (building blocks labels) that is used for guiding the synthesis.}
+
+\revised{Figure \ref{fig:userstudy} b) is the same evaluation using the representative images from \cite{Pritch09ICCV} and \cite{He2012PO}. In this we can still achieve comparable, sometimes even better, performance with respect to the alternative methods (with statistics our method is selected for $33\%$ of the time, compared to \cite{He2012PO}'s $22\%$).} 
+
+\revised{Figure \ref{fig:userstudy} c) compares the performance of our method against \cite{Kwatra2005TO}\cite{Simakov2008SV} on their representative images. Here we only report our result with building blocks statistics as the competitors do not use shifted copies of the input image but patches. Nonetheless, our result is selected for $23\%$ and $24\%$ of the time, compared to \cite{Kwatra2005TO}'s $7\%$ and \cite{Simakov2008SV}'s $9\%$ respectively. }
+
+\begin{figure*}
+	\centering
+		\includegraphics[width=1\linewidth]{Fig/userstudy/userstudy}
+	\caption{userstudy.}
+	\label{fig:userstudy} \vspace{-10pt}
+\end{figure*}
 
 \subsection{Interactive editing}
 
