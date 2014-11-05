@@ -25,6 +25,7 @@
 \usepackage{amssymb}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+
 \newcommand{\domain}{\mathcal{I}}
 \newcommand{\reals}{\mathbb{R}}
 \newcommand{\bv}[1]{\mathbf{#1}}
@@ -45,6 +46,18 @@
 \newcommand{\matchFun}{m}
 \newcommand{\matchFunExplain}{$m$ for \emph{``matching''}}
 \newcommand{\corrMap}{m}
+
+%% revision
+%\usepackage{changes}
+%\usepackage{lipsum}
+%\definechangesauthor[name={Chris change}, color=orange]{chris}
+%\setremarkmarkup{(#2)}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+\definecolor{added}{rgb}{0.2,0.3,0.8}
+\definecolor{deleted}{rgb}{0.9,0.3,0.2}
+\newcommand{\added}[1]{{\color{added}{}#1}}
+\newcommand{\deleted}[1]{{\color{deleted}\sout{#1}}}
 
 %%% misc
 \usepackage{lineno}
