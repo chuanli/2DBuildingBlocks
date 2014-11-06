@@ -14,6 +14,10 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
 \newlabel{sec:Introduction}{{1}{1}}
 \@LN@col{2}
+\citation{Kwatra2005TO}
+\citation{Simakov2008SV}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
 \citation{Lee2009SR,Wu2010DL}
 \citation{Mitra2006PAA,Pauly2008,LIPMANsig2010,HuangMesh2013}
 \citation{Wang2008Factor,Agrawal2012RI,Bokeloh2009SD}
@@ -22,6 +26,7 @@
 \citation{Hays2006Texture,Mitra2006PAA}
 \citation{Pauly2008,Wu2010DL,Zhao2011TS,Tai2012PF}
 \citation{Lin2006Eva}
+\citation{Wang2008Factor}
 \citation{KALOJANOVsgp2012}
 \citation{LIPMANsig2010}
 \citation{Felzenszwalb2010DPM}
@@ -53,54 +58,52 @@
 \citation{DALALcvpr2005}
 \citation{Felzenszwalb2010DPM}
 \@LN@col{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Feature correspondence can be sharpened by learning one-vs-all SVM. discriminative learning leads to sharper results with better signal-to-noise level.\relax }}{3}}
-\newlabel{fig:DL1}{{3}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Image Parsing}{3}}
 \newlabel{sec:ImageParsing}{{3}{3}}
 \@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Feature correspondence can be sharpened by learning one-vs-all SVM. discriminative learning leads to sharper results with better signal-to-noise level.\relax }}{3}}
+\newlabel{fig:DL1}{{3}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Discriminative learning iteratively increases the purity of each cluster.\relax }}{3}}
 \newlabel{fig:DL2}{{4}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Step 1: Discriminative Features}{3}}
 \newlabel{sec:IterativeDL}{{3.1}{3}}
-\newlabel{eq:finalMatching}{{1}{3}}
+\citation{REF08a}
 \citation{Mitra2006PAA}
 \@LN@col{1}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces We detect building block types by clustering correspondence maps. Each building block type has the same correspondence map up to a global translation.\relax }}{4}}
 \newlabel{fig:coOccurranceDetection}{{5}{4}}
+\newlabel{eq:finalMatching}{{1}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Step 2: Building Blocks Transformations}{4}}
 \newlabel{sec:ComputingCooC}{{3.2}{4}}
-\newlabel{eq:correspondences}{{2}{4}}
 \@LN@col{2}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Image Parising\relax }}{4}}
+\newlabel{eq:correspondences}{{2}{4}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Image {\leavevmode {\color  {revisionColor}Parsing}}\relax }}{4}}
 \newlabel{alg:ImageParsing}{{1}{4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Co-occurance clustering}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Co-occurrence clustering}{4}}
 \newlabel{eq:corr-map}{{3}{4}}
-\newlabel{eq:distanceMatrix}{{4}{4}}
 \citation{BOYKOVpami2001}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces By spectral embedding the co-occurrence maps (right), our algorithm is able to group together parts of the same type of building block. Notice the word A and B have very different visual appearance but are highly correlated by their co-occurrence maps. In contrast, spectral embedding the HoG features (middle) will falsely group visually similar patches that do not belong the same building block, for example, word B and C.\relax }}{5}}
 \newlabel{fig:SpectralClustering}{{6}{5}}
 \@LN@col{1}
+\newlabel{eq:distanceMatrix}{{4}{5}}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The outputs of the two-step labeling assigment problem. Left: the first step computes a labeling map for building block types. Right: the second step computes a labeling map for building block instances. The slight color variation in the right picture is for helping readers separate different building block instances.\relax }}{5}}
+\newlabel{fig:GraphCut}{{7}{5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Step 3: Computing Building Blocks}{5}}
 \newlabel{sec:ComputingBB}{{3.3}{5}}
 \newlabel{eq:GC}{{5}{5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Class Labeling}{5}}
-\@LN@col{2}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The outputs of the two-step labeling assigment problem. Left: the first step computes a labeling map for building block types. Right: the second step computes a labeling map for building block instances. The slight color variation in the right picture is for helping readers separate different building block instances.\relax }}{5}}
-\newlabel{fig:GraphCut}{{7}{5}}
-\newlabel{eq:gc1data}{{6}{5}}
 \citation{BOYKOVpami2001}
 \citation{ZHANGsig13}
 \@LN@col{1}
+\newlabel{eq:gc1data}{{6}{6}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Instance Labeling}{6}}
 \newlabel{eq:gc2data}{{7}{6}}
+\@LN@col{2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Step 4: Model Selection}{6}}
 \newlabel{sec:ModelSelection}{{3.4}{6}}
-\@LN@col{2}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Building blocks from different trials are combined to give the optimal explanation of the input image.\relax }}{6}}
-\newlabel{fig:Rob}{{8}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Evaluation}{6}}
 \newlabel{sec:Evaluation}{{4}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset}{6}}
 \citation{MartinFTM01}
 \citation{LIPMANsig2010}
 \citation{Wu2010DL}
@@ -108,27 +111,29 @@
 \citation{LIPMANsig2010}
 \citation{Wu2010DL}
 \citation{Liu2013GRASP}
-\citation{LIPMANsig2010}
-\citation{Wu2010DL}
-\citation{Liu2013GRASP}
-\citation{Wu2010DL}
-\citation{Liu2013GRASP}
-\citation{Liu2013GRASP}
-\citation{Liu2013GRASP}
-\citation{Wu2010DL}
 \@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Building blocks from different trials are combined to give the optimal explanation of the input image.\relax }}{7}}
+\newlabel{fig:Rob}{{8}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Methodology}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Precision and Recall}{7}}
 \newlabel{eq:match}{{8}{7}}
+\@LN@col{2}
 \newlabel{eq:precision}{{9}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Curve Generation}{7}}
-\@LN@col{2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Results Analysis}{7}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Comparison: different methods}{7}}
 \citation{LIPMANsig2010}
 \citation{Wu2010DL}
 \citation{Liu2013GRASP}
 \citation{Wu2010DL}
+\citation{Liu2013GRASP}
+\citation{Liu2013GRASP}
+\citation{Liu2013GRASP}
+\citation{Liu2013GRASP}
+\citation{Wu2010DL}
+\citation{Liu2013GRASP}
+\citation{Liu2013GRASP}
 \citation{LIPMANsig2010}
 \citation{Wu2010DL}
 \citation{Liu2013GRASP}
@@ -138,12 +143,12 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {PR curves: different steps}}}{8}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Pressure tests: different methods}}}{8}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Pressure tests: different steps}}}{8}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Quantitative comparison between different methods.\relax }}{8}}
-\newlabel{tb:QNT1}{{I}{8}}
 \@LN@col{1}
 \@LN@col{2}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Comparison: different steps}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Stress test}{8}}
+\citation{Wu2010DL}
+\citation{LIPMANsig2010}
+\citation{Wu2010DL}
+\citation{Liu2013GRASP}
 \citation{Liu2013GRASP}
 \citation{Pritch09ICCV}
 \citation{He2012PO}
@@ -158,9 +163,12 @@
 \citation{He2012PO}
 \citation{Pritch09ICCV}
 \citation{He2012PO}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Qualitative comparisons between different repetition detection methods (top) and between different steps of our methods. Notice our final output (i) is able to distinguish two different types of window -- one with arched top (red) and the other without (yellow). This shows our algorithm is able to identify the largest re-usable pieces by building block definition. \relax }}{9}}
-\newlabel{fig:QLTDetection}{{10}{9}}
+\citation{BOYKOVpami2001}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Quantitative comparison between different methods.\relax }}{9}}
+\newlabel{tb:QNT1}{{I}{9}}
 \@LN@col{1}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Comparison: different steps}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Stress test}{9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Non-facade images}{9}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Image Synthesis}{9}}
 \newlabel{sec:ImageSynthesis}{{5}{9}}
@@ -169,62 +177,57 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}{\leavevmode {\color  {revisionColor}Building Blocks Constraints}}}{9}}
 \newlabel{eq:ESmooth}{{10}{9}}
 \newlabel{eq:EPixelSmooth}{{11}{9}}
-\citation{Pritch09ICCV}
-\citation{Pritch09ICCV}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Qualitative comparisons between different repetition detection methods (top) and between different steps of our methods. Notice our final output (i) is able to distinguish two different types of window -- one with arched top (red) and the other without (yellow). This shows our algorithm is able to identify the largest re-usable pieces by building block definition. \relax }}{10}}
+\newlabel{fig:QLTDetection}{{10}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces {\leavevmode {\color  {revisionColor}Detection on non-fa{\c {c}}ades images.}}\relax }}{10}}
 \newlabel{fig:NonFacade}{{11}{10}}
 \@LN@col{1}
+\@LN@col{2}
 \newlabel{eq:class}{{12}{10}}
-\newlabel{eq:position}{{13}{10}}
-\@LN@col{2}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces {\leavevmode {\color  {revisionColor}Compared to \cite {Pritch09ICCV}, using building blocks is able to reduce the artifacts in the retargeting c). The result is further improved using building blocks offset statistics d).}}\relax }}{10}}
-\newlabel{fig:IntermediumSyn}{{12}{10}}
+\citation{Pritch09ICCV}
+\citation{Pritch09ICCV}
 \citation{Pritch09ICCV}
 \citation{He2012PO}
 \citation{He2012PO}
-\citation{He2012PO}
-\citation{He2012PO}
-\citation{He2012PO}
-\citation{He2012PO}
-\citation{He2012PO}
-\citation{He2012PO}
-\citation{Pritch09ICCV}
-\citation{He2012PO}
-\citation{Kwatra2005TO}
-\citation{Simakov2008SV}
-\citation{Pritch09ICCV}
-\citation{He2012PO}
-\citation{Kwatra2005TO}
-\citation{Simakov2008SV}
-\citation{Pritch09ICCV}
-\citation{He2012PO}
-\citation{Kwatra2005TO}
-\citation{Simakov2008SV}
-\citation{Pritch09ICCV}
-\citation{He2012PO}
-\citation{ZHANGsig13}
-\citation{Kwatra2005TO}
-\citation{Simakov2008SV}
-\citation{Pritch09ICCV}
-\citation{He2012PO}
-\citation{ZHANGsig13}
-\citation{Pritch09ICCV}
 \citation{He2012PO}
 \citation{He2012PO}
 \@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces {\leavevmode {\color  {revisionColor}Compared to \cite {Pritch09ICCV}, using building blocks is able to reduce the artifacts in the retargeting c). The result is further improved using building blocks offset statistics d).}}\relax }}{11}}
+\newlabel{fig:IntermediumSyn}{{12}{11}}
+\newlabel{eq:position}{{13}{11}}
+\@LN@col{2}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}{\leavevmode {\color  {revisionColor}Building Blocks Offset Statistics}}}{11}}
-\@LN@col{2}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Evaluation}{11}}
-\citation{Pritch09ICCV}
+\citation{He2012PO}
+\citation{He2012PO}
+\citation{He2012PO}
 \citation{He2012PO}
 \citation{Pritch09ICCV}
 \citation{He2012PO}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces {\leavevmode {\color  {revisionColor}Our method is able to reduce artifacts when the synthesis image is of sizes that are incompatible to the offset labels. Top a) and b): result from \cite {He2012PO}. Bottom a) and c): our results generated with \cite {He2012PO}'s offset labels. Top c): our result with an montage that is of the same size of the retarget image. Top d): our result with an montage that is larger than the retarget image.}}\relax }}{12}}
-\newlabel{fig:incompatible}{{13}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces {\leavevmode {\color  {revisionColor}Qualitative comparison with representative images of alternative methods.}}\relax }}{12}}
-\newlabel{fig:QLT_representative}{{14}{12}}
-\@LN@col{1}
-\@LN@col{2}
+\citation{Kwatra2005TO}
+\citation{Simakov2008SV}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
+\citation{Kwatra2005TO}
+\citation{Simakov2008SV}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
+\citation{Kwatra2005TO}
+\citation{Simakov2008SV}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
+\citation{ZHANGsig13}
+\citation{Kwatra2005TO}
+\citation{Simakov2008SV}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
+\citation{ZHANGsig13}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
+\citation{He2012PO}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
+\citation{Pritch09ICCV}
+\citation{He2012PO}
 \citation{Kwatra2005TO}
 \citation{Simakov2008SV}
 \citation{Kwatra2005TO}
@@ -243,19 +246,20 @@
 \citation{Pritch09ICCV}
 \citation{He2012PO}
 \citation{Hertzmann2001IA}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Evaluation}{12}}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Interactive editing}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Failure Cases}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces {\leavevmode {\color  {revisionColor}Our method is able to reduce artifacts when the synthesis image is of sizes that are incompatible to the offset labels. Top a) and b): result from \cite {He2012PO}. Bottom a) and c): our results generated with \cite {He2012PO}'s offset labels. Top c): our result with an montage that is of the same size of the retarget image. Top d): our result with an montage that is larger than the retarget image.}}\relax }}{13}}
+\newlabel{fig:incompatible}{{13}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces {\leavevmode {\color  {revisionColor}Qualitative comparison with representative images of alternative methods.}}\relax }}{13}}
+\newlabel{fig:QLT_representative}{{14}{13}}
+\@LN@col{1}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions and Future Work}{13}}
 \citation{Hu2013PPI}
 \citation{BOKELOHsig2010,Sylvain2010AT}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Evaluation of image retargeting.\relax }}{13}}
-\newlabel{fig:userstudy}{{15}{13}}
-\@LN@col{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Interactive editing}{13}}
-\@LN@col{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Failure Cases}{13}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions and Future Work}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Qualitative comparisons of image retargeting. For each example, we show the input image (top left), the results of \cite {Kwatra2005TO} (top middle), \cite {Simakov2008SV} (top right), \cite {Pritch09ICCV} (bottom left), \cite {He2012PO} (bottom middle) and our result (bottom right).\relax }}{14}}
-\newlabel{fig:SynCompare}{{16}{14}}
-\@LN@col{1}
-\@LN@col{2}
 \bibstyle{acmtog}
 \bibdata{paper}
 \bibcite{Agrawal2012RI}{\citeauthoryear {Agrawal and Namboodiri}{Agrawal and Namboodiri}{2012}}
@@ -269,20 +273,19 @@
 \bibcite{DALALcvpr2005}{\citeauthoryear {Dalal and Triggs}{Dalal and Triggs}{2005}}
 \bibcite{Dischler2002}{\citeauthoryear {Dischler, Lévy, and Ghazanfarpour}{Dischler et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2002}}
 \bibcite{EfrosL99NP}{\citeauthoryear {Efros and Leung}{Efros and Leung}{1999}}
+\bibcite{REF08a}{\citeauthoryear {Fan, Chang, Hsieh, Wang, and Lin}{Fan et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2008}}
 \bibcite{Felzenszwalb2010DPM}{\citeauthoryear {Felzenszwalb, Girshick, McAllester, and Ramanan}{Felzenszwalb et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2010}}
 \bibcite{Hays2006Texture}{\citeauthoryear {Hays, Leordeanu, Efros, and Liu}{Hays et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2006}}
 \bibcite{He2012PO}{\citeauthoryear {He and Sun}{He and Sun}{2012}}
 \bibcite{Hertzmann2001IA}{\citeauthoryear {Hertzmann, Jacobs, Oliver, Curless, and Salesin}{Hertzmann et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2001}}
 \bibcite{Hu2013PPI}{\citeauthoryear {Hu, Zhang, Wang, Martin, and Wang}{Hu et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2013}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Examples of images that are generated by user editing.\relax }}{15}}
-\newlabel{fig:Edit}{{17}{15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces failure.\relax }}{15}}
-\newlabel{fig:failure}{{18}{15}}
-\@LN@col{1}
-\@LN@col{2}
 \bibcite{HuangMesh2013}{\citeauthoryear {Huang, Guibas, and Mitra}{Huang et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2013}}
 \bibcite{KALOJANOVsgp2012}{\citeauthoryear {Kalojanov, Bokeloh, Wand, Guibas, Seidel, and Slusallek}{Kalojanov et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2012}}
 \bibcite{Kwatra2005TO}{\citeauthoryear {Kwatra, Essa, Bobick, and Kwatra}{Kwatra et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2005}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Evaluation of image retargeting.\relax }}{14}}
+\newlabel{fig:userstudy}{{15}{14}}
+\@LN@col{1}
+\@LN@col{2}
 \bibcite{Kwatra2003Graphcut}{\citeauthoryear {Kwatra, Schodl, Essa, Turk, and Bobick}{Kwatra et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2003}}
 \bibcite{Landes2009}{\citeauthoryear {Landes and Soler}{Landes and Soler}{2009}}
 \bibcite{Lee2009SR}{\citeauthoryear {Lee and Liu}{Lee and Liu}{2010}}
@@ -290,6 +293,10 @@
 \bibcite{Sylvain2010AT}{\citeauthoryear {Lefebvre, Hornus, and Lasram}{Lefebvre et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2010}}
 \bibcite{Leung1996}{\citeauthoryear {Leung and Malik}{Leung and Malik}{1996}}
 \bibcite{Lin2006Eva}{\citeauthoryear {Lin, Hays, Wu, Liu, and Kwatra}{Lin et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2006}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Qualitative comparisons of image retargeting. For each example, we show the input image (top left), the results of \cite {Kwatra2005TO} (top middle), \cite {Simakov2008SV} (top right), \cite {Pritch09ICCV} (bottom left), \cite {He2012PO} (bottom middle) and our result (bottom right).\relax }}{15}}
+\newlabel{fig:SynCompare}{{16}{15}}
+\@LN@col{1}
+\@LN@col{2}
 \bibcite{LIPMANsig2010}{\citeauthoryear {Lipman, Chen, Daubechies, and Funkhouser}{Lipman et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2010}}
 \bibcite{Liu2013GRASP}{\citeauthoryear {Liu and Liu}{Liu and Liu}{2013}}
 \bibcite{Ma2013DET}{\citeauthoryear {Ma, Wei, Lefebvre, and Tong}{Ma et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2013}}
@@ -308,6 +315,12 @@
 \bibcite{Wang2008Factor}{\citeauthoryear {Wang, Wexler, Ofek, and Hoppe}{Wang et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2008}}
 \bibcite{Wei2009STAR}{\citeauthoryear {Wei, Lefebvre, Kwatra, and Turk}{Wei et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2009}}
 \bibcite{Wei2000FT}{\citeauthoryear {Wei and Levoy}{Wei and Levoy}{2000}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Examples of images that are generated by user editing.\relax }}{16}}
+\newlabel{fig:Edit}{{17}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces failure.\relax }}{16}}
+\newlabel{fig:failure}{{18}{16}}
+\@LN@col{1}
+\@LN@col{2}
 \bibcite{Wu2010DL}{\citeauthoryear {Wu, Frahm, and Pollefeys}{Wu et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2010}}
 \bibcite{Wu2010SS}{\citeauthoryear {Wu, Wang, Feng, Wong, Lee, and Heng}{Wu et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2010}}
 \bibcite{ZHANGsig13}{\citeauthoryear {Zhang, Xu, Jiang, Lin, Cohen-Or, and Chen}{Zhang et\nobreakspace  {}al\unhbox \voidb@x \hbox {.}}{2013}}

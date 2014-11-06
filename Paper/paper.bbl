@@ -75,6 +75,13 @@
 \newblock Texture synthesis by non-parametric sampling.
 \newblock In {\em ICCV}. 1033--1038.
 
+\bibitem[\protect\citeauthoryear{Fan, Chang, Hsieh, Wang, and Lin}{Fan
+  et~al\mbox{.}}{2008}]{REF08a}
+{\sc Fan, R.-E.}, {\sc Chang, K.-W.}, {\sc Hsieh, C.-J.}, {\sc Wang, X.-R.},
+  {\sc and} {\sc Lin, C.-J.} 2008.
+\newblock {LIBLINEAR}: A library for large linear classification.
+\newblock {\em Journal of Machine Learning Research\/}~{\em 9}, 1871--1874.
+
 \bibitem[\protect\citeauthoryear{Felzenszwalb, Girshick, McAllester, and
   Ramanan}{Felzenszwalb et~al\mbox{.}}{2010}]{Felzenszwalb2010DPM}
 {\sc Felzenszwalb, P.~F.}, {\sc Girshick, R.~B.}, {\sc McAllester, D.}, {\sc
