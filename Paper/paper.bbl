@@ -49,6 +49,12 @@
   editing.
 \newblock In {\em SIGGRAPH}. 83:1--83:8.
 
+\bibitem[\protect\citeauthoryear{Cho, Shin, and Lee}{Cho
+  et~al\mbox{.}}{2010}]{ChoSL2010}
+{\sc Cho, M.}, {\sc Shin, Y.~M.}, {\sc and} {\sc Lee, K.~M.} 2010.
+\newblock Unsupervised detection and segmentation of identical objects.
+\newblock In {\em CVPR}. IEEE, 1617--1624.
+
 \bibitem[\protect\citeauthoryear{Dai, Riemenschneider, Schmitt, and {Van
   Gool}}{Dai et~al\mbox{.}}{2013}]{Dai2013Facade}
 {\sc Dai, D.}, {\sc Riemenschneider, H.}, {\sc Schmitt, G.}, {\sc and} {\sc
@@ -88,6 +94,12 @@
   and} {\sc Ramanan, D.} 2010.
 \newblock Object detection with discriminatively trained part based models.
 \newblock {\em IEEE Trans. PAMI\/}~{\em 32,\/}~9, 1627--1645.
+
+\bibitem[\protect\citeauthoryear{Gao, Hu, Liu, and Yang}{Gao
+  et~al\mbox{.}}{2009}]{Gao2009}
+{\sc Gao, J.}, {\sc Hu, Y.}, {\sc Liu, J.}, {\sc and} {\sc Yang, R.} 2009.
+\newblock Unsupervised learning of high-order structural semantics from images.
+\newblock In {\em ICCV}. 2122--2129.
 
 \bibitem[\protect\citeauthoryear{Hays, Leordeanu, Efros, and Liu}{Hays
   et~al\mbox{.}}{2006}]{Hays2006Texture}
@@ -129,6 +141,12 @@
   Seidel, H.-P.}, {\sc and} {\sc Slusallek, P.} 2012.
 \newblock Microtiles: Extracting building blocks from correspondences.
 \newblock {\em CGF\/}~{\em 31}, 1597--1606.
+
+\bibitem[\protect\citeauthoryear{Kobayashi and Otsu}{Kobayashi and
+  Otsu}{2008}]{Kobayashi2008}
+{\sc Kobayashi, T.} {\sc and} {\sc Otsu, N.} 2008.
+\newblock Image feature extraction using gradient local auto-correlations.
+\newblock In {\em ECCV}. 346--358.
 
 \bibitem[\protect\citeauthoryear{Kwatra, Essa, Bobick, and Kwatra}{Kwatra
   et~al\mbox{.}}{2005}]{Kwatra2005TO}
@@ -193,6 +211,12 @@
 \newblock Grasp recurring patterns from a single view.
 \newblock In {\em CVPR}. 2003--2010.
 
+\bibitem[\protect\citeauthoryear{Liu, Lin, and Hays}{Liu
+  et~al\mbox{.}}{2004}]{Liu2004}
+{\sc Liu, Y.}, {\sc Lin, W.-C.}, {\sc and} {\sc Hays, J.} 2004.
+\newblock Near-regular texture analysis and manipulation.
+\newblock In {\em SIGGRAPH}. 368--376.
+
 \bibitem[\protect\citeauthoryear{Ma, Wei, Lefebvre, and Tong}{Ma
   et~al\mbox{.}}{2013}]{Ma2013DET}
 {\sc Ma, C.}, {\sc Wei, L.-Y.}, {\sc Lefebvre, S.}, {\sc and} {\sc Tong, X.}
@@ -254,6 +278,18 @@
 \newblock Layered shape synthesis: Automatic generation of control maps for
   non-stationary textures.
 \newblock {\em ACM Trans. Graph.\/}~{\em 28,\/}~5 (Dec.), 107:1--107:9.
+
+\bibitem[\protect\citeauthoryear{Schaffalitzky and Zisserman}{Schaffalitzky and
+  Zisserman}{1998}]{Schaffalitzky1998}
+{\sc Schaffalitzky, F.} {\sc and} {\sc Zisserman, A.} 1998.
+\newblock Geometric grouping of repeated elements within images.
+\newblock In {\em BMVC}. 13--22.
+
+\bibitem[\protect\citeauthoryear{Shechtman and Irani}{Shechtman and
+  Irani}{2007}]{ShechtmanI2007}
+{\sc Shechtman, E.} {\sc and} {\sc Irani, M.} 2007.
+\newblock Matching local self-similarities across images and videos.
+\newblock In {\em CVPR}.
 
 \bibitem[\protect\citeauthoryear{Simakov, Caspi, Shechtman, and Irani}{Simakov
   et~al\mbox{.}}{2008}]{Simakov2008SV}

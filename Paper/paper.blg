@@ -9,6 +9,7 @@ Warning--empty address in BOKELOHsig2010
 Warning--empty booktitle in BOYKOVpami2001
 Warning--empty publisher in Cheng2010RepFinder
 Warning--empty address in Cheng2010RepFinder
+Warning--empty address in ChoSL2010
 Warning--empty publisher in Dai2013Facade
 Warning--empty address in Dai2013Facade
 Warning--empty publisher in DALALcvpr2005
@@ -17,6 +18,8 @@ Warning--empty publisher in Dischler2002
 Warning--empty address in Dischler2002
 Warning--empty publisher in EfrosL99NP
 Warning--empty address in EfrosL99NP
+Warning--empty publisher in Gao2009
+Warning--empty address in Gao2009
 Warning--empty publisher in Hays2006Texture
 Warning--empty address in Hays2006Texture
 Warning--empty publisher in He2012PO
@@ -25,6 +28,8 @@ Warning--empty publisher in Hertzmann2001IA
 Warning--empty address in Hertzmann2001IA
 Warning--no number and no volume in HuangMesh2013
 Warning--page numbers missing in HuangMesh2013
+Warning--empty publisher in Kobayashi2008
+Warning--empty address in Kobayashi2008
 Warning--can't use both volume and number fields in Sylvain2010AT
 Warning--empty publisher in Sylvain2010AT
 Warning--empty address in Sylvain2010AT
@@ -37,6 +42,8 @@ Warning--empty publisher in LIPMANsig2010
 Warning--empty address in LIPMANsig2010
 Warning--empty publisher in Liu2013GRASP
 Warning--empty address in Liu2013GRASP
+Warning--empty publisher in Liu2004
+Warning--empty address in Liu2004
 Warning--empty publisher in MartinFTM01
 Warning--empty address in MartinFTM01
 Warning--empty publisher in Martinovic2012AT
@@ -45,6 +52,10 @@ Warning--empty publisher in Mitra2006PAA
 Warning--empty address in Mitra2006PAA
 Warning--empty publisher in Pritch09ICCV
 Warning--empty address in Pritch09ICCV
+Warning--empty publisher in Schaffalitzky1998
+Warning--empty address in Schaffalitzky1998
+Warning--empty publisher in ShechtmanI2007
+Warning--empty address in ShechtmanI2007
 Warning--empty publisher in Simakov2008SV
 Warning--empty address in Simakov2008SV
 Warning--empty publisher in SINGHeccv2012
@@ -63,4 +74,4 @@ Warning--empty publisher in Wu2010SS
 Warning--empty address in Wu2010SS
 Warning--empty publisher in Zhao2011TS
 Warning--empty address in Zhao2011TS
-(There were 62 warnings)
+(There were 73 warnings)
