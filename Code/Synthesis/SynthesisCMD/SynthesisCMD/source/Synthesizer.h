@@ -85,7 +85,11 @@ public:
 	Mat1b imgInputGray_fullres;
 	static Mat1b imgInputGray_scaled;
 
-	// input label (detection or ground truth)
+	// input rendering label
+	QImage* qimgInputRenderlabel_fullres;
+	Mat3b imgInputRenderlabel_fullres;
+
+	// input class label (detection or ground truth)
 	QImage* qimgInputlabel_fullres; 
 	QImage* qimgInputlabel_scaled;
 	Mat1b imgInputlabel_fullres;
@@ -103,10 +107,14 @@ public:
 	QImage* qimgSyn_fullres;
 	QImage* qimgSyn_scaled;
 	QImage* qimgSynlabelColor_fullres;
+	QImage* qimgSynRenderlabel_fullres;
 	Mat3b imgSyn_fullres;
 	Mat3b imgSyn_scaled;
 	Mat1b imgSynGray_fullres;
 	Mat1b imgSynGray_scaled;
+	Mat3b imgSynRenderlabel_fullres;
+
+
 
 	QImage* qimgInputlabelinterX_fullres; // input repetition labels
 	QImage* qimgInputlabelinterX_scaled;
@@ -198,6 +206,8 @@ public:
 	Mat1i gcolabelSyn_fullres;
 	Mat3b gcoBBlabelSynColor_scaled;
 	Mat3b gcoBBlabelSynColor_fullres;
+
+
 	static vector<Point2i*> gcoNodes;
 
 	//-------------------

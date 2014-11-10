@@ -23,7 +23,7 @@ else if matlabpool('size') > 0 & P.matlabpool_flag ==0
     end
 end
 
-global_scaler = [1.25, 1]; % Chuan(17)
+global_scaler = [1.5, 1]; % Chuan(17)
 
 % parfor i_img = 0:99
 parfor i_img = 0:4
@@ -31,14 +31,14 @@ parfor i_img = 0:4
     % parfor i_img = 0:7
     %     try
     warning('off','all');
-    img_name = ['PatchMatch(' num2str(i_img) ')'];
+    img_name = ['Bidrectional(' num2str(i_img) ')'];
     img_format = '.jpg';
     filename = [img_name img_format];
     P_BDS = [];
-    P_BDS.name_path = ['C:\Chuan\data\2DBuildingBlocks\PatchMatch\Syn\Input\'];
-    P_BDS.name_dataset = 'PatchMatch';
+    P_BDS.name_path = ['C:\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Input\'];
+    P_BDS.name_dataset = 'Bidrectional';
     P_BDS.name_format = '.jpg';
-    P_BDS.output_path = ['C:\Chuan\data\2DBuildingBlocks\PatchMatch\Syn\Output\'];
+    P_BDS.output_path = ['C:\Chuan\data\2DBuildingBlocks\Bidrectional\Syn\Output\'];
     P_BDS.im_input_fullres = double(imread([P_BDS.name_path filename]))/255;
     
     
@@ -114,7 +114,7 @@ parfor i_img = 0:4
                     end
                 end
                 
-                % bidirectional matching
+                % Bidrectional matching
                 [match_A2B, match_B2A] = func_bds(A_patches, B_patches);
                 
                 % reconstruct

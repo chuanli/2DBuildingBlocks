@@ -13,6 +13,7 @@ double cmd_totalGeneratorY_scaled = 1;
 
 // filenames
 QString filename_imgInput = "";
+QString filename_imgInputRenderlabel = "";
 QString filename_offsetStatisticsPixelInput = "";
 QString filename_offsetStatisticsPixelMWInput = "";
 QString filename_offsetStatisticsBBInput = "";
@@ -22,6 +23,6 @@ QString append_BB = "";
 QString filename_repInput = "";
 QString filename_imgOutput = "";
 QString filename_imgBBOutput = "";
-
+QString filename_imgRenderlabelOutput = "";
 double scalerRes = 0.25; // control the resolution of synthesis, balance the speed and quality
 //int method_now = 1;

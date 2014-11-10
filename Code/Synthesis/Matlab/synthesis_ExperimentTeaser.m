@@ -1,7 +1,7 @@
 %% A script for Synthesis experiments
 warning('off','all');close all; clear all; cwd = pwd; addpath(genpath(cwd));clc;
 
-P.matlabpool_flag = 1;
+P.matlabpool_flag = 10;
 P.num_Cores = 4;
 if  matlabpool('size') == 0 & P.matlabpool_flag ==1
     matlabpool('open', P.num_Cores);
@@ -11,7 +11,7 @@ else if matlabpool('size') > 0 & P.matlabpool_flag ==0
 end
 
 if 1 
-    parfor i_img = 0:9
+    parfor i_img = 1:1
         name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
         name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Teaser\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
@@ -31,7 +31,7 @@ if 1
 end
 
 if 1
-    parfor i_img = 0:9
+    parfor i_img = 1:1
         name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
         name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Teaser\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
@@ -51,8 +51,8 @@ if 1
 end
 
 
-if 1 
-    parfor i_img = 0:9
+if 1
+    parfor i_img = 1:1
         name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
         name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Teaser\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
@@ -71,8 +71,8 @@ if 1
     end
 end
 
-if 1 
-    parfor i_img = 0:9
+if 1
+    parfor i_img = 1:1
         name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
         name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Teaser\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
@@ -92,7 +92,7 @@ if 1
 end
 
 if 1
-    parfor i_img = 0:9
+    parfor i_img = 1:1
         name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
         name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Teaser\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]
@@ -112,7 +112,7 @@ if 1
 end
 
 if 0 % gt
-    parfor i_img = 0:9
+    parfor i_img = 1:1
         name_cmd = [cwd(1, 1:3) '\Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
         name_inputpath =  [cwd(1, 1:3) '\Chuan\data\2DBuildingBlocks\Teaser\Syn\Input\'];  % argv[1]
         name_imgInputformat = ['.jpg']; % argv[3]

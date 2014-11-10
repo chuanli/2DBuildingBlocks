@@ -52,6 +52,10 @@ Synthesizer::Synthesizer(void){
 	qimgInput_fullres = new QImage;
     qimgInput_scaled = new QImage;
 
+
+	// input render label
+	qimgInputRenderlabel_fullres = new QImage;
+
 	// input label (detection or ground truth)
 	qimgInputlabel_fullres = new QImage;
 	qimgInputlabel_scaled = new QImage;
@@ -68,6 +72,8 @@ Synthesizer::Synthesizer(void){
 	qimgInputlabelinterX_scaled = new QImage;
 	qimgInputlabelinterY_fullres = new QImage;
 	qimgInputlabelinterY_scaled = new QImage;
+
+	qimgSynRenderlabel_fullres = new QImage;
 
 	// hole filling
 	qimgInputMask_fullres = new QImage;
@@ -139,9 +145,11 @@ void Synthesizer::initialization(){
 	//----------------------------------------------------------------
 	qimgInput_fullres->load(filename_imgInput);
     *qimgInput_scaled = qimgInput_fullres->scaled(qimgInput_fullres->size() * scalerRes, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
+	qimgInputRenderlabel_fullres->load(filename_imgInputRenderlabel);
+	
 	// matrix for (fullres and scaled) grayscale input image
 	imgInput_fullres = qimage2mat(*qimgInput_fullres);
+	imgInputRenderlabel_fullres = qimage2mat(*qimgInputRenderlabel_fullres);
 	cvtColor(imgInput_fullres, imgInputGray_fullres, CV_BGR2GRAY);
 	imgInput_scaled = qimage2mat(*qimgInput_scaled);
 	cvtColor(imgInput_scaled, imgInputGray_scaled, CV_BGR2GRAY);
@@ -1115,11 +1123,15 @@ void Synthesizer::label2result(){
 	gcolabelSyn_fullres = Mat1i::zeros(rowsSyn_fullres, colsSyn_fullres);
 	cv::resize(gcolabelSyn_scaled, gcolabelSyn_fullres, Size(colsSyn_fullres, rowsSyn_fullres), 0, 0, INTER_NEAREST);
 	imgSyn_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
+	imgSynRenderlabel_fullres = Mat3b::ones(rowsSyn_fullres, colsSyn_fullres);
 	for (int r = 0; r < rowsSyn_fullres; r++){
 		for (int c = 0; c < colsSyn_fullres; c++){
+			Vec3d colorwhite(255, 255, 255);
+			imgSynRenderlabel_fullres(r, c) = colorwhite;
 			if ((c - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->x) < colsInput_fullres && (c - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->x) >= 0){
 				if ((r - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->y) < rowsInput_fullres && (r - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->y) >= 0){
 					imgSyn_fullres(r, c) = imgInput_fullres(r - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->y, c - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->x);
+					imgSynRenderlabel_fullres(r, c) = imgInputRenderlabel_fullres(r - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->y, c - list_shiftXY_fullres[gcolabelSyn_fullres(r, c)]->x);
 				}
 			}
 			else{
@@ -1130,10 +1142,13 @@ void Synthesizer::label2result(){
 	*qimgSyn_fullres = Mat2QImage(imgSyn_fullres);
 	qimgSyn_fullres->save(filename_imgOutput);
 
-	gcoBBlabelSynColor_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
-	gcoBBlabelSynColor_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
+	gcoBBlabelSynColor_scaled = Mat3b::ones(rowsSyn_scaled, colsSyn_scaled);
+	gcoBBlabelSynColor_fullres = Mat3b::ones(rowsSyn_fullres, colsSyn_fullres);
+	
 	for (int r = 0; r < rowsSyn_scaled; r++){
 		for (int c = 0; c < colsSyn_scaled; c++){
+			Vec3d colorwhite(255, 255, 255);
+			gcoBBlabelSynColor_scaled(r, c) = colorwhite;
 			int cc = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->x + c;
 			int rr = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->y + r;
 			if (rr >= 0 && rr < rowsInput_scaled && cc >= 0 && cc < colsSyn_scaled){
@@ -1141,6 +1156,7 @@ void Synthesizer::label2result(){
 				if (bb_type > -1){
 					Vec3d color(colorList[bb_type][2], colorList[bb_type][1], colorList[bb_type][0]);
 					gcoBBlabelSynColor_scaled(r, c) = color;
+					
 				}
 			}
 	//		Vec3d color(colorList[gcolabelSyn_scaled(r, c)][2], colorList[gcolabelSyn_scaled(r, c)][1], colorList[gcolabelSyn_scaled(r, c)][0]);
@@ -1149,8 +1165,11 @@ void Synthesizer::label2result(){
 	}
 	cv::resize(gcoBBlabelSynColor_scaled, gcoBBlabelSynColor_fullres, Size(colsSyn_fullres, rowsSyn_fullres), 0, 0, INTER_NEAREST);
 	*qimgSynlabelColor_fullres = Mat2QImage(gcoBBlabelSynColor_fullres);
-	qimgSynlabelColor_fullres->save(filename_imgBBOutput);
+	//qimgSynlabelColor_fullres->save(filename_imgBBOutput);
 
+	qDebug() << filename_imgRenderlabelOutput;
+	*qimgSynRenderlabel_fullres = Mat2QImage(imgSynRenderlabel_fullres);
+	qimgSynRenderlabel_fullres->save(filename_imgRenderlabelOutput);
 
 	//// debug the nonlocal cost
 	//if (mode_method > 0){

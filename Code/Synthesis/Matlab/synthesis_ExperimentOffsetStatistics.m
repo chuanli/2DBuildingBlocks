@@ -110,7 +110,7 @@ if 1
     end
 end
 
-if 0
+if 1
     parfor i_img = 0:20
         name_cmd = [cwd(1, 1:3) 'Chuan\git\2DBuildingBlocks\Code\Synthesis\SynthesisCMD\Release\SynthesisCMD.exe'];
         name_inputpath =  [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\OffsetStatistics\Syn\Input\'];  % argv[1]

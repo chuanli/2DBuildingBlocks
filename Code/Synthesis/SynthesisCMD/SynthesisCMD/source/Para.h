@@ -21,6 +21,7 @@ extern double cmd_totalGeneratorY_scaled;
 
 // filenames
 extern QString filename_imgInput;
+extern QString filename_imgInputRenderlabel;
 extern QString filename_offsetStatisticsPixelInput;
 extern QString filename_offsetStatisticsPixelMWInput;
 extern QString filename_offsetStatisticsBBInput;
@@ -30,7 +31,7 @@ extern QString append_BB;
 extern QString filename_repInput;
 extern QString filename_imgOutput;
 extern QString filename_imgBBOutput;
-
+extern QString filename_imgRenderlabelOutput;
 
 extern double scalerRes; // control the resolution of synthesis, balance the speed and quality
 

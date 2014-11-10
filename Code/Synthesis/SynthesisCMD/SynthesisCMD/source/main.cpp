@@ -29,6 +29,9 @@ int main(int argc, char *argv[])
 	filename_imgInput.append(name_inputpath);
 	filename_imgInput.append(name_imgInput);
 	filename_imgInput.append(name_imgInputformat);
+	filename_imgInputRenderlabel.append(name_inputpath);
+	filename_imgInputRenderlabel.append(name_imgInput);
+	filename_imgInputRenderlabel.append("_label.png");
 	filename_offsetStatisticsPixelInput.append(name_inputpath);
 	filename_offsetStatisticsPixelInput.append(name_imgInput);
 	filename_offsetStatisticsPixelInput.append("OffsetStatisticsPixel.txt");
@@ -57,10 +60,10 @@ int main(int argc, char *argv[])
 	filename_imgOutput.append("output\\");
 	filename_imgOutput.append(name_imgInput);
 	filename_imgOutput.append("_syn_");
-	filename_imgOutput.append(QString::number(cmd_totalGeneratorX_scaled));
-	filename_imgOutput.append("_");
-	filename_imgOutput.append(QString::number(cmd_totalGeneratorY_scaled));
-	filename_imgOutput.append("_");
+	//filename_imgOutput.append(QString::number(cmd_totalGeneratorX_scaled));
+	//filename_imgOutput.append("_");
+	//filename_imgOutput.append(QString::number(cmd_totalGeneratorY_scaled));
+	//filename_imgOutput.append("_");
 	filename_imgOutput.append(QString::number(mode_method));
 	filename_imgOutput.append("_");
 	filename_imgOutput.append(QString::number(mode_sampling));
@@ -73,16 +76,35 @@ int main(int argc, char *argv[])
 	filename_imgBBOutput.append("output\\");
 	filename_imgBBOutput.append(name_imgInput);
 	filename_imgBBOutput.append("_synBB_");
-	filename_imgBBOutput.append(QString::number(cmd_totalGeneratorX_scaled));
-	filename_imgBBOutput.append("_");
-	filename_imgBBOutput.append(QString::number(cmd_totalGeneratorY_scaled));
-	filename_imgBBOutput.append("_");
+	//filename_imgBBOutput.append(QString::number(cmd_totalGeneratorX_scaled));
+	//filename_imgBBOutput.append("_");
+	//filename_imgBBOutput.append(QString::number(cmd_totalGeneratorY_scaled));
+	//filename_imgBBOutput.append("_");
 	filename_imgBBOutput.append(QString::number(mode_method));
 	filename_imgBBOutput.append("_");
 	filename_imgBBOutput.append(QString::number(mode_sampling));
 	filename_imgBBOutput.append("_");
 	filename_imgBBOutput.append(name_detection);
 	filename_imgBBOutput.append(name_imgOutputformat);
+
+	
+
+	filename_imgRenderlabelOutput.append(name_inputpath);
+	filename_imgRenderlabelOutput.resize(filename_imgRenderlabelOutput.size() - 6);
+	filename_imgRenderlabelOutput.append("output\\");
+	filename_imgRenderlabelOutput.append(name_imgInput);
+	filename_imgRenderlabelOutput.append("_synRenderlabel_");
+	//filename_imgRenderlabelOutput.append(QString::number(cmd_totalGeneratorX_scaled));
+	//filename_imgRenderlabelOutput.append("_");
+	//filename_imgRenderlabelOutput.append(QString::number(cmd_totalGeneratorY_scaled));
+	//filename_imgRenderlabelOutput.append("_");
+	filename_imgRenderlabelOutput.append(QString::number(mode_method));
+	filename_imgRenderlabelOutput.append("_");
+	filename_imgRenderlabelOutput.append(QString::number(mode_sampling));
+	filename_imgRenderlabelOutput.append("_");
+	filename_imgRenderlabelOutput.append(name_detection);
+	filename_imgRenderlabelOutput.append(name_imgOutputformat);
+
 
 	switch (mode_sampling){
 	case 1:
@@ -112,6 +134,7 @@ int main(int argc, char *argv[])
 	qDebug() << "filename_repInput: " << filename_repInput;
 	qDebug() << "filename_imgOutput: " << filename_imgOutput;
 	qDebug() << "filename_imgBBOutput: " << filename_imgBBOutput;
+	qDebug() << "filename_imgRenderlabelOutput: " << filename_imgRenderlabelOutput;
 
 	// initialization
 	Synthesizer* syn = new Synthesizer;

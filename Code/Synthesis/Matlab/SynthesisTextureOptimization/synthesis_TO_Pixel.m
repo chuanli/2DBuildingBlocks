@@ -11,9 +11,9 @@ else if matlabpool('size') > 0 & P.matlabpool_flag ==0
 end
 
 P.name_path = [cwd(1, 1:3) 'Chuan\data\2DBuildingBlocks\'];
-P.name_dataset = 'PatchMatch';
+P.name_dataset = 'Bidrectional';
 P.name_data = 'Resized';
-P.name_prefix = 'PatchMatch';
+P.name_prefix = 'Bidrectional';
 P.name_format = '.jpg';
 P.name_syn = 'Syn';
 P.name_syn_input = 'Input';
@@ -25,7 +25,7 @@ num_iter = 5; % number of interation in Patch Match
 cores = 1;    % Use more cores for more speed
 w_A2B = 1;
 w_B2A = 1;
-global_scaler = [1.25, 1];
+global_scaler = [1.5, 1];
 
 num_TO_iter = 20;
 
