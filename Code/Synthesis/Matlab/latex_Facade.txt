@@ -1,0 +1,1637 @@
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(12).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(12)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(13).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(13)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(14).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(14)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(15).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(15)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(16).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(16)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(17).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(17)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(18).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(18)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(19).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(19)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(20).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(20)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(21).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(21)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(22).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(22)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(23).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(23)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(24).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(24)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(25).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(25)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(26).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(26)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(27).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(27)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(28).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(28)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(29).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(29)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(30).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(30)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(31).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(31)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(32).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(32)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(33).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(33)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(34).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(34)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(35).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(35)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(36).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(36)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(37).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(37)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(38).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(38)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(39).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(39)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(40).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(40)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(41).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(41)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(42).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(42)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(43).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(43)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(44).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(44)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(45).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(45)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(46).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(46)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(47).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(47)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(48).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(48)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(49).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(49)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(50).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(50)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(51).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(51)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(52).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(52)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(53).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(53)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(54).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(54)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(55).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(55)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(56).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(56)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(57).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(57)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(58).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(58)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(59).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(59)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(60).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(60)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(61).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(61)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(62).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(62)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(63).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(63)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(64).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(64)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(65).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(65)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(66).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(66)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(67).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(67)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(68).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(68)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(69).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(69)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(70).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(70)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(71).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(71)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(72).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(72)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(73).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(73)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(74).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(74)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(75).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(75)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(76).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(76)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(77).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(77)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(78).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(78)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(79).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(79)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(80).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(80)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(81).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(81)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(82).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(82)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(83).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(83)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(84).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(84)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(85).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(85)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(86).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(86)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(87).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(87)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(88).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(88)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(89).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(89)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(90).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(90)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(91).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(91)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(92).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(92)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(93).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(93)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(94).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(94)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(95).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(95)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(96).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(96)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(97).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(97)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(98).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(98)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(99).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(99)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(100).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(100)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(101).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(101)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(102).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(102)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(103).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(103)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(104).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(104)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(105).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(105)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(106).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(106)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(107).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(107)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(108).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(108)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(109).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(109)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(110).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(110)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(111).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(111)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(112).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(112)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(113).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(113)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(114).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(114)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(115).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(115)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(116).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(116)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(117).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(117)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(118).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(118)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(119).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(119)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(120).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(120)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(121).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(121)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(122).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(122)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(123).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(123)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(124).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(124)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(125).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(125)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(126).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(126)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(127).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(127)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(128).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(128)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(129).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(129)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(130).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(130)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(131).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(131)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(132).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(132)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(133).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(133)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(134).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(134)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(135).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(135)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(136).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(136)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(137).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(137)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(138).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(138)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(139).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(139)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(140).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(140)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(141).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(141)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(142).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(142)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(143).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(143)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(144).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(144)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(145).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(145)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(146).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(146)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(147).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(147)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(148).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(148)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(149).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(149)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(150).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(150)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(151).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(151)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(152).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(152)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(153).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(153)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(154).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(154)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(155).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(155)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(156).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(156)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(157).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(157)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(158).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(158)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(159).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(159)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(160).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(160)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(161).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(161)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(162).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(162)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(163).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(163)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(164).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(164)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(165).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(165)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(166).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(166)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(167).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(167)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(168).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(168)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(169).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(169)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(170).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(170)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(171).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(171)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(172).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(172)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(173).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(173)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(174).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(174)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(175).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(175)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(176).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(176)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(177).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(177)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(178).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(178)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(179).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(179)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(180).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(180)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(181).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(181)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(182).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(182)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(183).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(183)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(184).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(184)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(185).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(185)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(186).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(186)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(187).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(187)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(188).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(188)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(189).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(189)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(190).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(190)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(191).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(191)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(192).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(192)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(193).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(193)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(194).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(194)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(195).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(195)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(196).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(196)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(197).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(197)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(198).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(198)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(199).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(199)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(200).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(200)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(201).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(201)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(202).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(202)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(203).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(203)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(204).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(204)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(205).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(205)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(206).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(206)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(207).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(207)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(208).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(208)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(209).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(209)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(210).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(210)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(211).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(211)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(212).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(212)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(213).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(213)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(214).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(214)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(215).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(215)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(216).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(216)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(217).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(217)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(218).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(218)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(219).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(219)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(220).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(220)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(221).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(221)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(222).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(222)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(223).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(223)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(224).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(224)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(225).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(225)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(226).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(226)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(227).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(227)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(228).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(228)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(229).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(229)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(230).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(230)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(231).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(231)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(232).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(232)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(233).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(233)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(234).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(234)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(235).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(235)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(236).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(236)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(237).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(237)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(238).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(238)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(239).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(239)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(240).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(240)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(241).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(241)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(242).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(242)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(243).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(243)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(244).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(244)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(245).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(245)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(246).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(246)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(247).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(247)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(248).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(248)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(249).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(249)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(250).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(250)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(251).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(251)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(252).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(252)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(253).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(253)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(254).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(254)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(255).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(255)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(256).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(256)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(257).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(257)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(258).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(258)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(259).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(259)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(260).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(260)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(261).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(261)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(262).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(262)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(263).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(263)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(264).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(264)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(265).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(265)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(266).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(266)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(267).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(267)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(268).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(268)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(269).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(269)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(270).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(270)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(271).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(271)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(272).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(272)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(273).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(273)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(274).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(274)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(275).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(275)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(276).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(276)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(277).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(277)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(278).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(278)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(279).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(279)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(280).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(280)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(281).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(281)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(282).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(282)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(283).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(283)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(284).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(284)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(285).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(285)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(286).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(286)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(287).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(287)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(288).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(288)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(289).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(289)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(290).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(290)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(291).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(291)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(292).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(292)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(293).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(293)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(294).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(294)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(295).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(295)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(296).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(296)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(297).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(297)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(298).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(298)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(299).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(299)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(300).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(300)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(301).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(301)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(302).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(302)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(303).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(303)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(304).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(304)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(305).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(305)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(306).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(306)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(307).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(307)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(308).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(308)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(309).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(309)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(310).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(310)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(311).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(311)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(312).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(312)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(313).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(313)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(314).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(314)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(315).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(315)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(316).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(316)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(317).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(317)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(318).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(318)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(319).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(319)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(320).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(320)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(321).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(321)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(322).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(322)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(323).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(323)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(324).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(324)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(325).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(325)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(326).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(326)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(327).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(327)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(328).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(328)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(329).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(329)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(330).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(330)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(331).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(331)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(332).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(332)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(333).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(333)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(334).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(334)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(335).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(335)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(336).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(336)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(337).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(337)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(338).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(338)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(339).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(339)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(340).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(340)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(341).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(341)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(342).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(342)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(343).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(343)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(344).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(344)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(345).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(345)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(346).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(346)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(347).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(347)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(348).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(348)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(349).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(349)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(350).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(350)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(351).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(351)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(352).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(352)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(353).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(353)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(354).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(354)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(355).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(355)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(356).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(356)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(357).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(357)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(358).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(358)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(359).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(359)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(360).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(360)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(361).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(361)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(362).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(362)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(363).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(363)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(364).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(364)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(365).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(365)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(366).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(366)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(367).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(367)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(368).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(368)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(369).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(369)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(370).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(370)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(371).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(371)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(372).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(372)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(373).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(373)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(374).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(374)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(375).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(375)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(376).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(376)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(377).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(377)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(378).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(378)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(379).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(379)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(380).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(380)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(381).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(381)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(382).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(382)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(383).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(383)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(384).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(384)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(385).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(385)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(386).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(386)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(387).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(387)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(388).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(388)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(389).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(389)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(390).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(390)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(391).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(391)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(392).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(392)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(393).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(393)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(394).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(394)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(395).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(395)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(396).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(396)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(397).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(397)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(398).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(398)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(399).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(399)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(400).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(400)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(401).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(401)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(402).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(402)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(403).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(403)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(404).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(404)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(405).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(405)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(406).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(406)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(407).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(407)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(408).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(408)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(409).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(409)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(410).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(410)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(411).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(411)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(412).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(412)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(413).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(413)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(414).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(414)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(415).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(415)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(416).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(416)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(417).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(417)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(418).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(418)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(419).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(419)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(420).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(420)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(421).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(421)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(422).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(422)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(423).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(423)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(424).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(424)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(425).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(425)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(426).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(426)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(427).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(427)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(428).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(428)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(429).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(429)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(430).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(430)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(431).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(431)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(432).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(432)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(433).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(433)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(434).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(434)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(435).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(435)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(436).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(436)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(437).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(437)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(438).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(438)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(439).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(439)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(440).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(440)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(441).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(441)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(442).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(442)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(443).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(443)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(444).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(444)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(445).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(445)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(446).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(446)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(447).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(447)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(448).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(448)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(449).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(449)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(450).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(450)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(451).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(451)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(452).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(452)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(453).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(453)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(454).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(454)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(455).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(455)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(456).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(456)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(457).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(457)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(458).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(458)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(459).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(459)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(460).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(460)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(461).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(461)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(462).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(462)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(463).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(463)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(464).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(464)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(465).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(465)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(466).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(466)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(467).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(467)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(468).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(468)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(469).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(469)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(470).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(470)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(471).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(471)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(472).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(472)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(473).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(473)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(474).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(474)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(475).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(475)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(476).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(476)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(477).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(477)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(478).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(478)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(479).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(479)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(480).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(480)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(481).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(481)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(482).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(482)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(483).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(483)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(484).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(484)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(485).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(485)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(486).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(486)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(487).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(487)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(488).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(488)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(489).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(489)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(490).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(490)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(491).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(491)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(492).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(492)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(493).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(493)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(494).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(494)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(495).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(495)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(496).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(496)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(497).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(497)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(498).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(498)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(499).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(499)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(500).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(500)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(501).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(501)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(502).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(502)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(503).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(503)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(504).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(504)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(505).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(505)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(506).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(506)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(507).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(507)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(508).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(508)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(509).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(509)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(510).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(510)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(511).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(511)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(512).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(512)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(513).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(513)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(514).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(514)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(515).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(515)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(516).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(516)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(517).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(517)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(518).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(518)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(519).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(519)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(520).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(520)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(521).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(521)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(522).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(522)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(523).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(523)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(524).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(524)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(525).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(525)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(526).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(526)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(527).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(527)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(528).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(528)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(529).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(529)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(530).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(530)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(531).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(531)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(532).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(532)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(533).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(533)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(534).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(534)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(535).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(535)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(536).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(536)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(537).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(537)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(538).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(538)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(539).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(539)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(540).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(540)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(541).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(541)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(542).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(542)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(543).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(543)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(544).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(544)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(545).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(545)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(546).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(546)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(547).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(547)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(548).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(548)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(549).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(549)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(550).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(550)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(551).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(551)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(552).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(552)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(553).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(553)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(554).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(554)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(555).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(555)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(556).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(556)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(557).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(557)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(558).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(558)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(559).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(559)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(560).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(560)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(561).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(561)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(562).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(562)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(563).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(563)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(564).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(564)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(565).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(565)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(566).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(566)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(567).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(567)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(568).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(568)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(569).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(569)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(570).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(570)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(571).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(571)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(572).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(572)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(573).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(573)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(574).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(574)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(575).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(575)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(576).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(576)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(577).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(577)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(578).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(578)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(579).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(579)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(580).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(580)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(581).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(581)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(582).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(582)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(583).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(583)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(584).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(584)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(585).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(585)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+retargeted &
+input &
+retargeted \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(586).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(586)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(587).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(587)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(588).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(588)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(589).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(589)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(590).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(590)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(591).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(591)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(592).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(592)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(593).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(593)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(594).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(594)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(595).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(595)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(596).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(596)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(597).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(597)_syn_3_5_Detection.jpg} &\\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(598).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(598)_syn_3_5_Detection.jpg} &
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Facade/Facade(599).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Facade/Facade(599)_syn_3_5_Detection.jpg} &\\
+\end{tabular} 
+\end{figure*} 

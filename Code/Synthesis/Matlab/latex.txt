@@ -1,0 +1,197 @@
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+\protected{\shortcite{Pritch09ICCV}} &
+\protected{\shortcite{He2012PO}} &
+ours \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(7).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(7)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(7)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(7)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(8).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(8)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(8)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(8)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(9).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(9)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(9)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(9)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(10).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(10)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(10)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(10)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(11).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(11)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(11)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(11)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(12).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(12)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(12)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(12)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(13).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(13)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(13)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(13)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(14).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(14)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(14)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(14)_syn_3_4_Detection.jpg} \\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+\protected{\shortcite{Pritch09ICCV}} &
+\protected{\shortcite{He2012PO}} &
+ours \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(15).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(15)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(15)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(15)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(16).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(16)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(16)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(16)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(17).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(17)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(17)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(17)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(18).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(18)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(18)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(18)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(19).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(19)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(19)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(19)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(20).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(20)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(20)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(20)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(21).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(21)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(21)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(21)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(22).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(22)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(22)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(22)_syn_3_4_Detection.jpg} \\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+\protected{\shortcite{Pritch09ICCV}} &
+\protected{\shortcite{He2012PO}} &
+ours \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(23).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(23)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(23)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(23)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(24).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(24)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(24)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(24)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(25).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(25)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(25)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(25)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(26).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(26)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(26)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(26)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(27).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(27)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(27)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(27)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(28).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(28)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(28)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(28)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(29).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(29)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(29)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(29)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(30).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(30)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(30)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(30)_syn_3_4_Detection.jpg} \\
+\end{tabular} 
+\end{figure*} 
+\clearpage 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+\protected{\shortcite{Pritch09ICCV}} &
+\protected{\shortcite{He2012PO}} &
+ours \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(31).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(31)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(31)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(31)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(32).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(32)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(32)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(32)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(33).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(33)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(33)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(33)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(34).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(34)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(34)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(34)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(35).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(35)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(35)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(35)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(36).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(36)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(36)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(36)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(37).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(37)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(37)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/TextureOptimization/TextureOptimization(37)_syn_3_4_Detection.jpg} \\
+\end{tabular} 
+\end{figure*} 
+\begin{figure*}
+\centering
+\begin{tabular}{cccc}
+\centering
+input &
+\protected{\shortcite{Pritch09ICCV}} &
+\protected{\shortcite{He2012PO}} &
+ours \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(0).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(0)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(0)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(0)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(1).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(1)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(1)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(1)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(2).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(2)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(2)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(2)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(3).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(3)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(3)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(3)_syn_3_4_Detection.jpg} \\
+\includegraphics[height= 0.1\textheight, width=.16\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(4).jpg} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(4)_syn_TO.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(4)_syn_BDS.png} &
+\includegraphics[height= 0.1\textheight, width=.24\columnwidth, keepaspectratio]{Fig/Bidirectional/Bidirectional(4)_syn_3_4_Detection.jpg} \\
+\end{tabular} 
+\end{figure*} 
