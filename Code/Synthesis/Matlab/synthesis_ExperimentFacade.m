@@ -30,6 +30,7 @@ if 1 % shiftmap
     end
 end
 
+return;
 
 if 1 % offset pixel
     parfor i_img = 0:599

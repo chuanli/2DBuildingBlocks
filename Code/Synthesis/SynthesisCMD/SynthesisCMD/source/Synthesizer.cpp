@@ -359,6 +359,62 @@ void Synthesizer::prepareShifts_ShiftMap(){
 	numPixelSyn_scaled = colsSyn_scaled * rowsSyn_scaled;
 	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
 	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
+
+
+
+	// compute candidate shifts
+	// break the frame
+	if (totalShiftsX_scaled > 1){
+		totalShiftsX_scaled += 10;
+	}
+	if (totalShiftsY_scaled > 1){
+		totalShiftsY_scaled += 10;
+	}
+	totalShiftsXY_scaled = totalShiftsX_scaled * totalShiftsY_scaled;
+
+	list_shiftX_scaled.resize(totalShiftsX_scaled);
+	for (int i_s = 0; i_s < totalShiftsX_scaled; i_s++){
+		list_shiftX_scaled[i_s] = i_s * colsPerShiftX_scaled;
+	}
+	list_shiftY_scaled.resize(totalShiftsY_scaled);
+	for (int i_s = 0; i_s < totalShiftsY_scaled; i_s++){
+		list_shiftY_scaled[i_s] = i_s * rowsPerShiftY_scaled;
+	}
+	vector<Point2i*>().swap(list_shiftXY_scaled);
+	list_shiftXY_scaled.resize(totalShiftsXY_scaled);
+	for (int y = 0; y < totalShiftsY_scaled; y++){
+		for (int x = 0; x < totalShiftsX_scaled; x++){
+			list_shiftXY_scaled[y * totalShiftsX_scaled + x] = new Point2i(x * colsPerShiftX_scaled, y * rowsPerShiftY_scaled);
+		}
+	}
+	vector<Point2i*>().swap(gcoNodes);
+	gcoNodes.resize(numPixelSyn_scaled);
+	for (int y = 0; y < rowsSyn_scaled; y++){
+		for (int x = 0; x < colsSyn_scaled; x++){
+			gcoNodes[y * colsSyn_scaled + x] = new Point2i(x, y);
+		}
+	}
+
+	qDebug() << "totalShiftsX: " << totalShiftsX_scaled << ", colsSyn_scaled: " << colsSyn_scaled << ", colsPerShiftX_scaled : " << colsPerShiftX_scaled;
+	qDebug() << "totalShiftsY: " << totalShiftsY_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", rowsPerShiftY_scaled : " << rowsPerShiftY_scaled;
+	//for (int i = 0; i < totalShiftsXY_scaled; i++){
+	//	qDebug() << list_shiftXY_scaled[i]->x << ", " << list_shiftXY_scaled[i]->y;
+	//}
+}
+
+void Synthesizer::prepareShifts_ShiftMapBoarder(){
+	qDebug() << "Prepare shifts ...";
+	// compute the dimension of the synthesis image
+	totalShiftsX_scaled = (totalGeneratorX_scaled - 1) / (generatorX_scaled / (double)shiftsPerGenerator_scaled) + 1;
+	totalShiftsY_scaled = (totalGeneratorY_scaled - 1) / (generatorY_scaled / (double)shiftsPerGenerator_scaled) + 1;
+	totalShiftsXY_scaled = totalShiftsX_scaled * totalShiftsY_scaled;
+	colsPerShiftX_scaled = (int)round((colsInput_scaled * generatorX_scaled) / (shiftsPerGenerator_scaled));
+	colsSyn_scaled = colsInput_scaled + (totalShiftsX_scaled - 1) * colsPerShiftX_scaled;
+	rowsPerShiftY_scaled = (int)round((rowsInput_scaled * generatorY_scaled) / (shiftsPerGenerator_scaled));
+	rowsSyn_scaled = rowsInput_scaled + (totalShiftsY_scaled - 1) * rowsPerShiftY_scaled;
+	numPixelSyn_scaled = colsSyn_scaled * rowsSyn_scaled;
+	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
 	// compute candidate shifts
 	list_shiftX_scaled.resize(totalShiftsX_scaled);
 	for (int i_s = 0; i_s < totalShiftsX_scaled; i_s++){
@@ -442,14 +498,14 @@ void Synthesizer::synthesis_OffsetStatistics(){
 	{
 	case 2:
 		if (abs(generatorsOS_scaled[0]->x) == 0){
-			prepareShifts_OffsetStatisticsMW();
+			prepareShifts_OffsetStatisticsMWBoarder();
 		}
 		else{
 			prepareShifts_OffsetStatistics();
 		}
 		break;
 	case 3:
-		prepareShifts_OffsetStatisticsMW();
+		prepareShifts_OffsetStatisticsMWBoarder();
 		break;
 	default:
 		break;
@@ -652,6 +708,71 @@ void Synthesizer::prepareShifts_OffsetStatisticsMW(){
 
 }
 
+void Synthesizer::prepareShifts_OffsetStatisticsMWBoarder(){
+	qDebug() << "Prepare shifts ...";
+	// compute the dimension of the synthesis image
+	totalShiftsX_scaled = (totalGeneratorX_scaled - 1) / (generatorX_scaled / (double)shiftsPerGenerator_scaled) + 1;
+	totalShiftsY_scaled = (totalGeneratorY_scaled - 1) / (generatorY_scaled / (double)shiftsPerGenerator_scaled) + 1;
+	totalShiftsXY_scaled = totalShiftsX_scaled * totalShiftsY_scaled;
+	colsPerShiftX_scaled = (int)round((colsInput_scaled * generatorX_scaled) / (shiftsPerGenerator_scaled));
+	colsSyn_scaled = colsInput_scaled + (totalShiftsX_scaled - 1) * colsPerShiftX_scaled;
+	rowsPerShiftY_scaled = (int)round((rowsInput_scaled * generatorY_scaled) / (shiftsPerGenerator_scaled));
+	rowsSyn_scaled = rowsInput_scaled + (totalShiftsY_scaled - 1) * rowsPerShiftY_scaled;
+	numPixelSyn_scaled = colsSyn_scaled * rowsSyn_scaled;
+	imgSynGray_scaled = Mat1b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	gcolabelSyn_scaled = Mat1i::zeros(rowsSyn_scaled, colsSyn_scaled);
+
+	// recompute number of shifts
+	if (abs(generatorsOS_scaled[0]->x) != 0){
+		colsPerShiftX_scaled = abs(generatorsOS_scaled[0]->x);
+	}
+	if (abs(generatorsOS_scaled[1]->y) != 0){
+		rowsPerShiftY_scaled = abs(generatorsOS_scaled[1]->y);
+	}
+	totalShiftsX_scaled = floor((double)(colsSyn_scaled - colsInput_scaled) / (double)colsPerShiftX_scaled) + 1;
+	totalShiftsY_scaled = floor((double)(rowsSyn_scaled - rowsInput_scaled) / (double)rowsPerShiftY_scaled) + 1;
+
+	if ((totalShiftsX_scaled - 1) * colsPerShiftX_scaled < (colsSyn_scaled - colsInput_scaled)){
+		totalShiftsX_scaled += 1;
+	}
+	if ((totalShiftsY_scaled - 1) * rowsPerShiftY_scaled < (rowsSyn_scaled - rowsInput_scaled)){
+		totalShiftsY_scaled += 1;
+	}
+
+	totalShiftsXY_scaled = totalShiftsX_scaled * totalShiftsY_scaled;
+
+	// compute candidate shifts, with boarder constraint
+	list_shiftX_scaled.resize(totalShiftsX_scaled);
+	for (int i_s = 0; i_s < totalShiftsX_scaled; i_s++){
+		list_shiftX_scaled[i_s] = i_s * colsPerShiftX_scaled;
+	}
+	list_shiftY_scaled.resize(totalShiftsY_scaled);
+	for (int i_s = 0; i_s < totalShiftsY_scaled; i_s++){
+		list_shiftY_scaled[i_s] = i_s * rowsPerShiftY_scaled;
+	}
+	list_shiftX_scaled[totalShiftsX_scaled - 1] = (colsSyn_scaled - colsInput_scaled);
+	list_shiftY_scaled[totalShiftsY_scaled - 1] = (rowsSyn_scaled - rowsInput_scaled);
+
+	vector<Point2i*>().swap(list_shiftXY_scaled);
+	list_shiftXY_scaled.resize(totalShiftsXY_scaled);
+	for (int y = 0; y < totalShiftsY_scaled; y++){
+		for (int x = 0; x < totalShiftsX_scaled; x++){
+			list_shiftXY_scaled[y * totalShiftsX_scaled + x] = new Point2i(list_shiftX_scaled[x], list_shiftY_scaled[y]);
+		}
+	}
+	vector<Point2i*>().swap(gcoNodes);
+	gcoNodes.resize(numPixelSyn_scaled);
+	for (int y = 0; y < rowsSyn_scaled; y++){
+		for (int x = 0; x < colsSyn_scaled; x++){
+			gcoNodes[y * colsSyn_scaled + x] = new Point2i(x, y);
+		}
+	}
+
+	qDebug() << "totalShiftsX: " << totalShiftsX_scaled << ", colsSyn_scaled: " << colsSyn_scaled << ", colsPerShiftX_scaled : " << colsPerShiftX_scaled;
+	qDebug() << "totalShiftsY: " << totalShiftsY_scaled << ", rowsSyn_scaled: " << rowsSyn_scaled << ", rowsPerShiftY_scaled : " << rowsPerShiftY_scaled;
+}
+
+
 int Synthesizer::unary_OffsetStatistics(int p, int l){
 
 	// compute the unary cost of assigning list_shiftXY_scaled[i_l] to gcoNodes[i_n]
@@ -753,25 +874,27 @@ void Synthesizer::synthesis_BB(){
 		break;
 	case 2:
 		if (abs(generatorsOS_scaled[0]->x) == 0){
-			prepareShifts_OffsetStatisticsMW();
+			//prepareShifts_OffsetStatisticsMW();
+			prepareShifts_OffsetStatisticsMWBoarder();
 		}
 		else{
 			prepareShifts_OffsetStatistics();
 		}
 		break;
 	case 3:
-		prepareShifts_OffsetStatisticsMW();
+		//prepareShifts_OffsetStatisticsMW();
+		prepareShifts_OffsetStatisticsMWBoarder();
 		break;
 	case 4:
 		if (abs(generatorsOS_scaled[0]->x) == 0){
-			prepareShifts_BBMW();
+			prepareShifts_BBMWBoarder();
 		}
 		else{
 			prepareShifts_BB();
 		}
 		break;
 	case 5:
-		prepareShifts_BBMW();
+		prepareShifts_BBMWBoarder();
 		break;
 	default:
 		break;
@@ -807,6 +930,9 @@ void Synthesizer::prepareShifts_BBMW(){
 	prepareShifts_OffsetStatisticsMW();
 }
 
+void Synthesizer::prepareShifts_BBMWBoarder(){
+	prepareShifts_OffsetStatisticsMWBoarder();
+}
 int Synthesizer::unary_BB(int p, int l){
 
 	int newX = -list_shiftXY_scaled[l]->x + gcoNodes[p]->x;

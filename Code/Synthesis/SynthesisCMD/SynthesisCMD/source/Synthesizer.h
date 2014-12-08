@@ -29,6 +29,7 @@ public:
 	// Shift Map
 	void synthesis_ShiftMap();
 	void prepareShifts_ShiftMap();
+	void prepareShifts_ShiftMapBoarder();
 	static int unary_ShiftMap(int p, int l);
 	static int smooth_ShiftMap(int p1, int p2, int l1, int l2);
 	void fill_ShiftMap();
@@ -37,6 +38,7 @@ public:
 	void synthesis_OffsetStatistics();
 	void prepareShifts_OffsetStatistics();
 	void prepareShifts_OffsetStatisticsMW();
+	void prepareShifts_OffsetStatisticsMWBoarder();
 	static int unary_OffsetStatistics(int p, int l);
 	static int smooth_OffsetStatistics(int p1, int p2, int l1, int l2);
 	void fill_OffsetStatistics();
@@ -46,6 +48,7 @@ public:
 	void synthesis_BB();
 	void prepareShifts_BB();
 	void prepareShifts_BBMW();
+	void prepareShifts_BBMWBoarder();
 	static int unary_BB(int p, int l);
 	static int smooth_BB(int p1, int p2, int l1, int l2);
 	void fill_BB();
