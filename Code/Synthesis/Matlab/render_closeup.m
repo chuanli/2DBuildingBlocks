@@ -1,5 +1,31 @@
 close all; clear all;
 
+name_im1 = 'C:\Chuan\data\2DBuildingBlocks\Teaser\Syn\output\Teaser(1)_syn_1_1_Detection.jpg';
+name_im2 = 'C:\Chuan\data\2DBuildingBlocks\Teaser\Syn\output\Teaser(1)_synRenderlabel_1_1_Detection.png';
+name_im3 = 'C:\Chuan\data\2DBuildingBlocks\Teaser\Syn\output\Teaser(1)_syn_3_1_Detection.jpg';
+name_im4 = 'C:\Chuan\data\2DBuildingBlocks\Teaser\Syn\output\Teaser(1)_synRenderlabel_3_1_Detection.png';
+
+im1= imread(name_im1);
+im2= imread(name_im2);
+im3= imread(name_im3);
+im4= imread(name_im4);
+
+name_prefix = '1';
+% region12 = [195, 170, 64, 64];
+region12 = [396, 170, 64, 64];
+
+im1 = im1(region12(2):region12(2) + region12(4), region12(1):region12(1) + region12(3), :);
+im2 = im2(region12(2):region12(2) + region12(4), region12(1):region12(1) + region12(3), :);
+im3 = im3(region12(2):region12(2) + region12(4), region12(1):region12(1) + region12(3), :);
+im4 = im4(region12(2):region12(2) + region12(4), region12(1):region12(1) + region12(3), :);
+
+imwrite(im1, [name_prefix '_1.png']);
+imwrite(im2, [name_prefix '_2.png']);
+imwrite(im3, [name_prefix '_3.png']);
+imwrite(im4, [name_prefix '_4.png']);
+
+return;
+
 name_im1 = 'C:\Chuan\svn_statgeo\papers\TOG2015_2DBuildingBlocks\Paper\Fig\Fig12\Facade(332).jpg';
 name_im2 = 'C:\Chuan\svn_statgeo\papers\TOG2015_2DBuildingBlocks\Paper\Fig\Fig12\Facade(332)_label.png';
 name_im3 = 'C:\Chuan\svn_statgeo\papers\TOG2015_2DBuildingBlocks\Paper\Fig\Fig12\Facade(332)_syn_1.5_1_1_1_Detection.jpg';

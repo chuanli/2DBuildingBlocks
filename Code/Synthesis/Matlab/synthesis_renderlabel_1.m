@@ -12,11 +12,11 @@ P.label_list_rgb = [102.0 / 255, 153.0 / 255, 255.0 / 255; ...
 P.label_list_hsv = rgb2hsv(P.label_list_rgb);
 
 
-P.ini_v = 0.5;
-name_dataset = 'Bidrectional';
-max_numbb = 3;
+P.ini_v = 0.0;
+name_dataset = 'Teaser';
+max_numbb = 4;
 
-for sel_id = 0:4
+for sel_id = 1:1
     nameDetection = ['C:\Chuan\data\2DBuildingBlocks\' name_dataset '\Resized\resultAIO\rob\' name_dataset '(' num2str(sel_id) ')_afmg.mat'];
     Detection = [];
     
