@@ -12,5 +12,5 @@ QString filename_repInput = "C:/Chuan/data/2DBuildingBlocks/NonFacade/Syn/Input/
 QString filename_imgOutput = "";
 
 bool flag_MW = true;
-double scalerRes = 0.5; // control the resolution of synthesis, balance the speed and quality
+double scalerRes = 0.125; // control the resolution of synthesis, balance the speed and quality
 int method_now = 1;

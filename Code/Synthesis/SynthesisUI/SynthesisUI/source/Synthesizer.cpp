@@ -638,12 +638,12 @@ void Synthesizer::synthesis_ShiftMap(){
 
 	// gco 
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
-	for (int i = 0; i < 2; i++){
-		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
-		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gcGrid->compute_energy();
-	}
+	//for (int i = 0; i < 2; i++){
+	gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+	qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+	//	gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+	//	qDebug() << "after swap energy is " << gcGrid->compute_energy();
+	//}
 	
 
 	// prepare results
@@ -758,13 +758,12 @@ void Synthesizer::synthesis_OffsetStatistics(){
 
 	// gco
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
-	for (int i = 0; i < 2; i++){
-		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
-		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gcGrid->compute_energy();
-	}
-	qDebug() << "Smoothness; " << gcGrid->giveSmoothEnergy();
+	gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+	qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+	//	gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+	//	qDebug() << "after swap energy is " << gcGrid->compute_energy();
+	//}
+	//qDebug() << "Smoothness; " << gcGrid->giveSmoothEnergy();
 
 	// prepare results
 	label2result();
@@ -1047,12 +1046,12 @@ void Synthesizer::synthesis_BB(){
 
 	// optimize
 	qDebug() << "Before optimization energy is " << gcGrid->compute_energy();
-	for (int i = 0; i < 2; i++){
-		gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after expansion energy is " << gcGrid->compute_energy();
-		gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
-		qDebug() << "after swap energy is " << gcGrid->compute_energy();
-	}
+	//for (int i = 0; i < 2; i++){
+	gcGrid->expansion(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+	qDebug() << "after expansion energy is " << gcGrid->compute_energy();
+	//	gcGrid->swap(1);// run expansion for 2 iterations. For swap use gc->swap(num_iterations);
+	//	qDebug() << "after swap energy is " << gcGrid->compute_energy();
+	//}
 
 	// prepare results
 	label2result();
@@ -1421,7 +1420,7 @@ void Synthesizer::label2result(){
 	}
 	cv::resize(gcoBBlabelSynColor_scaled, gcoBBlabelSynColor_fullres, Size(colsSyn_fullres, rowsSyn_fullres), 0, 0, INTER_NEAREST);
 	*qimgSynlabelColor_fullres = Mat2QImage(gcoBBlabelSynColor_fullres);
-	imshow("gcoBBlabelSynColor_fullres", gcoBBlabelSynColor_fullres);
+	//imshow("gcoBBlabelSynColor_fullres", gcoBBlabelSynColor_fullres);
 }
 
 bool Synthesizer::isValid(int x, int y){
