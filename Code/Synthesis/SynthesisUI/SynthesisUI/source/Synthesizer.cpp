@@ -653,6 +653,7 @@ void Synthesizer::synthesis_ShiftMap(){
 void Synthesizer::prepareShifts_ShiftMap(){
 	qDebug() << "Prepare shifts using ShiftMap (regular sampling) ...";
 	// compute the dimension of the synthesis image
+	shiftsPerGenerator_scaled = 4;
 	totalShiftsX_scaled = (totalGeneratorX_scaled - 1) / (generatorX_scaled / (double)shiftsPerGenerator_scaled) + 1;
 	totalShiftsY_scaled = (totalGeneratorY_scaled - 1) / (generatorY_scaled / (double)shiftsPerGenerator_scaled) + 1;
 	totalShiftsXY_scaled = totalShiftsX_scaled * totalShiftsY_scaled;
@@ -770,7 +771,7 @@ void Synthesizer::synthesis_OffsetStatistics(){
 }
 
 void Synthesizer::prepareShifts_OffsetStatistics(){
-
+	shiftsPerGenerator_scaled = 8;
 	// compute the dimension of the synthesis image
 	totalShiftsX_scaled = (totalGeneratorX_scaled - 1) / (generatorX_scaled / (double)shiftsPerGenerator_scaled) + 1;
 	totalShiftsY_scaled = (totalGeneratorY_scaled - 1) / (generatorY_scaled / (double)shiftsPerGenerator_scaled) + 1;
@@ -886,6 +887,7 @@ void Synthesizer::prepareShifts_OffsetStatistics(){
 }
 
 void Synthesizer::prepareShifts_OffsetStatisticsMW(){
+	shiftsPerGenerator_scaled = 8;
 	qDebug() << "Prepare shifts (MW offset statistics) ...";
 	// compute the dimension of the synthesis image
 	totalShiftsX_scaled = (totalGeneratorX_scaled - 1) / (generatorX_scaled / (double)shiftsPerGenerator_scaled) + 1;
@@ -906,6 +908,7 @@ void Synthesizer::prepareShifts_OffsetStatisticsMW(){
 	if (abs(generatorsOS_scaled[1]->y) != 0){
 		rowsPerShiftY_scaled = abs(generatorsOS_scaled[1]->y);
 	}
+
 	totalShiftsX_scaled = ceil((double)(colsSyn_scaled - colsInput_scaled) / (double)colsPerShiftX_scaled) + 1;
 	totalShiftsY_scaled = ceil((double)(rowsSyn_scaled - rowsInput_scaled) / (double)rowsPerShiftY_scaled) + 1;
 	totalShiftsXY_scaled = totalShiftsX_scaled * totalShiftsY_scaled;
@@ -1403,23 +1406,23 @@ void Synthesizer::label2result(){
 	*qimgSyn_fullres = Mat2QImage(imgSyn_fullres);
 
 	// generate synthesis BB label image
-	gcoBBlabelSynColor_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
-	gcoBBlabelSynColor_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
-	for (int r = 0; r < rowsSyn_scaled; r++){
-		for (int c = 0; c < colsSyn_scaled; c++){
-			int cc = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->x + c;
-			int rr = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->y + r;
-			if (rr >= 0 && rr < rowsInput_scaled && cc >= 0 && cc < colsSyn_scaled){
-				int bb_type = imgInputlabel_scaled(rr, cc) - 1;
-				if (bb_type > -1){
-					Vec3d color(colorList[bb_type][2], colorList[bb_type][1], colorList[bb_type][0]);
-					gcoBBlabelSynColor_scaled(r, c) = color;
-				}
-			}
-		}
-	}
-	cv::resize(gcoBBlabelSynColor_scaled, gcoBBlabelSynColor_fullres, Size(colsSyn_fullres, rowsSyn_fullres), 0, 0, INTER_NEAREST);
-	*qimgSynlabelColor_fullres = Mat2QImage(gcoBBlabelSynColor_fullres);
+	//gcoBBlabelSynColor_scaled = Mat3b::zeros(rowsSyn_scaled, colsSyn_scaled);
+	//gcoBBlabelSynColor_fullres = Mat3b::zeros(rowsSyn_fullres, colsSyn_fullres);
+	//for (int r = 0; r < rowsSyn_scaled; r++){
+	//	for (int c = 0; c < colsSyn_scaled; c++){
+	//		int cc = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->x + c;
+	//		int rr = -list_shiftXY_scaled[gcolabelSyn_scaled(r, c)]->y + r;
+	//		if (rr >= 0 && rr < rowsInput_scaled && cc >= 0 && cc < colsSyn_scaled){
+	//			int bb_type = imgInputlabel_scaled(rr, cc) - 1;
+	//			if (bb_type > -1){
+	//				Vec3d color(colorList[bb_type][2], colorList[bb_type][1], colorList[bb_type][0]);
+	//				gcoBBlabelSynColor_scaled(r, c) = color;
+	//			}
+	//		}
+	//	}
+	//}
+	//cv::resize(gcoBBlabelSynColor_scaled, gcoBBlabelSynColor_fullres, Size(colsSyn_fullres, rowsSyn_fullres), 0, 0, INTER_NEAREST);
+	//*qimgSynlabelColor_fullres = Mat2QImage(gcoBBlabelSynColor_fullres);
 	//imshow("gcoBBlabelSynColor_fullres", gcoBBlabelSynColor_fullres);
 }
 
