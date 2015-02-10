@@ -71,7 +71,7 @@ void ImageViewer::slotOpen(){
 	filename_offsetStatisticsBBInput += "OffsetStatistics" + name_detection + ".txt";
 	filename_offsetStatisticsBBMWInput = filename_imgInput;
 	filename_offsetStatisticsBBMWInput.resize(filename_imgInput.size() - 4);
-	filename_offsetStatisticsBBMWInput += "OffsetStatisticsBBMW.txt";
+	filename_offsetStatisticsBBMWInput += "OffsetStatistics" + name_detection + "MW.txt";
 	filename_offsetStatisticsInput = "offset statistics file";
 	filename_repInput = filename_imgInput;
 	filename_repInput.resize(filename_imgInput.size() - 4);
@@ -346,10 +346,11 @@ void ImageViewer::slotSwitchSynMethod2(){
 void ImageViewer::slotSwitchSynMethod3(){
     method_now = 3;
 	if (flag_MW){
-		filename_offsetStatisticsInput = filename_offsetStatisticsPixelMWInput;
+		filename_offsetStatisticsInput = filename_offsetStatisticsBBMWInput;
+		
 	}
 	else{
-		filename_offsetStatisticsInput = filename_offsetStatisticsPixelInput;
+		filename_offsetStatisticsInput = filename_offsetStatisticsBBInput;
 	}
 	syn->parsingInput();
 	syn->initialization();
